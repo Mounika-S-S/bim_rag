@@ -1,31 +1,5 @@
 # bim-rag
 #folder structure
-bim_rag_project/
-
-├─ data/
-
-  ├─ ifc/
-
-  ├─ excel/
-
-  ├─ output/
-├─ src/
-
-  ├─ ifc_parser/
-
-  ├─ excel_parser/
-
-  ├─ rule_engine/
-
-  ├─ vector_store/
-
-  ├─ retrieval/
-
-  ├─ llm/
-
-  └─ app.py
-
-
-├─ requirements.txt
+<img width="684" height="735" alt="image" src="https://github.com/user-attachments/assets/31d81e74-a72e-4202-a476-2203760de06d" />
 
 └─ README.md
