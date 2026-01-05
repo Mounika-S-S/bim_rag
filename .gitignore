@@ -1,0 +1,38 @@
+# =========================
+# Python virtual environment
+# =========================
+venv/
+.env/
+
+# =========================
+# Python cache files
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+
+# =========================
+# OS / Editor files
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# Data files (company sensitive)
+# =========================
+data/ifc/
+data/excel/
+
+# =========================
+# Generated outputs
+# =========================
+data/output/
+chroma_db/
+faiss_index/
+
+# =========================
+# Logs
+# =========================
+*.log

@@ -1,0 +1,6 @@
+ifcopenshell
+pandas
+openpyxl
+sentence-transformers
+chromadb
+numpy
