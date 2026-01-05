@@ -4,29 +4,27 @@ bim_rag_project/
 
 ├─ data/
 
-│   ├─ ifc/
+  ├─ ifc/
 
-│   ├─ excel/
+  ├─ excel/
 
-│   ├─ output/
-│
-
+  ├─ output/
 ├─ src/
 
-│   ├─ ifc_parser/
+  ├─ ifc_parser/
 
-│   ├─ excel_parser/
+  ├─ excel_parser/
 
-│   ├─ rule_engine/
+  ├─ rule_engine/
 
-│   ├─ vector_store/
+  ├─ vector_store/
 
-│   ├─ retrieval/
+  ├─ retrieval/
 
-│   ├─ llm/
+  ├─ llm/
 
-│   └─ app.py
-│
+  └─ app.py
+
 
 ├─ requirements.txt
 
