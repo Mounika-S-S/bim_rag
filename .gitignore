@@ -22,15 +22,15 @@ Thumbs.db
 # =========================
 # Data files (company sensitive)
 # =========================
-data/ifc/
-data/excel/
+# data/ifc/
+# data/excel/
 
 # =========================
 # Generated outputs
 # =========================
-data/output/
-chroma_db/
-faiss_index/
+# data/output/
+# chroma_db/
+# faiss_index/
 
 # =========================
 # Logs

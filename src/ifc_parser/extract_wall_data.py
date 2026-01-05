@@ -1,5 +1,5 @@
-from extract_basic import extract_basic_info
-from extract_psets import extract_psets
+from .extract_basic import extract_basic_info
+from .extract_psets import extract_psets
 
 def extract_wall_data(wall):
     basic = extract_basic_info(wall)

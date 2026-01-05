@@ -1,8 +1,8 @@
 import ifcopenshell
-from get_elements import get_walls
-from extract_basic import extract_basic_info
-from extract_psets import extract_psets
-from extract_wall_data import extract_wall_data
+from .get_elements import get_walls
+from .extract_basic import extract_basic_info
+from .extract_psets import extract_psets
+from .extract_wall_data import extract_wall_data
 
 def load_ifc_model(ifc_path: str):
     """

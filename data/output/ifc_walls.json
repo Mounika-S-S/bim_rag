@@ -1,0 +1,2004 @@
+[
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBp",
+    "name": "Basic Wall:Ytterv\u00e4gg Paroc:1298028",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top is Attached": true,
+        "Top Offset": 0.0,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 48.0210989466982,
+        "Length": 22060.0,
+        "Volume": 25.1098377156085
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Family and Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type Id": "Basic Wall: Ytterv\u00e4gg Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_WallCommon": {
+        "Reference": "Ytterv\u00e4gg Paroc",
+        "IsExternal": true,
+        "ExtendToStructure": true,
+        "LoadBearing": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Littera": "YV7",
+        "L\u00e4ngd": 22060.0,
+        "Bredd": 540.0,
+        "Area": 48.0210989466982,
+        "Volym": 25.1098377156085
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 48.0210989466982,
+        "Height": 2400.0,
+        "Width": 540.0,
+        "Length": 22060.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBo",
+    "name": "Basic Wall:Ytterv\u00e4gg Paroc:1298029",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top is Attached": true,
+        "Top Offset": 0.0,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 22.2531110413347,
+        "Length": 8960.00000000001,
+        "Volume": 12.0166799623208
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Family and Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type Id": "Basic Wall: Ytterv\u00e4gg Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_WallCommon": {
+        "Reference": "Ytterv\u00e4gg Paroc",
+        "IsExternal": true,
+        "ExtendToStructure": true,
+        "LoadBearing": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Littera": "YV7",
+        "L\u00e4ngd": 8960.00000000001,
+        "Bredd": 540.0,
+        "Area": 22.2531110413347,
+        "Volym": 12.0166799623208
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 22.2531110413347,
+        "Height": 2400.0,
+        "Width": 540.0,
+        "Length": 8960.00000000001
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBn",
+    "name": "Basic Wall:Ytterv\u00e4gg Paroc:1298030",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top is Attached": true,
+        "Top Offset": 0.0,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 32.682894901069,
+        "Length": 22059.9999999999,
+        "Volume": 16.8538965977316
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Family and Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type Id": "Basic Wall: Ytterv\u00e4gg Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_WallCommon": {
+        "Reference": "Ytterv\u00e4gg Paroc",
+        "IsExternal": true,
+        "ExtendToStructure": true,
+        "LoadBearing": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Littera": "YV7",
+        "L\u00e4ngd": 22059.9999999999,
+        "Bredd": 540.0,
+        "Area": 32.682894901069,
+        "Volym": 16.8538965977316
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 32.682894901069,
+        "Height": 2400.0,
+        "Width": 540.0,
+        "Length": 22059.9999999999
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBm",
+    "name": "Basic Wall:Ytterv\u00e4gg Paroc:1298031",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top is Attached": true,
+        "Top Offset": 0.0,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 20.6804590185202,
+        "Length": 8960.0,
+        "Volume": 11.1674478700009
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Family and Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type Id": "Basic Wall: Ytterv\u00e4gg Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_WallCommon": {
+        "Reference": "Ytterv\u00e4gg Paroc",
+        "IsExternal": true,
+        "ExtendToStructure": true,
+        "LoadBearing": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Littera": "YV7",
+        "L\u00e4ngd": 8960.0,
+        "Bredd": 540.0,
+        "Area": 20.6804590185202,
+        "Volym": 11.1674478700009
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 20.6804590185202,
+        "Height": 2400.0,
+        "Width": 540.0,
+        "Length": 8960.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBj",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298034",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 16.3678,
+        "Length": 8960.0,
+        "Volume": 2.782526
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 8960.0,
+        "Bredd": 170.0,
+        "Area": 16.3678,
+        "Volym": 2.782526
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 16.3678,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 8960.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBh",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298036",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 16.5237999999999,
+        "Length": 8839.99999999997,
+        "Volume": 2.80904599999998
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 8839.99999999997,
+        "Bredd": 170.0,
+        "Area": 16.5237999999999,
+        "Volym": 2.80904599999998
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 16.5237999999999,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 8839.99999999997
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBg",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298037",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 5.39999999999999,
+        "Length": 2435.0,
+        "Volume": 0.917999999999999
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 2435.0,
+        "Bredd": 170.0,
+        "Area": 5.39999999999999,
+        "Volym": 0.917999999999999
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 5.39999999999999,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 2435.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBf",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298038",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 5.2199,
+        "Length": 3330.00000000001,
+        "Volume": 0.887383
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 3330.00000000001,
+        "Bredd": 170.0,
+        "Area": 5.2199,
+        "Volym": 0.887383
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 5.2199,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 3330.00000000001
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBe",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298039",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 8.64,
+        "Length": 3955.0,
+        "Volume": 1.4688
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 3955.0,
+        "Bredd": 170.0,
+        "Area": 8.64,
+        "Volym": 1.4688
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 8.64,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 3955.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBd",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298040",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 3.5999,
+        "Length": 2470.0,
+        "Volume": 0.611982999999999
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 2470.0,
+        "Bredd": 170.0,
+        "Area": 3.5999,
+        "Volym": 0.611982999999999
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 3.5999,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 2470.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBc",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298041",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 7.956,
+        "Length": 3670.0,
+        "Volume": 1.35252
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 3670.0,
+        "Bredd": 170.0,
+        "Area": 7.956,
+        "Volym": 1.35252
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 7.956,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 3670.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_q9K",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298123",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 9.04799999999999,
+        "Length": 3955.0,
+        "Volume": 1.53816
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 3955.0,
+        "Bredd": 170.0,
+        "Area": 9.04799999999999,
+        "Volym": 1.53816
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 9.04799999999999,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 3955.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_rm$",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298592",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 9.31200000000005,
+        "Length": 3880.0,
+        "Volume": 1.58304000000001
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 3880.0,
+        "Bredd": 170.0,
+        "Area": 9.31200000000005,
+        "Volym": 1.58304000000001
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 9.31200000000005,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 3880.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBp",
+    "name": "Basic Wall:Ytterv\u00e4gg Paroc:1298028",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top is Attached": true,
+        "Top Offset": 0.0,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 48.0210989466982,
+        "Length": 22060.0,
+        "Volume": 25.1098377156085
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Family and Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type Id": "Basic Wall: Ytterv\u00e4gg Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_WallCommon": {
+        "Reference": "Ytterv\u00e4gg Paroc",
+        "IsExternal": true,
+        "ExtendToStructure": true,
+        "LoadBearing": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Littera": "YV7",
+        "L\u00e4ngd": 22060.0,
+        "Bredd": 540.0,
+        "Area": 48.0210989466982,
+        "Volym": 25.1098377156085
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 48.0210989466982,
+        "Height": 2400.0,
+        "Width": 540.0,
+        "Length": 22060.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBo",
+    "name": "Basic Wall:Ytterv\u00e4gg Paroc:1298029",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top is Attached": true,
+        "Top Offset": 0.0,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 22.2531110413347,
+        "Length": 8960.00000000001,
+        "Volume": 12.0166799623208
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Family and Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type Id": "Basic Wall: Ytterv\u00e4gg Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_WallCommon": {
+        "Reference": "Ytterv\u00e4gg Paroc",
+        "IsExternal": true,
+        "ExtendToStructure": true,
+        "LoadBearing": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Littera": "YV7",
+        "L\u00e4ngd": 8960.00000000001,
+        "Bredd": 540.0,
+        "Area": 22.2531110413347,
+        "Volym": 12.0166799623208
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 22.2531110413347,
+        "Height": 2400.0,
+        "Width": 540.0,
+        "Length": 8960.00000000001
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBn",
+    "name": "Basic Wall:Ytterv\u00e4gg Paroc:1298030",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top is Attached": true,
+        "Top Offset": 0.0,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 32.682894901069,
+        "Length": 22059.9999999999,
+        "Volume": 16.8538965977316
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Family and Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type Id": "Basic Wall: Ytterv\u00e4gg Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_WallCommon": {
+        "Reference": "Ytterv\u00e4gg Paroc",
+        "IsExternal": true,
+        "ExtendToStructure": true,
+        "LoadBearing": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Littera": "YV7",
+        "L\u00e4ngd": 22059.9999999999,
+        "Bredd": 540.0,
+        "Area": 32.682894901069,
+        "Volym": 16.8538965977316
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 32.682894901069,
+        "Height": 2400.0,
+        "Width": 540.0,
+        "Length": 22059.9999999999
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBm",
+    "name": "Basic Wall:Ytterv\u00e4gg Paroc:1298031",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top is Attached": true,
+        "Top Offset": 0.0,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 20.6804590185202,
+        "Length": 8960.0,
+        "Volume": 11.1674478700009
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Family and Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Type Id": "Basic Wall: Ytterv\u00e4gg Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Ytterv\u00e4gg Paroc"
+      },
+      "Pset_WallCommon": {
+        "Reference": "Ytterv\u00e4gg Paroc",
+        "IsExternal": true,
+        "ExtendToStructure": true,
+        "LoadBearing": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Ytterv\u00e4gg Paroc",
+        "Littera": "YV7",
+        "L\u00e4ngd": 8960.0,
+        "Bredd": 540.0,
+        "Area": 20.6804590185202,
+        "Volym": 11.1674478700009
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 20.6804590185202,
+        "Height": 2400.0,
+        "Width": 540.0,
+        "Length": 8960.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBj",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298034",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 16.3678,
+        "Length": 8960.0,
+        "Volume": 2.782526
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 8960.0,
+        "Bredd": 170.0,
+        "Area": 16.3678,
+        "Volym": 2.782526
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 16.3678,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 8960.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBh",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298036",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 16.5237999999999,
+        "Length": 8839.99999999997,
+        "Volume": 2.80904599999998
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 8839.99999999997,
+        "Bredd": 170.0,
+        "Area": 16.5237999999999,
+        "Volym": 2.80904599999998
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 16.5237999999999,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 8839.99999999997
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBg",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298037",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 5.39999999999999,
+        "Length": 2435.0,
+        "Volume": 0.917999999999999
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 2435.0,
+        "Bredd": 170.0,
+        "Area": 5.39999999999999,
+        "Volym": 0.917999999999999
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 5.39999999999999,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 2435.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBf",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298038",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 5.2199,
+        "Length": 3330.00000000001,
+        "Volume": 0.887383
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 3330.00000000001,
+        "Bredd": 170.0,
+        "Area": 5.2199,
+        "Volym": 0.887383
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 5.2199,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 3330.00000000001
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBe",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298039",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 8.64,
+        "Length": 3955.0,
+        "Volume": 1.4688
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 3955.0,
+        "Bredd": 170.0,
+        "Area": 8.64,
+        "Volym": 1.4688
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 8.64,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 3955.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBd",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298040",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 3.5999,
+        "Length": 2470.0,
+        "Volume": 0.611982999999999
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 2470.0,
+        "Bredd": 170.0,
+        "Area": 3.5999,
+        "Volym": 0.611982999999999
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 3.5999,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 2470.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_qBc",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298041",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 7.956,
+        "Length": 3670.0,
+        "Volume": 1.35252
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 3670.0,
+        "Bredd": 170.0,
+        "Area": 7.956,
+        "Volym": 1.35252
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 7.956,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 3670.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_q9K",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298123",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 9.04799999999999,
+        "Length": 3955.0,
+        "Volume": 1.53816
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 3955.0,
+        "Bredd": 170.0,
+        "Area": 9.04799999999999,
+        "Volym": 1.53816
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 9.04799999999999,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 3955.0
+      }
+    }
+  },
+  {
+    "global_id": "2DedXznHnDaeAWsrTB_rm$",
+    "name": "Basic Wall:Innerv\u00e4gg 170mm Paroc:1298592",
+    "type": "IfcWallStandardCase",
+    "fire_rating": null,
+    "psets": {
+      "Constraints": {
+        "Base Constraint": "Level: Floor 0",
+        "Base Extension Distance": 0.0,
+        "Base is Attached": false,
+        "Base Offset": 0.0,
+        "Cross-Section": "Vertical",
+        "Location Line": "Wall Centerline",
+        "Related to Mass": false,
+        "Room Bounding": true,
+        "Top Constraint": "Level: Floor 1",
+        "Top Extension Distance": 0.0,
+        "Top Offset": 0.0,
+        "Top is Attached": false,
+        "Unconnected Height": 2400.0
+      },
+      "Dimensions": {
+        "Area": 9.31200000000005,
+        "Length": 3880.0,
+        "Volume": 1.58304000000001
+      },
+      "Other": {
+        "Category": "Walls",
+        "Family": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Family and Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Type Id": "Basic Wall: Innerv\u00e4gg 170mm Paroc"
+      },
+      "Phasing": {
+        "Phase Created": "Nytt"
+      },
+      "Structural": {
+        "Enable Analytical Model": false,
+        "Structural": false,
+        "Structural Usage": "Non-bearing"
+      },
+      "Pset_ElementShading": {
+        "Roughness": 304.8
+      },
+      "Pset_ProductRequirements": {
+        "Category": "Walls"
+      },
+      "Pset_QuantityTakeOff": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_ReinforcementBarPitchOfWall": {
+        "Reference": "Innerv\u00e4gg 170mm Paroc"
+      },
+      "Pset_WallCommon": {
+        "IsExternal": false,
+        "LoadBearing": false,
+        "Reference": "Innerv\u00e4gg 170mm Paroc",
+        "ExtendToStructure": false
+      },
+      "V\u00e4ggf\u00f6rteckning": {
+        "Typ": "Basic Wall: Innerv\u00e4gg 170mm Paroc",
+        "Littera": "IV1",
+        "L\u00e4ngd": 3880.0,
+        "Bredd": 170.0,
+        "Area": 9.31200000000005,
+        "Volym": 1.58304000000001
+      },
+      "Custom_Pset": {
+        "StoreyName": "Level: Floor 0",
+        "StatusConstruction": "Nytt",
+        "NetArea": 9.31200000000005,
+        "Height": 2400.0,
+        "Width": 170.0,
+        "Length": 3880.0
+      }
+    }
+  }
+]
