@@ -1,0 +1,46 @@
+[
+  {
+    "requirement_id": "REQ-FIRE-001",
+    "element_type": "IfcWall",
+    "scope": "External",
+    "property": "FireRating",
+    "operator": ">=",
+    "value": 120,
+    "unit": "min",
+    "priority": "High",
+    "description": "All external walls must achieve a minimum fire resistance rating of EI120."
+  },
+  {
+    "requirement_id": "REQ-FIRE-002",
+    "element_type": "IfcWall",
+    "scope": "External",
+    "property": "IsExternal",
+    "operator": NaN,
+    "value": true,
+    "unit": NaN,
+    "priority": "High",
+    "description": "Only walls marked as external are subject to external fire safety requirements."
+  },
+  {
+    "requirement_id": "REQ-PROD-001",
+    "element_type": "IfcWall",
+    "scope": "External",
+    "property": "Manufacturer",
+    "operator": "IN",
+    "value": "Approved_List",
+    "unit": NaN,
+    "priority": "Medium",
+    "description": "External walls must use products from the approved manufacturer list."
+  },
+  {
+    "requirement_id": "REQ-GEO-001",
+    "element_type": "IfcWall",
+    "scope": "External",
+    "property": "Thickness",
+    "operator": ">=",
+    "value": 200,
+    "unit": "mm",
+    "priority": "Low",
+    "description": "External wall thickness must be at least 200 mm for fire and thermal performance."
+  }
+]

@@ -4,3 +4,5 @@ openpyxl
 sentence-transformers
 chromadb
 numpy
+PyPDF2
+pypandoc
