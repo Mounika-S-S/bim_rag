@@ -15,9 +15,9 @@
     "element_type": "IfcWall",
     "scope": "External",
     "property": "IsExternal",
-    "operator": NaN,
+    "operator": "",
     "value": true,
-    "unit": NaN,
+    "unit": "",
     "priority": "High",
     "description": "Only walls marked as external are subject to external fire safety requirements."
   },
@@ -28,7 +28,7 @@
     "property": "Manufacturer",
     "operator": "IN",
     "value": "Approved_List",
-    "unit": NaN,
+    "unit": "",
     "priority": "Medium",
     "description": "External walls must use products from the approved manufacturer list."
   },
