@@ -1,71 +1,56 @@
-# bim-rag
-#folder structure
-<img width="684" height="735" alt="image" src="https://github.com/user-attachments/assets/31d81e74-a72e-4202-a476-2203760de06d" />
+**BIM Compliance Intelligence System (RAG-Enabled)**
+**Overview**
 
-└─ README.md
-Transforming Product Data Digitally
-Yatzar Asset began when we recognised a common issue across the industry. Product information was scattered across PDFs, low quality images, outdated brochures and incomplete specifications. This created delays, confusion and rework in BIM driven workflows.
+This project implements a BIM compliance intelligence system that analyzes IFC models against project requirements, product data, and regulations to identify non-compliant building elements and explain the results using Retrieval-Augmented Generation (RAG).
 
-We wanted to create a platform where manufacturers could publish complete digital representations of their products and where professionals could easily discover and download building assets they can trust. Over time, as the use of Revit, IFC, ArchiCAD, SketchUp and digital twin technology expanded, our work evolved to meet global expectations for quality and accuracy
+The system is designed with a clear separation between deterministic engineering logic and AI-based explanation:
 
-Layer 1: IFC model (what is built)
-Layer 2: Product data (what it actually is)
-Layer 3: Documents (proof)
-Layer 4: Regulations (rules)
-Layer 5: Project requirements (context)
+✅ Compliance decisions are rule-based and auditable
 
-Overview
+✅ RAG retrieves verified evidence
 
-This project implements a BIM-aware compliance intelligence system that analyzes IFC models against project requirements, product data, and regulations to identify mismatches and explain them using Retrieval-Augmented Generation (RAG).
+✅ LLMs (optional) are used only for explanation, never for decision-making
+**
+What Problem Does This Solve?**
 
-The system is designed for engineering correctness, auditability, and trust.
-All compliance decisions are made deterministically using rule logic.
-Large Language Models (LLMs) are used only for explanation, not decision-making.
+In real BIM workflows, information is fragmented:
 
-Key Capabilities
+Geometry → IFC files
 
-Parse IFC models (.ifc) to extract BIM elements
+Requirements → Excel sheets
 
-Ingest manufacturer product data (Excel / PDF)
+Products → Manufacturer catalogs
 
-Ingest regulatory documents (PDF)
+Regulations → PDFs
 
-Model project-specific requirements (Excel)
+Explanations → Manual, error-prone
 
-Perform deterministic compliance checks
+This system unifies all these sources into a single, explainable compliance pipeline.
 
-Detect and store fire-safety mismatches
-
-Enable natural-language querying using RAG
-
-Generate clear, engineer-readable explanations
-
-System Architecture:
-User Query
+**High-Level Architecture**
+User Question
    ↓
-Rule Engine (deterministic)
+Query Router (intent detection)
    ↓
-Structured Results (mismatches, rules, products)
+Vector DB (ChromaDB) — RAG retrieval
    ↓
-Vector Database (ChromaDB)
+Deterministic Results (mismatches, rules, products, regulations)
    ↓
-RAG Retrieval (relevant evidence)
+( Optional ) LLM — explanation only
    ↓
-LLM (explanation only)
-   ↓
-Final Answer
+Engineer-readable answer
 
+**
+Data Layers**
+**Layer 1 — IFC Model (What is Built)**
 
-Data Layers
-Layer 1 — IFC Model (What is Built)
-
-Input: IFC file
+Input: .ifc file
 
 Output: ifc_walls.json
 
-Extracted data:
+Extracts:
 
-Element IDs
+Wall IDs
 
 Names
 
@@ -73,7 +58,7 @@ Types
 
 Property sets (Psets)
 
-Layer 2 — Product Data (What It Is)
+**Layer 2 — Product Data (What It Is)**
 
 Input: Manufacturer Excel / PDF
 
@@ -85,35 +70,35 @@ System type
 
 Fire rating
 
+Manufacturer
+
 Constraints
 
-Approved configurations
-
-Layer 3 — Documents (Proof)
+**Layer 3 — Documents (Proof)**
 
 Input: Technical PDFs
 
 Output: documents.json
 
-Purpose:
+Used as:
 
-Evidence for RAG
+Supporting evidence
 
-Traceability
+RAG context only
 
-Layer 4 — Regulations (Authority)
+**Layer 4 — Regulations (Authority)**
 
 Input: Fire code PDFs
 
 Output: regulations.json
 
-Purpose:
+Used to:
 
-Regulatory grounding
+Ground explanations
 
-Reference during explanation
+Reference standards and codes
 
-Layer 5 — Project Requirements (Context)
+**Layer 5 — Project Requirements (Context)**
 
 Input: Project Excel
 
@@ -123,12 +108,11 @@ Defines:
 
 Required fire ratings
 
-Scope (external/internal)
+Scope (internal / external)
 
 Priority and description
 
-
-Compliance Engine
+Compliance Engine (Core Logic)
 
 The compliance engine compares:
 
@@ -139,8 +123,8 @@ Against project requirements (Layer 5)
 Using available product systems (Layer 2)
 
 Output
-
 mismatches.json
+
 
 Example:
 
@@ -152,64 +136,64 @@ Example:
   "wall_fire_rating": null
 }
 
-RAG Pipeline
 
-All structured outputs are embedded into ChromaDB
+✔ Deterministic
+✔ Explainable
+✔ Auditable
 
-Vector DB is stored locally (data/vector_db)
+**RAG Pipeline**
+Vector Database
 
-No cloud services required
+Engine: ChromaDB
 
-No external accounts needed
+Storage: Local (data/vector_db)
+
+No cloud, no accounts, no API keys
 
 Embedded Sources
 
-Mismatches
+mismatches.json
 
-Project rules
+rules.json
 
-Product data
+products.json
 
-Documents
+documents.json
 
-Regulations
+regulations.json
 
-Query Interface
+Query Routing (General Explanation RAG)
+
+The system supports different question types using query routing:
+
+Question Type	Example	Retrieved Sources
+Compliance	“Which walls violate fire safety?”	mismatches
+Project overview	“Explain the project”	documents, rules
+Regulations	“Which regulation requires EI120?”	regulations
+Products	“Which products are approved?”	products
+Unsupported	“Total cost?”	Graceful fallback
+
+This ensures relevant and precise retrieval.
+
+Query Engine
 
 Engineers can ask questions such as:
 
-“Which walls violate fire safety?”
+Which walls violate fire safety?
 
-“Why is wall X non-compliant?”
+Why is wall X non-compliant?
 
-“What fire rating is required?”
+What fire rating is required?
 
-“Which product can resolve this issue?”
+Which regulations apply?
 
-“Which regulation supports this rule?”
+Which products are approved?
 
-The system retrieves verified evidence and explains it clearly.
+The system retrieves verified context and presents it clearly.
+**project structure**
+<img width="495" height="870" alt="image" src="https://github.com/user-attachments/assets/30f08bb5-3a8f-4055-8fde-c8891110891f" />
 
-LLM Integration Philosophy
-
-LLMs are used only for explanation
-
-They receive retrieved context from RAG
-
-They are instructed not to invent facts
-
-All data can run locally (e.g., Ollama)
-
-This ensures:
-
-No hallucinations
-
-No compliance risk
-
-Full data privacy
-
-
-Tech Stack
+**Technology Stack**
 
 Python
 
@@ -223,16 +207,37 @@ ChromaDB
 
 sentence-transformers
 
-Ollama (optional, local LLM)
+(Optional) Ollama / Local LLM
 
-Design Principles
+**Design Principles**
 
 Deterministic before generative
 
-Explainable by design
+Explainability by design
 
-Separation of logic and language
+Clear separation of logic and language
 
 Privacy-first (local execution)
 
 Engineering-grade correctness
+
+**Current Status**
+
+✅ IFC parsing
+✅ Product ingestion
+✅ Regulation ingestion
+✅ Project requirements modeling
+✅ Compliance detection
+✅ RAG with query routing
+✅ Engineer-readable answers
+⏳ LLM explanation layer (optional)
+
+**Intended Users**
+
+BIM engineers
+
+Fire safety reviewers
+
+Compliance teams
+
+Digital construction workflows
