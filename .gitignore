@@ -18,7 +18,7 @@ __pycache__/
 Thumbs.db
 .vscode/
 .idea/
-
+*/data/input
 # =========================
 # Data files (company sensitive)
 # =========================
