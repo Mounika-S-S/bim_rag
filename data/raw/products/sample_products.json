@@ -1,0 +1,14 @@
+[
+  {
+    "element_id": "P1",
+    "FireRating": "120min",
+    "Manufacturer": "ABC",
+    "Thickness": 250
+  },
+  {
+    "element_id": "P2",
+    "FireRating": "60min",
+    "Manufacturer": "XYZ",
+    "Thickness": 200
+  }
+]

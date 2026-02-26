@@ -1,0 +1,17 @@
+[
+  {
+    "element_id": "W1",
+    "entity": "wall",
+    "FireRating": "60min",
+    "Thickness": 200,
+    "material": {
+      "name": "Gypsum"
+    }
+  },
+  {
+    "element_id": "W2",
+    "entity": "wall",
+    "FireRating": "120min",
+    "Thickness": 250
+  }
+]
