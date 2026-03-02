@@ -6,3 +6,5 @@ chromadb
 numpy
 PyPDF2
 pypandoc
+pdfplumber
+PyMuPDF

@@ -1,45 +1,143 @@
+import os
 import json
-from typing import List, Dict, Any
+import pandas as pd
+import pdfplumber
 
 
-class ProductParser:
-    """
-    Parses product data (JSON for now)
-    and converts to standardized internal format.
-    """
+class ProductExtractor:
 
-    STRUCTURAL_KEYS = {"element_id", "id", "entity", "type", "layer"}
+    def __init__(self):
+        pass
 
-    def parse_json(self, file_path: str) -> List[Dict[str, Any]]:
+    # ============================================================
+    # EXCEL PARSER
+    # ============================================================
 
-        with open(file_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
+    def extract_from_excel(self, excel_path: str):
 
-        if isinstance(data, dict):
-            data = [data]
+        df = pd.read_excel(excel_path)
 
-        elements = []
+        df.columns = [col.strip().lower() for col in df.columns]
 
-        for item in data:
-            if not isinstance(item, dict):
-                continue
+        products = []
 
-            element_id = item.get("element_id") or item.get("id")
+        for index, row in df.iterrows():
 
-            if not element_id:
-                continue
-
-            attributes = {
-                key: value
-                for key, value in item.items()
-                if key not in self.STRUCTURAL_KEYS
+            product = {
+                "id": f"L2_{index}",
+                "entity_type": "Product",
+                "layer": "L2",
+                "category": self._safe_get(row, "category"),
+                "properties": {
+                    "ProductName": self._safe_get(row, "productname"),
+                    "Material": self._safe_get(row, "material"),
+                    "Height": self._to_float(self._safe_get(row, "height")),
+                    "Length": self._to_float(self._safe_get(row, "length")),
+                    "Width": self._to_float(self._safe_get(row, "width")),
+                    "FireRating": self._safe_get(row, "firerating"),
+                    "UValue": self._to_float(self._safe_get(row, "uvalue"))
+                }
             }
 
-            elements.append({
-                "element_id": str(element_id),
-                "entity": "product",
-                "layer": "L2",
-                "attributes": attributes
-            })
+            products.append(product)
 
-        return elements
+        return products
+
+    # ============================================================
+    # PDF PARSER
+    # ============================================================
+
+    def extract_from_pdf(self, pdf_path: str):
+
+        products = []
+
+        with pdfplumber.open(pdf_path) as pdf:
+
+            full_text = ""
+
+            for page in pdf.pages:
+                text = page.extract_text()
+                if text:
+                    full_text += text + "\n"
+
+        # Very simple heuristic parsing
+        # Assumes format like:
+        # Product: XYZ
+        # Height: 3.2 m
+        # Material: Concrete
+
+        entries = full_text.split("Product:")
+
+        for idx, entry in enumerate(entries[1:]):
+
+            product = {
+                "id": f"L2_PDF_{idx}",
+                "entity_type": "Product",
+                "layer": "L2",
+                "category": "Unknown",
+                "properties": {}
+            }
+
+            lines = entry.split("\n")
+
+            for line in lines:
+
+                line_lower = line.lower()
+
+                if "material" in line_lower:
+                    product["properties"]["Material"] = self._extract_value(line)
+
+                if "height" in line_lower:
+                    product["properties"]["Height"] = self._extract_numeric(line)
+
+                if "length" in line_lower:
+                    product["properties"]["Length"] = self._extract_numeric(line)
+
+                if "width" in line_lower:
+                    product["properties"]["Width"] = self._extract_numeric(line)
+
+                if "fire" in line_lower:
+                    product["properties"]["FireRating"] = self._extract_value(line)
+
+            products.append(product)
+
+        return products
+
+    # ============================================================
+    # SAVE FUNCTION
+    # ============================================================
+
+    def save(self, products, output_path):
+
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(products, f, indent=4)
+
+        print(f"L2 Product JSON saved at: {output_path}")
+
+    # ============================================================
+    # HELPERS
+    # ============================================================
+
+    def _safe_get(self, row, column):
+        return row[column] if column in row and pd.notna(row[column]) else None
+
+    def _to_float(self, value):
+        try:
+            return float(value)
+        except:
+            return None
+
+    def _extract_numeric(self, line):
+        import re
+        match = re.search(r"\d+(\.\d+)?", line)
+        if match:
+            return float(match.group())
+        return None
+
+    def _extract_value(self, line):
+        parts = line.split(":")
+        if len(parts) > 1:
+            return parts[1].strip()
+        return None
