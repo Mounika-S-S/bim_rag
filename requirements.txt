@@ -8,3 +8,4 @@ PyPDF2
 pypandoc
 pdfplumber
 PyMuPDF
+faiss-cpu

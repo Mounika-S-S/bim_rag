@@ -7,8 +7,8 @@ from src.ingestion.ifc_parser import IFCParser
 from src.ingestion.main_l4_pipeline import L4Pipeline
 from src.ingestion.product_parser import ProductExtractor
 from src.core.json_storage import JSONStorage
-
-
+from src.inference.compliance_engine import ComplianceEngine
+from src.rag.unified_vector_store import UnifiedVectorStore
 PROJECTS_PATH = "data/processed"
 
 
@@ -65,7 +65,10 @@ def interactive_menu(project_id):
         print("3. Add Regulation (L4)")
         print("4. Add Requirement (L5)")
         print("5. View Stored JSON Files")
-        print("6. Exit")
+        print("6. Run Compliance Inference (L1-L2-L4)")
+        print("7. Build Unified Vector Store")
+        print("8. Query Semantic Knowledge")
+        print("9. Exit")
 
         choice = input("Select option: ").strip()
 
@@ -83,8 +86,16 @@ def interactive_menu(project_id):
 
         elif choice == "5":
             view_json_files(project_id)
-
         elif choice == "6":
+            run_inference(project_id)
+
+        elif choice == "7":
+            build_vector_store(project_id)
+
+        elif choice == "8":
+            smart_query(project_id)
+
+        elif choice == "9":
             print("Exiting system.")
             break
 
@@ -113,7 +124,7 @@ def ingest_l1(project_id):
 
 
 # =====================================================
-# L2 Product Ingestion (FIXED PROPERLY)
+# L2 Product Ingestion
 # =====================================================
 
 def ingest_l2(project_id):
@@ -162,7 +173,6 @@ def ingest_l2(project_id):
 def ingest_l4(project_id):
 
     pipeline = L4Pipeline()
-
     all_records = []
 
     print("Enter PDF file paths (type 'done' to finish):")
@@ -186,11 +196,6 @@ def ingest_l4(project_id):
     if not all_records:
         print("No regulations parsed.")
         return
-
-    existing = JSONStorage.load(project_id, "L4_regulation.json")
-
-    if existing:
-        all_records = existing + all_records
 
     JSONStorage.save(project_id, "L4_regulation.json", all_records)
 
@@ -239,7 +244,150 @@ def view_json_files(project_id):
     for f in files:
         print(f" - {f}")
 
+#==========mismatch layer1,2,4=========
+def run_inference(project_id):
 
+    l1 = JSONStorage.load(project_id, "L1_ifc.json")
+    l2 = JSONStorage.load(project_id, "L2_product.json")
+    l4 = JSONStorage.load(project_id, "L4_regulation.json")
+
+    if not l1 or not l2 or not l4:
+        print("Missing one or more layers.")
+        return
+
+    engine = ComplianceEngine(l1, l2, l4)
+    mismatches = engine.run()
+
+    JSONStorage.save(project_id, "mismatch.json", mismatches)
+
+    print(f"Mismatch JSON generated. Total issues: {len(mismatches)}")
+
+#=========build vector store===========
+def build_vector_store(project_id):
+
+    store = UnifiedVectorStore()
+    store.build_from_project(project_id)
+
+    path = f"data/processed/{project_id}/unified.index"
+    store.save(path)
+#=======query vector store=============
+def query_vector_store(project_id):
+
+    store = UnifiedVectorStore()
+
+    path = f"data/processed/{project_id}/unified.index"
+
+    if not os.path.exists(path):
+        print("Vector store not built yet.")
+        return
+
+    store.load(path)
+
+    query = input("Enter your question: ")
+
+    results = store.search(query, k=5)
+
+    print("\nTop Results:\n")
+
+    for r in results:
+        print("-" * 80)
+        print(r)
+#====smart query=============
+def smart_query(project_id):
+
+    query = input("Enter your question: ").lower()
+
+    l2 = JSONStorage.load(project_id, "L2_product.json")
+    mismatch = JSONStorage.load(project_id, "mismatch.json")
+
+    # ---------------------------------------------------
+    # 1️⃣ NON-COMPLIANCE EXPLANATION
+    # ---------------------------------------------------
+    if "non compliant" in query or "non-compliant" in query:
+
+        print("\nCompliance Issues:\n")
+
+        found = False
+
+        for issue in mismatch:
+            element_name = issue.get("element_name", "").lower()
+
+            if element_name and element_name in query:
+                print(issue)
+                found = True
+
+        if not found:
+            print("No specific element matched. Showing top compliance issues:")
+            for issue in mismatch[:5]:
+                print(issue)
+
+        return
+
+    # ---------------------------------------------------
+    # 2️⃣ LIST ALL NON-COMPLIANT ELEMENTS
+    # ---------------------------------------------------
+    if "which" in query or "list" in query:
+
+        if "non compliant" in query:
+
+            print("\nNon-Compliant Elements:\n")
+
+            unique_elements = set()
+
+            for issue in mismatch:
+                name = issue.get("element_name")
+                if name:
+                    unique_elements.add(name)
+
+            for e in unique_elements:
+                print("-", e)
+
+            print("\nTotal:", len(unique_elements))
+            return
+
+    # ---------------------------------------------------
+    # 3️⃣ COST QUERY
+    # ---------------------------------------------------
+    if "cost" in query or "price" in query:
+
+        for product in l2:
+            name = product.get("properties", {}).get("Product_Name", "").lower()
+
+            if name and name in query:
+                cost = product["properties"].get("Unit_Cost_INR")
+                print(f"\nCost of {name}: {cost} INR")
+                return
+
+    # ---------------------------------------------------
+    # 4️⃣ DEFAULT → SEMANTIC SEARCH
+    # ---------------------------------------------------
+    store = UnifiedVectorStore()
+    path = f"data/processed/{project_id}/unified.index"
+
+    store.load(path)
+
+    results = store.search(query, k=5)
+
+    print("\nTop Results:\n")
+
+    for r in results:
+        print("-" * 80)
+        print(r)
+
+
+def classify_query(query):
+
+    q = query.lower()
+
+    if "non compliant" in q or "non-compliant" in q:
+        if "which" in q or "list" in q:
+            return "LIST_NON_COMPLIANT"
+        return "COMPLIANCE_EXPLANATION"
+
+    if "cost" in q or "price" in q:
+        return "COST_QUERY"
+
+    return "REGULATION_QUERY"
 # =====================================================
 
 if __name__ == "__main__":

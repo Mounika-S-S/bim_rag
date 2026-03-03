@@ -1,0 +1,42 @@
+[
+    {
+        "id": "a876c5c4",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "Technical",
+        "properties": {
+            "product_name": "YC-ST-SF-BIP Reinforced Concrete Beam Manufacturer: XYZ Structural Systems Pvt Ltd Model Number: T1-RCB-6000 Applicable Standard: IS 456:2000, IS 1786:2008 Parameter Value Unit Concrete Grade M30 - Steel Grade Fe500D - Fire Rating 2 Hours Length 6000 mm Width 300 mm Depth 500 mm Compressive Strength 30 MPa Warranty Period 10 Years Certifications: (cid:127) ISI Certified (cid:127) Third-party Structural Test Report Available Installation Notes: (cid:127) To be installed as per structural drawing approved by licensed engineer. (cid:127) Minimum cover: 40mm. (cid:127) Quality control testing required before commissioning.",
+            "manufacturer": "XYZ Structural Systems Pvt Ltd Model Number: T1-RCB-6000 Applicable Standard: IS 456:2000, IS 1786:2008 Parameter Value Unit Concrete Grade M30 - Steel Grade Fe500D - Fire Rating 2 Hours Length 6000 mm Width 300 mm Depth 500 mm Compressive Strength 30 MPa Warranty Period 10 Years Certifications: (cid:127) ISI Certified (cid:127) Third-party Structural Test Report Available Installation Notes: (cid:127) To be installed as per structural drawing approved by licensed engineer. (cid:127) Minimum cover: 40mm. (cid:127) Quality control testing required before commissioning.",
+            "model_number": "T1-RCB-6000 Applicable Standard: IS 456:2000, IS 1786:2008 Parameter Value Unit Concrete Grade M30 - Steel Grade Fe500D - Fire Rating 2 Hours Length 6000 mm Width 300 mm Depth 500 mm Compressive Strength 30 MPa Warranty Period 10 Years Certifications: (cid:127) ISI Certified (cid:127) Third-party Structural Test Report Available Installation Notes: (cid:127) To be installed as per structural drawing approved by licensed engineer. (cid:127) Minimum cover: 40mm. (cid:127) Quality control testing required before commissioning.",
+            "applicable_standards": "IS 456:2000, IS 1786:2008 Parameter Value Unit Concrete Grade M30 - Steel Grade Fe500D - Fire Rating 2 Hours Length 6000 mm Width 300 mm Depth 500 mm Compressive Strength 30 MPa Warranty Period 10 Years Certifications: (cid:127) ISI Certified (cid:127) Third-party Structural Test Report Available Installation Notes: (cid:127) To be installed as per structural drawing approved by licensed engineer. (cid:127) Minimum cover: 40mm. (cid:127) Quality control testing required before commissioning.",
+            "fire_rating_hours": "2",
+            "length_mm": "6000",
+            "width_mm": "300",
+            "depth_mm": "500",
+            "compressive_strength_mpa": "30",
+            "warranty_years": "10"
+        }
+    },
+    {
+        "id": "7ec32389",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "Technical",
+        "properties": {
+            "Product_Name": "YC-ST-SF-BIP Reinforced Concrete Beam",
+            "Manufacturer": "XYZ Structural Systems Pvt Ltd",
+            "Model_Number": "T1-RCB-6000",
+            "Applicable_Standards": "IS 456:2000, IS 1786:2008",
+            "Concrete_Grade": "M30",
+            "Steel_Grade": "Fe500D",
+            "Fire_Rating_Hours": 2,
+            "Length_mm": 6000,
+            "Width_mm": 300,
+            "Depth_mm": 500,
+            "Compressive_Strength_MPa": 30,
+            "Warranty_Years": 10,
+            "Unit_Cost_INR": 7200,
+            "Cost_Unit": "Per Unit"
+        }
+    }
+]

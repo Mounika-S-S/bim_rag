@@ -1,143 +1,118 @@
-import os
-import json
-import pandas as pd
+# src/ingestion/product_parser.py
+
+import re
 import pdfplumber
+from openpyxl import load_workbook
+from src.core.schema import create_layer_record
+from src.utils.id_generator import generate_id
 
 
 class ProductExtractor:
 
-    def __init__(self):
-        pass
+    # ============================
+    # Public Methods
+    # ============================
 
-    # ============================================================
-    # EXCEL PARSER
-    # ============================================================
+    def extract_from_pdf(self, file_path):
+        return self._parse_pdf(file_path)
 
-    def extract_from_excel(self, excel_path: str):
+    def extract_from_excel(self, file_path):
+        return self._parse_excel(file_path)
 
-        df = pd.read_excel(excel_path)
+    # ============================
+    # PDF Parsing
+    # ============================
 
-        df.columns = [col.strip().lower() for col in df.columns]
-
-        products = []
-
-        for index, row in df.iterrows():
-
-            product = {
-                "id": f"L2_{index}",
-                "entity_type": "Product",
-                "layer": "L2",
-                "category": self._safe_get(row, "category"),
-                "properties": {
-                    "ProductName": self._safe_get(row, "productname"),
-                    "Material": self._safe_get(row, "material"),
-                    "Height": self._to_float(self._safe_get(row, "height")),
-                    "Length": self._to_float(self._safe_get(row, "length")),
-                    "Width": self._to_float(self._safe_get(row, "width")),
-                    "FireRating": self._safe_get(row, "firerating"),
-                    "UValue": self._to_float(self._safe_get(row, "uvalue"))
-                }
-            }
-
-            products.append(product)
-
-        return products
-
-    # ============================================================
-    # PDF PARSER
-    # ============================================================
-
-    def extract_from_pdf(self, pdf_path: str):
+    def _parse_pdf(self, file_path):
 
         products = []
 
-        with pdfplumber.open(pdf_path) as pdf:
-
-            full_text = ""
-
-            for page in pdf.pages:
-                text = page.extract_text()
-                if text:
-                    full_text += text + "\n"
-
-        # Very simple heuristic parsing
-        # Assumes format like:
-        # Product: XYZ
-        # Height: 3.2 m
-        # Material: Concrete
-
-        entries = full_text.split("Product:")
-
-        for idx, entry in enumerate(entries[1:]):
-
-            product = {
-                "id": f"L2_PDF_{idx}",
-                "entity_type": "Product",
-                "layer": "L2",
-                "category": "Unknown",
-                "properties": {}
-            }
-
-            lines = entry.split("\n")
-
-            for line in lines:
-
-                line_lower = line.lower()
-
-                if "material" in line_lower:
-                    product["properties"]["Material"] = self._extract_value(line)
-
-                if "height" in line_lower:
-                    product["properties"]["Height"] = self._extract_numeric(line)
-
-                if "length" in line_lower:
-                    product["properties"]["Length"] = self._extract_numeric(line)
-
-                if "width" in line_lower:
-                    product["properties"]["Width"] = self._extract_numeric(line)
-
-                if "fire" in line_lower:
-                    product["properties"]["FireRating"] = self._extract_value(line)
-
-            products.append(product)
-
-        return products
-
-    # ============================================================
-    # SAVE FUNCTION
-    # ============================================================
-
-    def save(self, products, output_path):
-
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
-        with open(output_path, "w", encoding="utf-8") as f:
-            json.dump(products, f, indent=4)
-
-        print(f"L2 Product JSON saved at: {output_path}")
-
-    # ============================================================
-    # HELPERS
-    # ============================================================
-
-    def _safe_get(self, row, column):
-        return row[column] if column in row and pd.notna(row[column]) else None
-
-    def _to_float(self, value):
         try:
-            return float(value)
-        except:
-            return None
+            with pdfplumber.open(file_path) as pdf:
+                full_text = ""
+                for page in pdf.pages:
+                    full_text += page.extract_text() or ""
 
-    def _extract_numeric(self, line):
-        import re
-        match = re.search(r"\d+(\.\d+)?", line)
-        if match:
-            return float(match.group())
-        return None
+            if not full_text.strip():
+                return []
 
-    def _extract_value(self, line):
-        parts = line.split(":")
-        if len(parts) > 1:
-            return parts[1].strip()
-        return None
+            full_text = self._clean_text(full_text)
+
+            product_data = {}
+
+            patterns = {
+                "product_name": r"Product Name:\s*(.*)",
+                "manufacturer": r"Manufacturer:\s*(.*)",
+                "model_number": r"Model Number:\s*(.*)",
+                "applicable_standards": r"Applicable Standard[s]?:\s*(.*)",
+                "fire_rating_hours": r"Fire Rating\s*(\d+)",
+                "length_mm": r"Length\s*(\d+)",
+                "width_mm": r"Width\s*(\d+)",
+                "depth_mm": r"Depth\s*(\d+)",
+                "compressive_strength_mpa": r"Compressive Strength\s*(\d+)",
+                "warranty_years": r"Warranty Period\s*(\d+)"
+            }
+
+            for key, pattern in patterns.items():
+                match = re.search(pattern, full_text, re.IGNORECASE)
+                if match:
+                    product_data[key] = match.group(1).strip()
+
+            if product_data:
+                record = create_layer_record(
+                    record_id=generate_id(),
+                    entity_type="Product",
+                    layer="L2",
+                    category="Technical",
+                    properties=product_data
+                )
+                products.append(record)
+
+            return products
+
+        except Exception as e:
+            print("PDF parsing error:", e)
+            return []
+
+    # ============================
+    # Excel Parsing
+    # ============================
+
+    def _parse_excel(self, file_path):
+
+        products = []
+
+        try:
+            wb = load_workbook(file_path)
+            ws = wb.active
+
+            headers = [cell.value for cell in ws[1]]
+
+            for row in ws.iter_rows(min_row=2, values_only=True):
+
+                properties = dict(zip(headers, row))
+
+                record = create_layer_record(
+                    record_id=generate_id(),
+                    entity_type="Product",
+                    layer="L2",
+                    category="Technical",
+                    properties=properties
+                )
+
+                products.append(record)
+
+            return products
+
+        except Exception as e:
+            print("Excel parsing error:", e)
+            return []
+
+    # ============================
+    # Cleaner
+    # ============================
+
+    def _clean_text(self, text):
+        text = re.sub(r'\s+', ' ', text)
+        text = text.replace("•", "")
+        return text.strip()
