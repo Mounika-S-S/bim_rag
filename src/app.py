@@ -4,11 +4,16 @@ import os
 import json
 
 from src.ingestion.ifc_parser import IFCParser
+from src.l2.main_l2_pipeline import L2Pipeline
+from src.l3.main_l3_pipeline import L3Pipeline
+from src.l5.main_l5_pipeline import L5Pipeline
 from src.ingestion.main_l4_pipeline import L4Pipeline
-from src.ingestion.product_parser import ProductExtractor
 from src.core.json_storage import JSONStorage
 from src.inference.compliance_engine import ComplianceEngine
 from src.rag.unified_vector_store import UnifiedVectorStore
+from src.inference.l123_engine import L123Engine
+from src.inference.l125_engine import L125Engine
+from src.inference.l45_engine import L45Engine
 PROJECTS_PATH = "data/processed"
 
 
@@ -62,13 +67,17 @@ def interactive_menu(project_id):
         print("\n====== MENU ======")
         print("1. Add IFC Model (L1)")
         print("2. Add Product Data (L2)")
-        print("3. Add Regulation (L4)")
-        print("4. Add Requirement (L5)")
-        print("5. View Stored JSON Files")
-        print("6. Run Compliance Inference (L1-L2-L4)")
-        print("7. Build Unified Vector Store")
-        print("8. Query Semantic Knowledge")
-        print("9. Exit")
+        print("3. Add Process Data (L3)")
+        print("4. Add Regulation (L4)")
+        print("5. Add Requirement (L5)")
+        print("6. View Stored JSON Files")
+        print("7. Run Compliance Inference (L1-L2-L4)")
+        print("8. Run L1-L2-L3 Inference")
+        print("9. Run L1-L2-L5 Inference")
+        print("10. Run L4-L5 Inference")
+        print("11. Build Unified Vector Store")
+        print("12. Query Semantic Knowledge")
+        print("13. Exit")
 
         choice = input("Select option: ").strip()
 
@@ -79,29 +88,41 @@ def interactive_menu(project_id):
             ingest_l2(project_id)
 
         elif choice == "3":
-            ingest_l4(project_id)
+            ingest_l3(project_id)      # FIXED
 
         elif choice == "4":
-            ingest_l5(project_id)
+            ingest_l4(project_id)
 
         elif choice == "5":
-            view_json_files(project_id)
+            ingest_l5(project_id)
+
         elif choice == "6":
-            run_inference(project_id)
+            view_json_files(project_id)
 
         elif choice == "7":
-            build_vector_store(project_id)
+            run_inference(project_id)
 
         elif choice == "8":
-            smart_query(project_id)
+            run_l123(project_id)
 
         elif choice == "9":
+            run_l125(project_id)
+
+        elif choice == "10":
+            run_l45(project_id)
+
+        elif choice == "11":
+            build_vector_store(project_id)
+
+        elif choice == "12":
+            query_vector_store(project_id)
+
+        elif choice == "13":
             print("Exiting system.")
             break
 
         else:
             print("Invalid choice.")
-
 
 # =====================================================
 # L1 IFC Ingestion
@@ -129,8 +150,6 @@ def ingest_l1(project_id):
 
 def ingest_l2(project_id):
 
-    extractor = ProductExtractor()
-
     print("\nChoose Product Input Type:")
     print("1. Excel")
     print("2. PDF")
@@ -144,28 +163,82 @@ def ingest_l2(project_id):
         return
 
     try:
+
         if choice == "1":
-            products = extractor.extract_from_excel(file_path)
+
+            from src.ingestion.product_parser import ProductExtractor
+            extractor = ProductExtractor()
+            records = extractor.extract_from_excel(file_path)
 
         elif choice == "2":
-            products = extractor.extract_from_pdf(file_path)
+
+            pipeline = L2Pipeline()
+            records = pipeline.parse(file_path)
 
         else:
             print("Invalid choice.")
             return
 
-        if not products:
+        if not records:
             print("No products extracted.")
             return
 
-        JSONStorage.save(project_id, "L2_product.json", products)
+        # 🔹 Save ONLY new records
+        JSONStorage.save(project_id, "L2_product.json", records)
 
-        print(f"L2 JSON saved. Total records: {len(products)}")
+        total = len(JSONStorage.load(project_id, "L2_product.json"))
+
+        print(f"L2 JSON saved. Total records now: {total}")
 
     except Exception as e:
         print(f"Error processing product file: {e}")
+#=====================================================
+# L3 Process Ingestion
+#=====================================================
 
+def ingest_l3(project_id):
 
+    print("\nChoose Process Input Type:")
+    print("1. Excel")
+    print("2. PDF")
+
+    choice = input("Select option: ").strip()
+
+    file_path = input("Enter process file path: ").strip()
+
+    if not os.path.exists(file_path):
+        print("File not found.")
+        return
+
+    try:
+
+        if choice == "1":
+
+            from src.ingestion.l3_process_parser import L3ProcessParser
+            parser = L3ProcessParser()
+            records = parser.parse_excel(file_path)
+
+        elif choice == "2":
+
+            pipeline = L3Pipeline()
+            records = pipeline.parse(file_path)
+
+        else:
+            print("Invalid choice.")
+            return
+
+        if not records:
+            print("No process rules extracted.")
+            return
+
+        JSONStorage.save(project_id, "L3_process.json", records)
+
+        total = len(JSONStorage.load(project_id, "L3_process.json"))
+
+        print(f"L3 JSON saved. Total records now: {total}")
+
+    except Exception as e:
+        print(f"Error processing process file: {e}")
 # =====================================================
 # L4 Regulation Ingestion
 # =====================================================
@@ -173,7 +246,7 @@ def ingest_l2(project_id):
 def ingest_l4(project_id):
 
     pipeline = L4Pipeline()
-    all_records = []
+    new_records = []
 
     print("Enter PDF file paths (type 'done' to finish):")
 
@@ -189,18 +262,20 @@ def ingest_l4(project_id):
             continue
 
         records = pipeline.parse(file_path)
-        all_records.extend(records)
+
+        new_records.extend(records)
 
         print(f"Parsed {len(records)} structured rules from {os.path.basename(file_path)}")
 
-    if not all_records:
+    if not new_records:
         print("No regulations parsed.")
         return
 
-    JSONStorage.save(project_id, "L4_regulation.json", all_records)
+    JSONStorage.save(project_id, "L4_regulation.json", new_records)
 
-    print(f"L4 JSON saved. Total structured clauses: {len(all_records)}")
+    total = len(JSONStorage.load(project_id, "L4_regulation.json"))
 
+    print(f"L4 JSON saved. Total structured clauses: {total}")
 
 # =====================================================
 # L5 Requirement Ingestion
@@ -208,19 +283,47 @@ def ingest_l4(project_id):
 
 def ingest_l5(project_id):
 
-    file_path = input("Enter Requirement JSON file path: ").strip()
+    print("\nChoose Requirement Input Type:")
+    print("1. Excel")
+    print("2. PDF")
+
+    choice = input("Select option: ").strip()
+
+    file_path = input("Enter requirement file path: ").strip()
 
     if not os.path.exists(file_path):
         print("File not found.")
         return
 
-    with open(file_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    try:
 
-    JSONStorage.save(project_id, "L5_requirement.json", data)
+        if choice == "1":
 
-    print(f"L5 JSON saved. Total records: {len(data)}")
+            from src.ingestion.l5_requirement_parser import L5RequirementParser
+            parser = L5RequirementParser()
+            records = parser.parse_excel(file_path)
 
+        elif choice == "2":
+
+            pipeline = L5Pipeline()
+            records = pipeline.parse(file_path)
+
+        else:
+            print("Invalid choice.")
+            return
+
+        if not records:
+            print("No requirements extracted.")
+            return
+
+        JSONStorage.save(project_id, "L5_requirement.json", records)
+
+        total = len(JSONStorage.load(project_id, "L5_requirement.json"))
+
+        print(f"L5 JSON saved. Total records now: {total}")
+
+    except Exception as e:
+        print(f"Error processing requirement file: {e}")
 
 # =====================================================
 # View Stored JSON Files
@@ -258,7 +361,7 @@ def run_inference(project_id):
     engine = ComplianceEngine(l1, l2, l4)
     mismatches = engine.run()
 
-    JSONStorage.save(project_id, "mismatch.json", mismatches)
+    JSONStorage.save(project_id, "l124_inference.json", mismatches)
 
     print(f"Mismatch JSON generated. Total issues: {len(mismatches)}")
 
@@ -388,6 +491,62 @@ def classify_query(query):
         return "COST_QUERY"
 
     return "REGULATION_QUERY"
+#============l1-l2-l3 inference===========
+def run_l123(project_id):
+
+    l1 = JSONStorage.load(project_id, "L1_ifc.json")
+    l2 = JSONStorage.load(project_id, "L2_product.json")
+    l3 = JSONStorage.load(project_id, "L3_process.json")
+
+    if not l1 or not l2 or not l3:
+        print("Missing layers for L1-L2-L3 inference.")
+        return
+
+    engine = L123Engine(l1, l2, l3)
+
+    result = engine.run()
+
+    JSONStorage.save(project_id, "l123_inference.json", result)
+
+    print("L1-L2-L3 inference complete.")
+
+#============l1-l2-l5 inference===========
+def run_l125(project_id):
+
+    l1 = JSONStorage.load(project_id, "L1_ifc.json")
+    l2 = JSONStorage.load(project_id, "L2_product.json")
+    l5 = JSONStorage.load(project_id, "L5_requirement.json")
+
+    if not l1 or not l2 or not l5:
+        print("Missing layers for L1-L2-L5 inference.")
+        return
+
+    engine = L125Engine(l1, l2, l5)
+
+    result = engine.run()
+
+    JSONStorage.save(project_id, "l125_inference.json", result)
+
+    print("L1-L2-L5 inference complete.")
+
+#============l4-l5 inference===========
+def run_l45(project_id):
+
+    l4 = JSONStorage.load(project_id, "L4_regulation.json")
+    l5 = JSONStorage.load(project_id, "L5_requirement.json")
+
+    if not l4 or not l5:
+        print("Missing layers for L4-L5 inference.")
+        return
+
+    engine = L45Engine(l4, l5)
+
+    result = engine.run()
+
+    JSONStorage.save(project_id, "l45_inference.json", result)
+
+    print("L4-L5 inference complete.")
+
 # =====================================================
 
 if __name__ == "__main__":

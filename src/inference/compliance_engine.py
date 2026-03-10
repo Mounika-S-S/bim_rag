@@ -10,7 +10,8 @@ class ComplianceEngine:
     # --------------------------------------------------
 
     def run(self):
-        mismatches = []
+
+        l124_inference = []
 
         for element in self.l1:
 
@@ -19,36 +20,42 @@ class ComplianceEngine:
             element_name = element_props.get("Name", "")
             element_type = element.get("entity_type", "")
 
+            # ---------------------------
             # Match product
+            # ---------------------------
+
             product = self._match_product(element)
 
             if not product:
-                mismatches.append({
+
+                l124_inference.append({
                     "element_id": element_id,
                     "element_name": element_name,
                     "element_type": element_type,
                     "issue": "No matching product found",
                     "layer": "L2"
                 })
+
                 continue
 
+            # ---------------------------
             # Check regulation compliance
+            # ---------------------------
+
             reg_issues = self._check_regulation(product, element)
 
-            mismatches.extend(reg_issues)
+            l124_inference.extend(reg_issues)
 
-        return mismatches
+        return l124_inference
 
     # --------------------------------------------------
 
     def _match_product(self, element):
-        """
-        Simple matching by Name
-        """
 
         element_name = element.get("properties", {}).get("Name", "")
 
         for product in self.l2:
+
             product_props = product.get("properties", {})
             product_name = product_props.get("Product_Name", "")
 
@@ -70,7 +77,6 @@ class ComplianceEngine:
 
         for rule in self.l4:
 
-            # Only numeric rules
             if not rule.get("is_numeric_rule"):
                 continue
 
@@ -79,16 +85,14 @@ class ComplianceEngine:
             operator = rule.get("comparison_operator")
             unit = rule.get("unit")
 
-            # Skip invalid rule definitions
             if not rule_text or threshold is None or not operator:
                 continue
 
-            # Example: Fire Rating Rule
+            # Example: fire rule
             if "fire" in rule_text.lower():
 
                 fire_rating = product_props.get("Fire_Rating_Hours")
 
-                # Skip if product does not contain required field
                 if fire_rating is None:
                     continue
 
@@ -97,7 +101,6 @@ class ComplianceEngine:
                 except:
                     continue
 
-                # Perform comparison safely
                 violation = False
 
                 if operator == ">=" and fire_rating < threshold:
@@ -112,6 +115,7 @@ class ComplianceEngine:
                     violation = True
 
                 if violation:
+
                     issues.append({
                         "element_id": element_id,
                         "element_name": element_name,
