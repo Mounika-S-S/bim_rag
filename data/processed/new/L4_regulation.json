@@ -1,5 +1,28 @@
 [
     {
+    "id": "L4_fire_001",
+    "properties": {
+        "rule_type": "Fire",
+        "is_numeric_rule": true,
+        "comparison_operator": ">=",
+        "threshold_value": 120,
+        "unit": "min",
+        "text": "External walls must have minimum fire resistance of 120 minutes"
+    }
+    },
+    {
+    "id": "L4_fire_001",
+    "properties": {
+      "rule_type": "Fire",
+      "is_numeric_rule": true,
+      "comparison_operator": ">=",
+      "threshold_value": 120,
+      "unit": "min",
+      "text": "External walls must have minimum fire resistance of 120 minutes"
+    }
+    },
+    
+    {
         "rule_type": "General",
         "is_numeric_rule": false,
         "comparison_operator": null,

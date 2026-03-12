@@ -1,3 +1,4 @@
+# requirements.txt
 ifcopenshell
 pandas
 openpyxl
@@ -9,3 +10,9 @@ pypandoc
 pdfplumber
 PyMuPDF
 faiss-cpu
+rank-bm25
+# Evaluation dependencies
+flask>=2.0.0
+numpy>=1.21.0
+matplotlib>=3.4.0
+scikit-learn>=1.0.0
