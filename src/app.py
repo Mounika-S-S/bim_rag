@@ -14,6 +14,11 @@ from src.rag.unified_vector_store import UnifiedVectorStore
 from src.inference.l123_engine import L123Engine
 from src.inference.l125_engine import L125Engine
 from src.inference.l45_engine import L45Engine
+from src.reasoning.llm_reasoner import LLMReasoner
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 PROJECTS_PATH = "data/processed"
 
 
@@ -387,14 +392,16 @@ def query_vector_store(project_id):
     store.load(path)
 
     query = input("Enter your question: ")
+    results = store.search(query, k=10)
 
-    results = store.search(query, k=5)
+    LLM_API_URL = os.getenv("LLM_API_URL")
 
-    print("\nTop Results:\n")
+    llm = LLMReasoner(LLM_API_URL)
 
-    for r in results:
-        print("-" * 80)
-        print(r)
+    answer = llm.reason(query, results)
+
+    print("\nLLM Reasoning Result:\n")
+    print(answer)
 #====smart query=============
 def smart_query(project_id):
 
