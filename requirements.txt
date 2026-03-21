@@ -9,3 +9,8 @@ pypandoc
 pdfplumber
 PyMuPDF
 faiss-cpu
+groq
+fuzzywuzzy
+dotenv
+fastapi
+uvicorn

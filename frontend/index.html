@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BIM RAG Chat</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f6f8; }
+    .container { max-width: 1024px; margin: 20px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    h1 { margin-top: 0; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 12px; margin-bottom: 16px; background: #fafafa; }
+    label { font-weight: bold; }
+    select,input,button { font-size: 14px; }
+    input,select { padding: 8px; width: 100%; margin: 4px 0; border: 1px solid #bbb; border-radius: 6px; }
+    button { background: #0066cc; color: white; border: none; border-radius: 6px; padding: 8px 15px; cursor: pointer; }
+    button:hover { background: #0050a3; }
+    #chat { height: 44vh; overflow-y: auto; border: 1px solid #ccc; border-radius: 8px; padding: 10px; background: #fff; display: flex; flex-direction: column; gap: 8px; }
+    .bubble { padding: 10px 12px; border-radius: 12px; max-width: 80%; white-space: pre-wrap; word-wrap: break-word; }
+    .user { background: #DCF8C6; align-self: flex-end; text-align: right; }
+    .assistant { background: #E8F0FE; align-self: flex-start; text-align: left; }
+    small { color: #555; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .col { flex: 1; min-width: 180px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>BIM RAG Chat + Ingestion</h1>
+    <p>Run backend: <code>uvicorn src.api:app --reload --port 8000</code><br/>Run frontend: <code>python -m http.server 9000</code> in <code>frontend</code> folder.</p>
+
+    <div class="card">
+      <h2>Project</h2>
+      <div class="row">
+        <div class="col">
+          <label for="projectSelect">Existing Projects</label>
+          <select id="projectSelect"></select>
+        </div>
+        <div class="col">
+          <label for="newProject">Create New Project</label>
+          <div style="display:flex; gap:8px;"><input id="newProject" placeholder="new project id"/><button id="createProject">Create</button></div>
+        </div>
+      </div>
+      <p><strong>Current project:</strong> <span id="activeProject">(none)</span></p>
+    </div>
+
+    <div class="card">
+      <h2>Layer Upload & Parse</h2>
+      <div class="row">
+        <div class="col">
+          <label for="layerSelect">Layer</label>
+          <select id="layerSelect">
+            <option value="L1">L1 IFC</option>
+            <option value="L2">L2 Product</option>
+            <option value="L3">L3 Process</option>
+            <option value="L4">L4 Regulation</option>
+            <option value="L5">L5 Requirement</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="layerFile">File</label>
+          <input id="layerFile" type="file" />
+        </div>
+        <div class="col" style="align-self:flex-end;">
+          <button id="uploadLayer">Upload + Parse</button>
+        </div>
+      </div>
+      <div id="uploadStatus"></div>
+    </div>
+
+    <div class="card">
+      <h2>Inference + Build</h2>
+      <div class="row" style="margin-bottom: 8px;">
+        <button class="inference-btn" data-type="l124">Run L1-L2-L4</button>
+        <button class="inference-btn" data-type="l123">Run L1-L2-L3</button>
+        <button class="inference-btn" data-type="l125">Run L1-L2-L5</button>
+        <button class="inference-btn" data-type="l45">Run L4-L5</button>
+      </div>
+      <button id="buildIndex">Build Unified Vector Store</button>
+      <button id="clearProject" style="margin-left:12px; background:#cc0000;">Delete Project Files</button>
+      <button id="clearHistory" style="margin-left:12px; background:#ff9900;">Clear Chat History</button>
+      <div id="inferenceStatus"></div>
+    </div>
+
+    <div class="card">
+      <h2>Chat</h2>
+      <div id="chat"></div>
+      <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+        <input id="question" placeholder="Ask about BIM compliance, layer data, or project requirements..." style="flex:1;" />
+        <button id="send">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const projectSelect = document.getElementById('projectSelect');
+    const newProject = document.getElementById('newProject');
+    const createProjectBtn = document.getElementById('createProject');
+    const activeProjectLabel = document.getElementById('activeProject');
+    const layerSelect = document.getElementById('layerSelect');
+    const layerFile = document.getElementById('layerFile');
+    const uploadLayerBtn = document.getElementById('uploadLayer');
+    const uploadStatus = document.getElementById('uploadStatus');
+    const inferenceStatus = document.getElementById('inferenceStatus');
+    const buildIndexBtn = document.getElementById('buildIndex');
+    const inferenceButtons = document.querySelectorAll('.inference-btn');
+
+    const chat = document.getElementById('chat');
+    const question = document.getElementById('question');
+    const sendBtn = document.getElementById('send');
+
+    const API_BASE = 'http://localhost:8000';
+    let currentProject = null;
+    let sessionId = null;
+
+    function setStatus(el, msg, color='black') {
+      el.innerHTML = `<small style="color:${color};">${msg}</small>`;
+    }
+
+    async function refreshProjects() {
+      const res = await fetch(`${API_BASE}/projects`);
+      const data = await res.json();
+      projectSelect.innerHTML = '';
+      data.projects.forEach(p => {
+        const opt = document.createElement('option'); opt.value = p; opt.textContent = p;
+        projectSelect.append(opt);
+      });
+      if (data.projects.length > 0 && !currentProject) {
+        selectProject(data.projects[0]);
+      }
+    }
+
+    async function selectProject(projectId) {
+      currentProject = projectId;
+      activeProjectLabel.textContent = projectId;
+      projectSelect.value = projectId;
+      sessionId = null;
+      setStatus(inferenceStatus, `Selected project ${projectId}`, 'green');
+    }
+
+    projectSelect.addEventListener('change', () => selectProject(projectSelect.value));
+
+    createProjectBtn.addEventListener('click', async () => {
+      const name = newProject.value.trim();
+      if (!name) return alert('Enter project name');
+      const form = new FormData();
+      form.append('project_id', name);
+      const r = await fetch(`${API_BASE}/projects`, { method: 'POST', body: form });
+      if (!r.ok) return alert('Create failed');
+      await refreshProjects();
+      await selectProject(name);
+      newProject.value = '';
+      setStatus(inferenceStatus, `Project ${name} created`, 'green');
+    });
+
+    uploadLayerBtn.addEventListener('click', async () => {
+      if (!currentProject) return alert('Select a project first');
+      const file = layerFile.files[0];
+      if (!file) return alert('Select file');
+      const layer = layerSelect.value;
+      const form = new FormData();
+      form.append('project_id', currentProject);
+      form.append('layer', layer);
+      form.append('file', file);
+      setStatus(uploadStatus, 'Uploading...');
+      const r = await fetch(`${API_BASE}/upload`, { method: 'POST', body: form });
+      const j = await r.json();
+      if (!r.ok) {
+        setStatus(uploadStatus, 'Upload failed: ' + (j.detail || r.statusText), 'red');
+        return;
+      }
+      setStatus(uploadStatus, `Uploaded ${file.name}, parsed ${j.count} records`, 'green');
+    });
+
+    inferenceButtons.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        if (!currentProject) return alert('Select a project first');
+        const type = btn.dataset.type;
+        setStatus(inferenceStatus, `Running ${type}...`);
+        const form = new FormData();
+        form.append('project_id', currentProject);
+        form.append('inference_type', type);
+        const r = await fetch(`${API_BASE}/run-inference`, { method: 'POST', body: form });
+        const j = await r.json();
+        if (!r.ok) {
+          setStatus(inferenceStatus, 'Inference failed: ' + (j.detail || r.statusText), 'red');
+          return;
+        }
+        setStatus(inferenceStatus, `Inference ${type} completed`, 'green');
+      });
+    });
+
+    buildIndexBtn.addEventListener('click', async () => {
+      if (!currentProject) return alert('Select a project first');
+      setStatus(inferenceStatus, 'Building vector store...');
+      const form = new FormData();
+      form.append('project_id', currentProject);
+      const r = await fetch(`${API_BASE}/build-vector-store`, { method: 'POST', body: form });
+      const j = await r.json();
+      if (!r.ok) {
+        setStatus(inferenceStatus, 'Build failed: ' + (j.detail || r.statusText), 'red');
+        return;
+      }
+      setStatus(inferenceStatus, 'Vector store built', 'green');
+    });
+
+    function appendBubble(role, text) {
+      const div = document.createElement('div');
+      div.className = `bubble ${role === 'user' ? 'user' : 'assistant'}`;
+      div.textContent = text;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    async function sendMessage() {
+      if (!currentProject) return alert('Select/open project first');
+      const text = question.value.trim();
+      if (!text) return;
+      appendBubble('user', text);
+      question.value = '';
+      sendBtn.disabled = true;
+
+      const payload = { project_id: currentProject, text, session_id: sessionId };
+      const r = await fetch(`${API_BASE}/query`, {
+        method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)
+      });
+      const data = await r.json();
+      if (!r.ok) {
+        appendBubble('assistant', `API error: ${data.detail || r.statusText}`);
+      } else {
+        sessionId = data.session_id;
+        appendBubble('assistant', data.answer || 'No answer');
+      }
+      sendBtn.disabled = false;
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    question.addEventListener('keyup', (e) => { if (e.key === 'Enter') sendMessage(); });
+
+    (async () => { await refreshProjects(); })();
+  </script>
+</body>
+</html>

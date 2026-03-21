@@ -2,7 +2,6 @@ import os
 import chromadb
 from chromadb.utils import embedding_functions
 
-
 class VectorStore:
     """
     Persistent vector store per project.
@@ -20,8 +19,9 @@ class VectorStore:
             path=f"vector_store/{project_id}"
         )
 
+        # Use Chromadb native embedding function (compatible with serialization)
         self.embedding_function = embedding_functions.SentenceTransformerEmbeddingFunction(
-            model_name="all-MiniLM-L6-v2"
+            model_name="all-mpnet-base-v2"
         )
 
         self.collection = self.client.get_or_create_collection(

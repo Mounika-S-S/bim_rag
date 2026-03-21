@@ -1,0 +1,42 @@
+[
+  {
+    "role": "user",
+    "text": "Which beam violates fire regulations?"
+  },
+  {
+    "role": "assistant",
+    "text": "Element: L\nReason: The beam L is not allowed in the case of indoor transverse former in the ground floor."
+  },
+  {
+    "role": "user",
+    "text": "Identify beam with fire rating violation and explain"
+  },
+  {
+    "role": "assistant",
+    "text": "Element: L123\nReason: The beam L123 does not comply with the fire regulation, as it is not allowed in the case of fire in the ground floor."
+  },
+  {
+    "role": "user",
+    "text": "Show non compliant elements and  List all violations"
+  },
+  {
+    "role": "assistant",
+    "text": "Element: The beam L123\nReason: The beam L123 does not comply with the fire regulation in the ground floor.\n\nElement: The beam L123\nReason: The beam L123 is not allowed in the case of fire in the ground floor."
+  },
+  {
+    "role": "user",
+    "text": "how can we cut cost for our project and still project plan is same"
+  },
+  {
+    "role": "assistant",
+    "text": "Element: The beam L123\nReason: The beam L123 does not comply with the fire regulation in the ground floor."
+  },
+  {
+    "role": "user",
+    "text": "list the 4 main regulations needed for this project"
+  },
+  {
+    "role": "assistant",
+    "text": "Element: The beam L123\nReason: The beam L123 does not comply with the fire regulation in the ground floor.\n\nElement: The beam L123\nReason: The beam L123 is not allowed in the case of fire in the ground floor.\n\nElement: The beam L123\nReason: The beam L123 does not comply with the regulation in the ground floor."
+  }
+]

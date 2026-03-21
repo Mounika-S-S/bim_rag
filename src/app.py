@@ -2,6 +2,7 @@
 
 import os
 import json
+from dotenv import load_dotenv
 
 from src.ingestion.ifc_parser import IFCParser
 from src.l2.main_l2_pipeline import L2Pipeline
@@ -11,12 +12,10 @@ from src.ingestion.main_l4_pipeline import L4Pipeline
 from src.core.json_storage import JSONStorage
 from src.inference.compliance_engine import ComplianceEngine
 from src.rag.unified_vector_store import UnifiedVectorStore
-from src.inference.l123_engine import L123Engine
-from src.inference.l125_engine import L125Engine
-from src.inference.l45_engine import L45Engine
 from src.reasoning.llm_reasoner import LLMReasoner
-from dotenv import load_dotenv
-import os
+from src.retrieval.query_router import QueryRouter
+from src.retrieval.retriever import Retriever
+from src.core.model_manager import model_manager
 
 load_dotenv()
 PROJECTS_PATH = "data/processed"
@@ -40,6 +39,15 @@ def list_projects():
 def main():
 
     print("\n=== BIM Compliance System ===\n")
+
+    # Preload ML models for better performance
+    print("Loading ML models... (this may take a moment on first run)")
+    try:
+        model_manager.preload_models()
+        print("Models loaded successfully!")
+    except Exception as e:
+        print(f"Warning: Model loading failed: {e}")
+        print("The app will load models on-demand, but performance may be slower.")
 
     projects = list_projects()
 
@@ -381,27 +389,43 @@ def build_vector_store(project_id):
 #=======query vector store=============
 def query_vector_store(project_id):
 
-    store = UnifiedVectorStore()
-
-    path = f"data/processed/{project_id}/unified.index"
-
-    if not os.path.exists(path):
-        print("Vector store not built yet.")
-        return
-
-    store.load(path)
-
-    query = input("Enter your question: ")
-    results = store.search(query, k=10)
-
-    LLM_API_URL = os.getenv("LLM_API_URL")
-
-    llm = LLMReasoner(LLM_API_URL)
-
-    answer = llm.reason(query, results)
-
+    # CLI path: ask user, then route to API helper
+    question = input("Enter your question: ")
+    answer = query_vector_store_api(project_id, question)
     print("\nLLM Reasoning Result:\n")
     print(answer)
+
+
+def query_vector_store_api(project_id, question, chat_context=None):
+
+    router = QueryRouter()
+    retriever = Retriever()
+
+    path = f"data/processed/{project_id}/unified.index"
+    if not os.path.exists(path):
+        raise FileNotFoundError("Vector store not built yet")
+
+    retriever.load_unified_store(path)
+    retriever.clear_chroma_store()
+
+    routing = router.route_query(question, mode="faiss")
+
+    results = retriever.retrieve(question, routing)
+
+    # Merge past chat context with retrieved chunks
+    context_parts = []
+    if chat_context:
+        context_parts.append(chat_context)
+
+    # keep 2 retrieved chunks to stay under Groq token limits
+    context_parts.extend(results[:2])
+
+    context = "\n".join(context_parts).strip()
+
+    llm = LLMReasoner()
+    answer = llm.reason(question, context)
+
+    return answer
 #====smart query=============
 def smart_query(project_id):
 
@@ -476,7 +500,18 @@ def smart_query(project_id):
 
     store.load(path)
 
-    results = store.search(query, k=5)
+    results = store.search(query, k=15)
+
+    filtered = []
+
+    for r in results:
+        text = r.lower()
+
+        if "non-compliant" in text or "non compliant" in text or "l124 inference" in text:
+            filtered.append(r)
+
+    if not filtered:
+        filtered = results[:5]
 
     print("\nTop Results:\n")
 

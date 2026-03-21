@@ -4,13 +4,14 @@ import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from src.core.json_storage import JSONStorage
-
+from src.core.model_manager import model_manager
 
 class UnifiedVectorStore:
 
     def __init__(self):
 
-        self.model = SentenceTransformer("all-MiniLM-L6-v2")
+        # Use shared model manager to avoid repeated downloads
+        self.model = model_manager.get_model("all-mpnet-base-v2")
         self.index = None
         self.text_chunks = []
 
@@ -196,7 +197,11 @@ class UnifiedVectorStore:
 
         dimension = embeddings.shape[1]
 
-        self.index = faiss.IndexFlatIP(dimension)
+        # Use HNSW index for better performance on larger datasets
+        # M=32 provides good balance of speed vs accuracy
+        self.index = faiss.IndexHNSWFlat(dimension, 32)
+        self.index.hnsw.efConstruction = 200  # Higher = better quality, slower build
+        self.index.hnsw.efSearch = 128  # Higher = better search quality, slower search
 
         self.index.add(embeddings)
 
@@ -225,6 +230,14 @@ class UnifiedVectorStore:
 
         self.index = faiss.read_index(path)
 
+        # Detect dimension mismatch (old index vs current embedding size)
+        expected_dim = self.model.get_sentence_embedding_dimension()
+        if hasattr(self.index, 'd') and self.index.d != expected_dim:
+            raise ValueError(
+                f"Embedded dimension mismatch: index is {self.index.d}, "
+                f"model is {expected_dim}. Please rebuild vector store (option 11)."
+            )
+
         with open(path + ".texts", "r", encoding="utf-8") as f:
             self.text_chunks = json.load(f)
 
@@ -241,6 +254,10 @@ class UnifiedVectorStore:
         query_embedding = np.array(query_embedding).astype("float32")
 
         faiss.normalize_L2(query_embedding)
+
+        # Set efSearch for HNSW (higher = more accurate but slower)
+        if hasattr(self.index, 'hnsw'):
+            self.index.hnsw.efSearch = max(k * 2, 64)  # Adaptive based on k
 
         distances, indices = self.index.search(query_embedding, k)
 

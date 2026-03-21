@@ -3,8 +3,8 @@ from src.reasoning.llm_client import LLMClient
 
 class LLMReasoner:
 
-    def __init__(self, api_url):
-        self.client = LLMClient(api_url)
+    def __init__(self):
+        self.client = LLMClient()
 
     def reason(self, query, retrieved_chunks):
 
