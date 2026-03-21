@@ -14,3 +14,8 @@ fuzzywuzzy
 dotenv
 fastapi
 uvicorn
+ragas
+nltk
+rouge-score
+datasets
+langchain-groq
