@@ -1,0 +1,780 @@
+[
+    {
+        "id": "1Wl25_be57y9BVJc_M$CEw",
+        "entity_type": "IfcBeam",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SF-BIP",
+            "ObjectType": "T1",
+            "Length": 0.09842519685039369
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$CEd",
+        "entity_type": "IfcBeam",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SF-BIP",
+            "ObjectType": "T1",
+            "Length": 0.049212598425196846
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$CFN",
+        "entity_type": "IfcBeam",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SF-BIP",
+            "ObjectType": "T1",
+            "Length": 0.09842519685039369
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$CF2",
+        "entity_type": "IfcBeam",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SF-BIP",
+            "ObjectType": "T1",
+            "Length": 0.049212598425196846
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$CFv",
+        "entity_type": "IfcBeam",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SF-BIP",
+            "ObjectType": "T1",
+            "Length": 0.049212598425196846
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$CpP",
+        "entity_type": "IfcBeam",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SF-BIP",
+            "ObjectType": "T1",
+            "Length": 0.09842519685039369
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$CpD",
+        "entity_type": "IfcBeam",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SF-BIP",
+            "ObjectType": "T1",
+            "Length": 0.049212598425196846
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$Cpz",
+        "entity_type": "IfcBeam",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SF-BIP",
+            "ObjectType": "T1",
+            "Length": 0.09842519685039369
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$Cpl",
+        "entity_type": "IfcBeam",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SF-BIP",
+            "ObjectType": "T1",
+            "Length": 0.049212598425196846
+        }
+    },
+    {
+        "id": "1FFFWQ3Nn7SQRMK$3B1XHi",
+        "entity_type": "IfcBuildingElementProxy",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "M_Muntin Pattern_2x2:M_Muntin Pattern_2x2:374222",
+            "ObjectType": "M_Muntin Pattern_2x2:M_Muntin Pattern_2x2",
+            "Width": 447.59999999999593
+        }
+    },
+    {
+        "id": "1FFFWQ3Nn7SQRMK$3B1XHj",
+        "entity_type": "IfcBuildingElementProxy",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "M_Muntin Pattern_2x2:M_Muntin Pattern_2x2:374223",
+            "ObjectType": "M_Muntin Pattern_2x2:M_Muntin Pattern_2x2",
+            "Width": 447.59999999999593
+        }
+    },
+    {
+        "id": "1FFFWQ3Nn7SQRMK$3B1XHo",
+        "entity_type": "IfcBuildingElementProxy",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "M_Trim-Window-Exterior-Flat:with Sill:374224",
+            "ObjectType": "M_Trim-Window-Exterior-Flat:with Sill"
+        }
+    },
+    {
+        "id": "1FFFWQ3Nn7SQRMK$3B1XHp",
+        "entity_type": "IfcBuildingElementProxy",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "M_Trim-Window-Interior-Flat:Picture Frame:374225",
+            "ObjectType": "M_Trim-Window-Interior-Flat:Picture Frame"
+        }
+    },
+    {
+        "id": "1FFFWQ3Nn7SQRMK$3B1XQ9",
+        "entity_type": "IfcBuildingElementProxy",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "M_Muntin Pattern_2x2:M_Muntin Pattern_2x2:374571",
+            "ObjectType": "M_Muntin Pattern_2x2:M_Muntin Pattern_2x2",
+            "Width": 563.4750000000522
+        }
+    },
+    {
+        "id": "1FFFWQ3Nn7SQRMK$3B1XQE",
+        "entity_type": "IfcBuildingElementProxy",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "M_Muntin Pattern_2x2:M_Muntin Pattern_2x2:374572",
+            "ObjectType": "M_Muntin Pattern_2x2:M_Muntin Pattern_2x2",
+            "Width": 563.4749999999608
+        }
+    },
+    {
+        "id": "1FFFWQ3Nn7SQRMK$3B1XQF",
+        "entity_type": "IfcBuildingElementProxy",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "M_Trim-Window-Exterior-Flat:with Sill:374573",
+            "ObjectType": "M_Trim-Window-Exterior-Flat:with Sill"
+        }
+    },
+    {
+        "id": "1FFFWQ3Nn7SQRMK$3B1XQC",
+        "entity_type": "IfcBuildingElementProxy",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "M_Trim-Window-Interior-Flat:Picture Frame:374574",
+            "ObjectType": "M_Trim-Window-Interior-Flat:Picture Frame"
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XKDR",
+        "entity_type": "IfcColumn",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SC-CIP",
+            "ObjectType": "T1",
+            "Length": 9066.8
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XKJf",
+        "entity_type": "IfcColumn",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SC-CIP",
+            "ObjectType": "T1",
+            "Length": 9066.8
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XKkM",
+        "entity_type": "IfcColumn",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SC-CIP",
+            "ObjectType": "T1",
+            "Length": 9066.8
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XKpX",
+        "entity_type": "IfcColumn",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SC-CIP",
+            "ObjectType": "T1",
+            "Length": 9066.8
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XKpW",
+        "entity_type": "IfcColumn",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SC-CIP",
+            "ObjectType": "T1",
+            "Length": 9066.8
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XKpd",
+        "entity_type": "IfcColumn",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-SC-CIP",
+            "ObjectType": "T1",
+            "Length": 9066.8
+        }
+    },
+    {
+        "id": "2e5xoSmZTDKx27isxFREI8",
+        "entity_type": "IfcCovering",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-FL-TIL",
+            "ObjectType": "T1"
+        }
+    },
+    {
+        "id": "2e5xoSmZTDKx27isxFREK_",
+        "entity_type": "IfcCovering",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-FL-TIL",
+            "ObjectType": "T2"
+        }
+    },
+    {
+        "id": "2e5xoSmZTDKx27isxFRECV",
+        "entity_type": "IfcCovering",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-CE-GBC",
+            "ObjectType": "T1"
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$DHW",
+        "entity_type": "IfcCovering",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-FL-TIL",
+            "ObjectType": "T4"
+        }
+    },
+    {
+        "id": "0IcT_QJFD3ExIsqyyQooP6",
+        "entity_type": "IfcCovering",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-FL-TIL",
+            "ObjectType": "T3"
+        }
+    },
+    {
+        "id": "2e5xoSmZTDKx27isxFRC7d",
+        "entity_type": "IfcDoor",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-DO-INT",
+            "ObjectType": "T1",
+            "Width": 810.0000000000001
+        }
+    },
+    {
+        "id": "0NPR3VLEzFY9u8mft9FsAZ",
+        "entity_type": "IfcDoor",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-DO-EXT",
+            "ObjectType": "T1",
+            "Width": 1510.0
+        }
+    },
+    {
+        "id": "0cb3Uj4LjFhxB47KD4k2$j",
+        "entity_type": "IfcDoor",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-DO-INT",
+            "ObjectType": "T1",
+            "Width": 810.0000000000001
+        }
+    },
+    {
+        "id": "1FFFWQ3Nn7SQRMK$3B1X1w",
+        "entity_type": "IfcDoor",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-DO-EXT",
+            "ObjectType": "T2",
+            "Width": 1810.0
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XJJs",
+        "entity_type": "IfcFooting",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-FO-STR",
+            "ObjectType": "T1"
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XJP$",
+        "entity_type": "IfcFooting",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-FO-STR",
+            "ObjectType": "T1"
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XJP_",
+        "entity_type": "IfcFooting",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-FO-STR",
+            "ObjectType": "T1"
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XJRS",
+        "entity_type": "IfcFooting",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-FO-STR",
+            "ObjectType": "T1"
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XJQZ",
+        "entity_type": "IfcFooting",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-FO-STR",
+            "ObjectType": "T1"
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XJVZ",
+        "entity_type": "IfcFooting",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-FO-STR",
+            "ObjectType": "T1"
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XJUt",
+        "entity_type": "IfcSlab",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-FL-SOG",
+            "ObjectType": "T1"
+        }
+    },
+    {
+        "id": "2e5xoSmZTDKx27isxFREVF",
+        "entity_type": "IfcSlab",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-FL-SOW",
+            "ObjectType": "T1"
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XKuh",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-WA-EIP",
+            "ObjectType": "T1",
+            "Length": 4343.400000000001,
+            "Width": 0.0024606299212598425
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XKzn",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WA-IIP",
+            "ObjectType": "T1",
+            "Length": 4343.399999999998,
+            "Width": 114.30000000000003
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XKy0",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-WA-EIP",
+            "ObjectType": "T1",
+            "Width": 0.0024606299212598425,
+            "Length": 0.03034776902887139
+        }
+    },
+    {
+        "id": "1IwQbMyrr3zPxzRC_0XK_k",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-WA-EIP",
+            "ObjectType": "T1",
+            "Width": 0.0024606299212598425,
+            "Length": 4343.400000000002
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$Ccn",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WA-PIP",
+            "ObjectType": "T1",
+            "Width": 0.0024606299212598425,
+            "Length": 4343.400000000001
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$Cbo",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WA-PIP",
+            "ObjectType": "T1",
+            "Width": 0.0024606299212598425,
+            "Length": 5867.400000000001
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$ChC",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WA-PIP",
+            "ObjectType": "T1",
+            "Width": 0.0024606299212598425,
+            "Length": 0.03034776902887139
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$CkH",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WA-PIP",
+            "ObjectType": "T1",
+            "Width": 0.0024606299212598425,
+            "Length": 5867.4000000000015
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$Cia",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WA-PIP",
+            "ObjectType": "T1",
+            "Width": 0.0024606299212598425,
+            "Length": 4343.400000000002
+        }
+    },
+    {
+        "id": "1Wl25_be57y9BVJc_M$DIl",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WA-PIP",
+            "ObjectType": "T1",
+            "Width": 0.0024606299212598425,
+            "Length": 0.03034776902887139
+        }
+    },
+    {
+        "id": "0HMYaQNLf8AQw7bLT$GLYH",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-WA-EIP",
+            "ObjectType": "T1",
+            "Width": 0.0024606299212598425,
+            "Length": 5867.400000000001
+        }
+    },
+    {
+        "id": "0HMYaQNLf8AQw7bLT$GLdW",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-WA-EIP",
+            "ObjectType": "T1",
+            "Width": 0.0024606299212598425,
+            "Length": 5981.700000000002
+        }
+    },
+    {
+        "id": "0HMYaQNLf8AQw7bLT$GMTS",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-ST-WA-EIP",
+            "ObjectType": "T1",
+            "Width": 0.0024606299212598425,
+            "Length": 0.03034776902887139
+        }
+    },
+    {
+        "id": "0cb3Uj4LjFhxB47KD4k2v0",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WA-IIP",
+            "ObjectType": "T2",
+            "Length": 1847.3000000009554,
+            "Width": 114.30000000000003
+        }
+    },
+    {
+        "id": "0cb3Uj4LjFhxB47KD4k2xU",
+        "entity_type": "IfcWall",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WA-IIP",
+            "ObjectType": "T2",
+            "Length": 3073.200000000003,
+            "Width": 114.30000000000003
+        }
+    },
+    {
+        "id": "2e5xoSmZTDKx27isxFRCXi",
+        "entity_type": "IfcWindow",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WN-CAW",
+            "ObjectType": "T1",
+            "Width": 910.0000000000001
+        }
+    },
+    {
+        "id": "1FFFWQ3Nn7SQRMK$3B1XHf",
+        "entity_type": "IfcWindow",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WN-DHW",
+            "ObjectType": "T1",
+            "Width": 600.0
+        }
+    },
+    {
+        "id": "1FFFWQ3Nn7SQRMK$3B1XQA",
+        "entity_type": "IfcWindow",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WN-CAW",
+            "ObjectType": "T2",
+            "Width": 1400.0
+        }
+    },
+    {
+        "id": "1FFFWQ3Nn7SQRMK$3B1cFG",
+        "entity_type": "IfcWindow",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WN-LOW",
+            "ObjectType": "T1",
+            "Width": 910.0000000000001
+        }
+    },
+    {
+        "id": "0KHHXyecbBHxFCAZNZtGQd",
+        "entity_type": "IfcLightFixture",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "Halo Plus Suspended Downlight:Halo Plus Suspended Downlight:469023",
+            "ObjectType": "Halo Plus Suspended Downlight:Halo Plus Suspended Downlight",
+            "Re-classifications(\u20b9)": 1000.0,
+            "W.C Seat Height": 178.0,
+            "Length": 309.0,
+            "Width": 158.00000000000003
+        }
+    },
+    {
+        "id": "2e5xoSmZTDKx27isxFRDU0",
+        "entity_type": "IfcSanitaryTerminal",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-PM-PL-WCC",
+            "ObjectType": "T1",
+            "Re-classifications(\u20b9)": 30000.0,
+            "W.C Seat Height": 410.0,
+            "Length": 548.0,
+            "Width": 265.0,
+            "Well Distance": 15.0,
+            "Ventilation Opening Area": 0.2
+        }
+    },
+    {
+        "id": "13eDzWMtr9YOk6BNWzUehW",
+        "entity_type": "IfcSanitaryTerminal",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-PM-PL-SNK",
+            "ObjectType": "T1"
+        }
+    },
+    {
+        "id": "0_l6buBI37FFrnn$FWl$aF",
+        "entity_type": "IfcOpeningElement",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-FL-TIL",
+            "ObjectType": null,
+            "Length": 9372.599999999991
+        }
+    },
+    {
+        "id": "059TsWMuTyYUmDb67gBXCc",
+        "entity_type": "IfcOpeningElement",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-DO-EXT",
+            "ObjectType": null
+        }
+    },
+    {
+        "id": "1aympPPu7gWnAYOVwXMGrX",
+        "entity_type": "IfcOpeningElement",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WN-CAW",
+            "ObjectType": null
+        }
+    },
+    {
+        "id": "0aoVBtJdXAe$9E8PGbTgRl",
+        "entity_type": "IfcOpeningElement",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-DO-INT",
+            "ObjectType": null
+        }
+    },
+    {
+        "id": "2d7hL7ZH7XZDCWayVFzVBg",
+        "entity_type": "IfcOpeningElement",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WN-LOW",
+            "ObjectType": null
+        }
+    },
+    {
+        "id": "1cANvfQ7Tw9Syb0QEWxtWJ",
+        "entity_type": "IfcOpeningElement",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WN-CAW",
+            "ObjectType": null
+        }
+    },
+    {
+        "id": "2dOxcH9DhpsKaoMHVsmWGJ",
+        "entity_type": "IfcOpeningElement",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-DO-EXT",
+            "ObjectType": null
+        }
+    },
+    {
+        "id": "1NTv0b67Az4ZRf15tXgG0f",
+        "entity_type": "IfcOpeningElement",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-WN-DHW",
+            "ObjectType": null
+        }
+    },
+    {
+        "id": "2g3fE$xulfoRSURyaEWRp$",
+        "entity_type": "IfcOpeningElement",
+        "layer": "L1",
+        "category": "General",
+        "properties": {
+            "Name": "YC-AR-DO-INT",
+            "ObjectType": null
+        }
+    }
+]

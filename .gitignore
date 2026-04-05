@@ -23,7 +23,7 @@ Thumbs.db
 # Data files (company sensitive)
 # =========================
 # data/ifc/
-data/processed
+*/data/processed
 
 # =========================
 # Generated outputs

@@ -18,4 +18,3 @@ ragas
 nltk
 rouge-score
 datasets
-langchain-groq

@@ -1,0 +1,365 @@
+[
+    {
+        "id": "L2_0",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "American Concrete Institute.",
+            "numeric_value": null,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_1",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "Cement and Concrete Association, UK.",
+            "numeric_value": null,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_2",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "Handbook on Concrete Engineering.",
+            "numeric_value": null,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_3",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "MATERIAL STRENGTH AND STRESS-STRAIN RELATIONSHIPS 3 1.1 Grades of Concrete .",
+            "numeric_value": 3.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_4",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "6 B Values of F for Different Grades of Steel .",
+            "numeric_value": 6.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_5",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": ".., 10 F Stress in Compression Reinforcement, fX N/mma in Doubly Reinforced Beams with Cold Worked Bars .",
+            "numeric_value": 10.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_6",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "Slender Compression Members - Values of P, .",
+            "numeric_value": null,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_7",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "MATERIAL STRENGTHS AND STRESS-STRAIN RELATIONSHIPS I.1 GRADES OF CONCRETE 1.1.1 Generally.",
+            "numeric_value": 1.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_8",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "MATERIAL STRENGTHS AND STRESS-STRAIN RELATIONSHIPS 3\nTaking the above values into consideration, most of the charts and tables have been prepared for three grades of steel having characteristic strength& equal to 250 N/mm*, 415 N/mm2 and 500 N/mm2.",
+            "numeric_value": 3.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_9",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "The compressive strength of con- .",
+            "numeric_value": null,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_10",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "With a value of l-5 for the partial safety factor ym for material strength (35.4.2.1 of the Code), the maximum compressive stress ?",
+            "numeric_value": 5.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_11",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "O*SOfy Nil This value is applicable to all types of 0.85 fr OQOOl reinforcing steels.",
+            "numeric_value": 0.85,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_12",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "x0,,_ 0.003 5 W maximum strain in concrete at d (0.005 5 f 0.87 f,/&) Ihe the outermost compression fibre is The values of * for three grades of 0903 5.",
+            "numeric_value": 0.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_13",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "for concrete is taken as indicated in Fig.",
+            "numeric_value": null,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_14",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "steel will be 0937 fy.",
+            "numeric_value": 937.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_15",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "Charts are given for three grades of (Clause 2.3) steel and, two grades of concrete, namely N/-Y /CL, fy, M 15 and M 20, which are most commonly N/mm\u2019 used for flexural members.",
+            "numeric_value": 2.3,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_16",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "Tables 1 to 4 rK------ 500 cover a wider range, that \u2018is, five values of 15 2.24 2.00 fy and four grades of concrete up to M 30.",
+            "numeric_value": 1.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_17",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "Tables are given lOOAs for concrete grades M 15 and M 20, with Percentage of steel pt - M = 0.6 two grades of steel.",
+            "numeric_value": 15.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_18",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "There- Tables 57 to 59 for three grades of steel.",
+            "numeric_value": 57.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_19",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "each grade of steel.",
+            "numeric_value": null,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_20",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "In the chart, span to effective depth ratio is plotted on 2.54 For flanged beams, the Code recom- the vertical axis and the tensile mends that the values of span to effective reinforcement percentage is dotted on depth ratios may be determined as for rectan- the horizontal axis.",
+            "numeric_value": 2.54,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_21",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "ratio obtained as explained earlier However, the value of Pt,lim and pc should be reduced by multiplying by the will depend on the grade of concrete following factors: also.",
+            "numeric_value": null,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_22",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "ted beam over a span of 7.5 m FLBXURAL MEMBERS 15\nb) Beam of Example 3, as a cantilever beam .* .",
+            "numeric_value": 7.5,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_23",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "reinforcement percentage p for different grades of concrete.",
+            "numeric_value": null,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_24",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "have been given for three grades of steel and four values of d\u2019/D for each case men- Assuming 25 mm bars with 40 mm cover, tioned above.",
+            "numeric_value": 25.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_25",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "P,, = 0.45 Ac + 0.75 fy A, which &k When a compression member is slender with may be obtained from Chart 63, and Pb is the respect to the major axis, an additional axial load corresponding to the condition of moment Mu given by the following equation maximum compressive strain of 0.003 5 (modified as indicated later) should be in concrete and tensile strain of O%Ml2i n taken into account in the design (see 38.7.1 outermost layer of tension steel.",
+            "numeric_value": 0.45,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_26",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "in addition to the grades of concrete and steel.",
+            "numeric_value": null,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_27",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "member are given in Table 63 for two grades of steel.",
+            "numeric_value": 63.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_28",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "TENSIONB ARS COMPRESSIONB ARS BAR GRADE OF CONCRETE GRADE OF CONCRETE DIAMETER, f-A----, , mm Ml5 M20 M25 M30 Ml5 M20 M25 -M301 x 4332.65 % 2331...",
+            "numeric_value": 5.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_29",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "The Tables cover four grades of concrete and five values of uu.",
+            "numeric_value": null,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_30",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "Tables are given for four grades of concrete and two grades of steel.",
+            "numeric_value": null,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_31",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "i 10.0 1.23 l-44 1.72 2.15 Equating the additional tensile force and dditional compressive force, ;:g 22......",
+            "numeric_value": 10.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    },
+    {
+        "id": "L2_32",
+        "entity_type": "Product",
+        "layer": "L2",
+        "category": "ConstructionMaterial",
+        "properties": {
+            "text": "Ql 0,=19ON/mm TENSIONB ARS COMPRESSIOBNA RS _.___.___ BAR GRADE OF CONCRETE GRADE OF CONCRETE ,_-__h_ DLAMEI-ER, > \\ mm Ml5 M20 M25 M30 M20 M25 M30 49-l 36.8 .5 27.1 20.4 18.1 16.3 :::; 46911.4 4534,....2 27.1 .7 45.2 33.9 30.2 27-l 98.2 73.7 65.5 58.9 54-3 40.7 36.2 131-o 98.2 87.3 78,6 72.4 z: 48-3 43.4 .3 ::I; 98.2 88.4 81.4 163.7 109*1 98.2 67.9 z:: E ;: 180.1 135.0 120.6 108.0 E: 74-6 66.3 597 % f 115731....",
+            "numeric_value": 0.0,
+            "source_document": "upload_L2_l2_1.pdf"
+        }
+    }
+]
