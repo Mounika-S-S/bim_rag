@@ -1,0 +1,19 @@
+[
+    {
+        "query": "What are fire resistance requirements for external walls?",
+        "retrieved_ids": ["L4_fire_001", "L5_8559daca", "L4_fire_002"],
+        "retrieved_docs": [
+            "External walls must have minimum fire resistance of 120 minutes.",
+            "REQ-FIRE-001 requires all external walls to achieve EI120.",
+            "Fire doors require 60 minutes fire resistance."
+        ],
+        "relevant_ids": ["L4_fire_001", "L5_8559daca"],
+        "relevance_scores": {
+            "L4_fire_001": 2,
+            "L5_8559daca": 2,
+            "L4_fire_002": 0
+        },
+        "generated_answer": "External walls need 120 minutes fire resistance.",
+        "ground_truth_context": "External walls must have minimum fire resistance of 120 minutes."
+    }
+]
