@@ -1,0 +1,714 @@
+{
+  "timestamp": "2026-04-11 23:53:34",
+  "project_id": "project-final",
+  "num_chunks_in_store": 9969,
+  "num_test_cases": 10,
+  "rag_evaluation": {
+    "query_wise": [
+      {
+        "id": "Q1",
+        "query": "What is the material of the wall?",
+        "category": "property_lookup",
+        "metrics_by_k": {
+          "k=3": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.0423,
+            "context_relevance": 0.0,
+            "answer_relevance": 1.0,
+            "context_recall": 1.0
+          },
+          "k=5": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.0704,
+            "context_relevance": 0.0,
+            "answer_relevance": 1.0,
+            "context_recall": 1.0
+          },
+          "k=10": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.1408,
+            "context_relevance": 0.0,
+            "answer_relevance": 1.0,
+            "context_recall": 1.0
+          }
+        }
+      },
+      {
+        "id": "Q2",
+        "query": "What is the length of beam YC-ST-SF-BIP?",
+        "category": "property_lookup",
+        "metrics_by_k": {
+          "k=3": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 0.8146,
+            "precision": 1.0,
+            "recall": 0.0282,
+            "context_relevance": 0.3333,
+            "answer_relevance": 1.0,
+            "context_recall": 1.0
+          },
+          "k=5": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 0.8481,
+            "precision": 1.0,
+            "recall": 0.0563,
+            "context_relevance": 0.2,
+            "answer_relevance": 1.0,
+            "context_recall": 1.0
+          },
+          "k=10": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 0.8911,
+            "precision": 1.0,
+            "recall": 0.1268,
+            "context_relevance": 0.1,
+            "answer_relevance": 1.0,
+            "context_recall": 1.0
+          }
+        }
+      },
+      {
+        "id": "Q3",
+        "query": "What material is used for columns?",
+        "category": "property_lookup",
+        "metrics_by_k": {
+          "k=3": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 0.8675,
+            "precision": 1.0,
+            "recall": 0.0141,
+            "context_relevance": 0.0,
+            "answer_relevance": 0.3333,
+            "context_recall": 1.0
+          },
+          "k=5": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 0.8616,
+            "precision": 1.0,
+            "recall": 0.0423,
+            "context_relevance": 0.0,
+            "answer_relevance": 0.3333,
+            "context_recall": 1.0
+          },
+          "k=10": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 0.8809,
+            "precision": 0.8,
+            "recall": 0.0845,
+            "context_relevance": 0.0,
+            "answer_relevance": 0.3333,
+            "context_recall": 1.0
+          }
+        }
+      },
+      {
+        "id": "Q4",
+        "query": "Show all non-compliant elements",
+        "category": "compliance_query",
+        "metrics_by_k": {
+          "k=3": {
+            "hit_rate": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "precision": 0.0,
+            "recall": 0.0004,
+            "context_relevance": 0.0,
+            "answer_relevance": 0.0,
+            "context_recall": 0.0
+          },
+          "k=5": {
+            "hit_rate": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "precision": 0.0,
+            "recall": 0.0006,
+            "context_relevance": 0.0,
+            "answer_relevance": 0.0,
+            "context_recall": 0.0
+          },
+          "k=10": {
+            "hit_rate": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "precision": 0.0,
+            "recall": 0.0012,
+            "context_relevance": 0.0,
+            "answer_relevance": 0.0,
+            "context_recall": 0.0
+          }
+        }
+      },
+      {
+        "id": "Q5",
+        "query": "Is the wall width compliant?",
+        "category": "compliance_query",
+        "metrics_by_k": {
+          "k=3": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.0004,
+            "context_relevance": 1.0,
+            "answer_relevance": 1.0,
+            "context_recall": 1.0
+          },
+          "k=5": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.0006,
+            "context_relevance": 1.0,
+            "answer_relevance": 1.0,
+            "context_recall": 1.0
+          },
+          "k=10": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.0012,
+            "context_relevance": 1.0,
+            "answer_relevance": 1.0,
+            "context_recall": 1.0
+          }
+        }
+      },
+      {
+        "id": "Q6",
+        "query": "What are the regulations for building height?",
+        "category": "regulation_query",
+        "metrics_by_k": {
+          "k=3": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 0.9299,
+            "precision": 1.0,
+            "recall": 0.004,
+            "context_relevance": 0.6667,
+            "answer_relevance": 0.6667,
+            "context_recall": 1.0
+          },
+          "k=5": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 0.9185,
+            "precision": 1.0,
+            "recall": 0.0067,
+            "context_relevance": 0.8,
+            "answer_relevance": 0.6667,
+            "context_recall": 1.0
+          },
+          "k=10": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 0.9194,
+            "precision": 1.0,
+            "recall": 0.0135,
+            "context_relevance": 0.8,
+            "answer_relevance": 0.6667,
+            "context_recall": 1.0
+          }
+        }
+      },
+      {
+        "id": "Q7",
+        "query": "List all doors in the project",
+        "category": "entity_query",
+        "metrics_by_k": {
+          "k=3": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 0.3333,
+            "recall": 0.0141,
+            "context_relevance": 0.0,
+            "answer_relevance": 0.0,
+            "context_recall": 1.0
+          },
+          "k=5": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 0.2,
+            "recall": 0.0141,
+            "context_relevance": 0.0,
+            "answer_relevance": 0.0,
+            "context_recall": 1.0
+          },
+          "k=10": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 0.1,
+            "recall": 0.0141,
+            "context_relevance": 0.0,
+            "answer_relevance": 0.0,
+            "context_recall": 1.0
+          }
+        }
+      },
+      {
+        "id": "Q8",
+        "query": "What is the fire rating requirement for walls?",
+        "category": "regulation_query",
+        "metrics_by_k": {
+          "k=3": {
+            "hit_rate": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "context_relevance": 0.0,
+            "answer_relevance": 0.0,
+            "context_recall": 0.0
+          },
+          "k=5": {
+            "hit_rate": 0.0,
+            "mrr": 0.0,
+            "ndcg": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "context_relevance": 0.0,
+            "answer_relevance": 0.0,
+            "context_recall": 0.0
+          },
+          "k=10": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.0011,
+            "context_relevance": 1.0,
+            "answer_relevance": 0.5,
+            "context_recall": 1.0
+          }
+        }
+      },
+      {
+        "id": "Q9",
+        "query": "How many beams are in the project?",
+        "category": "entity_query",
+        "metrics_by_k": {
+          "k=3": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.0,
+            "context_relevance": 0.0,
+            "answer_relevance": 0.3333,
+            "context_recall": 1.0
+          },
+          "k=5": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.0282,
+            "context_relevance": 0.0,
+            "answer_relevance": 0.3333,
+            "context_recall": 1.0
+          },
+          "k=10": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.0845,
+            "context_relevance": 0.1,
+            "answer_relevance": 0.3333,
+            "context_recall": 1.0
+          }
+        }
+      },
+      {
+        "id": "Q10",
+        "query": "What is the width of walls in this building?",
+        "category": "property_lookup",
+        "metrics_by_k": {
+          "k=3": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.0,
+            "context_relevance": 1.0,
+            "answer_relevance": 0.6667,
+            "context_recall": 1.0
+          },
+          "k=5": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.0,
+            "context_relevance": 1.0,
+            "answer_relevance": 0.6667,
+            "context_recall": 1.0
+          },
+          "k=10": {
+            "hit_rate": 1.0,
+            "mrr": 1.0,
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.0,
+            "context_relevance": 1.0,
+            "answer_relevance": 0.6667,
+            "context_recall": 1.0
+          }
+        }
+      }
+    ],
+    "aggregate": {
+      "k=3": {
+        "hit_rate": {
+          "mean": 0.8,
+          "std": 0.4,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "mrr": {
+          "mean": 0.8,
+          "std": 0.4,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "ndcg": {
+          "mean": 0.7612,
+          "std": 0.3856,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "precision": {
+          "mean": 0.7333,
+          "std": 0.4163,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "recall": {
+          "mean": 0.0103,
+          "std": 0.0139,
+          "min": 0.0,
+          "max": 0.0423
+        },
+        "context_relevance": {
+          "mean": 0.3,
+          "std": 0.4069,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "answer_relevance": {
+          "mean": 0.5,
+          "std": 0.4014,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "context_recall": {
+          "mean": 0.8,
+          "std": 0.4,
+          "min": 0.0,
+          "max": 1.0
+        }
+      },
+      "k=5": {
+        "hit_rate": {
+          "mean": 0.8,
+          "std": 0.4,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "mrr": {
+          "mean": 0.8,
+          "std": 0.4,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "ndcg": {
+          "mean": 0.7628,
+          "std": 0.3855,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "precision": {
+          "mean": 0.72,
+          "std": 0.4308,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "recall": {
+          "mean": 0.0219,
+          "std": 0.0248,
+          "min": 0.0,
+          "max": 0.0704
+        },
+        "context_relevance": {
+          "mean": 0.3,
+          "std": 0.4219,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "answer_relevance": {
+          "mean": 0.5,
+          "std": 0.4014,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "context_recall": {
+          "mean": 0.8,
+          "std": 0.4,
+          "min": 0.0,
+          "max": 1.0
+        }
+      },
+      "k=10": {
+        "hit_rate": {
+          "mean": 0.9,
+          "std": 0.3,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "mrr": {
+          "mean": 0.9,
+          "std": 0.3,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "ndcg": {
+          "mean": 0.8691,
+          "std": 0.2935,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "precision": {
+          "mean": 0.79,
+          "std": 0.3754,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "recall": {
+          "mean": 0.0468,
+          "std": 0.0536,
+          "min": 0.0,
+          "max": 0.1408
+        },
+        "context_relevance": {
+          "mean": 0.4,
+          "std": 0.4539,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "answer_relevance": {
+          "mean": 0.55,
+          "std": 0.3655,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "context_recall": {
+          "mean": 0.9,
+          "std": 0.3,
+          "min": 0.0,
+          "max": 1.0
+        }
+      }
+    }
+  },
+  "llm_evaluation": {
+    "query_wise": [
+      {
+        "id": "Q1",
+        "query": "What is the material of the wall?",
+        "metrics": {
+          "faithfulness": 0.625,
+          "answer_correctness": 1.0,
+          "hallucination_rate": 0.4,
+          "format_compliance": 1.0,
+          "completeness": 1.0,
+          "latency_seconds": 6.15,
+          "latency_score": 0.795
+        },
+        "answer_preview": "\ud83d\udccb **Material for Wall elements**\n\n\ud83d\udca1 **Analysis:**\n**Material of the Wall**\n\n* The material of the wall is **YC_Test_Brick**.\n\n**Additional Information**\n\n* The wall type is not specified in the provided context.\n* The wall object types are T1 and T2.\n* The wall lengths and widths are provided, but n"
+      },
+      {
+        "id": "Q2",
+        "query": "What is the length of beam YC-ST-SF-BIP?",
+        "metrics": {
+          "faithfulness": 0.8125,
+          "answer_correctness": 1.0,
+          "hallucination_rate": 0.2,
+          "format_compliance": 1.0,
+          "completeness": 1.0,
+          "latency_seconds": 10.74,
+          "latency_score": 0.6419
+        },
+        "answer_preview": "\ud83d\udccb **Length_mm for Beam elements**\n\n\ud83d\udca1 **Analysis:**\n**Beam Properties**\n\n* **Name**: YC-ST-SF-BIP\n* **Type**: beam\n* **Material**: Concrete - Cast-in-Place Concrete\n* **Length**: 0.049212598425196846 mm\n\n**Compliance Check**\n\n* **Length**: The length of the beam is 0.049212598425196846 mm. The code d"
+      },
+      {
+        "id": "Q3",
+        "query": "What material is used for columns?",
+        "metrics": {
+          "faithfulness": 0.5714,
+          "answer_correctness": 1.0,
+          "hallucination_rate": 0.3548,
+          "format_compliance": 1.0,
+          "completeness": 1.0,
+          "latency_seconds": 9.92,
+          "latency_score": 0.6694
+        },
+        "answer_preview": "\ud83d\udccb **Material for Column elements**\n\n\ud83d\udca1 **Analysis:**\n**Material Used for Columns**\n\nThe material used for columns is:\n\n* Concrete - Cast-in-Place Concrete\n\n**Compliance Check**\n\nThe project data indicates that the columns are made of Concrete - Cast-in-Place Concrete, which is compliant with the requ"
+      },
+      {
+        "id": "Q4",
+        "query": "Show all non-compliant elements",
+        "metrics": {
+          "faithfulness": 0.75,
+          "answer_correctness": 1.0,
+          "hallucination_rate": 0.1449,
+          "format_compliance": 1.0,
+          "completeness": 0.6667,
+          "latency_seconds": 11.14,
+          "latency_score": 0.6288
+        },
+        "answer_preview": "\n\u26a0\ufe0f **MISSING PROPERTIES (20 elements):**\n  \u2022 YC-AR-FL-TIL: [Compliance] IfcCovering 'YC-AR-FL-TIL' \u2014 property 'Width_mm' NOT FOUND. Required <= 6.0mm. Property 'Width_mm' not found in L1 or L2 data for this el\n  \u2022 YC-AR-FL-TIL: [Compliance] IfcCovering 'YC-AR-FL-TIL' \u2014 property 'Width_mm' NOT FOUND"
+      },
+      {
+        "id": "Q5",
+        "query": "Is the wall width compliant?",
+        "metrics": {
+          "faithfulness": 0.5625,
+          "answer_correctness": 1.0,
+          "hallucination_rate": 0.68,
+          "format_compliance": 1.0,
+          "completeness": 1.0,
+          "latency_seconds": 13.83,
+          "latency_score": 0.539
+        },
+        "answer_preview": "\ud83d\udccb **Width_mm for Wall elements**\n\n\ud83d\udca1 **Analysis:**\n**Compliance Check: Wall Width**\n\n* **Project Data:**\n\t+ Wall width values found: 114.30000000000003 mm (multiple instances)\n* **Regulatory Requirement:** Not specified in the provided context.\n* **Compliance:** Since the regulatory requirement is no"
+      },
+      {
+        "id": "Q6",
+        "query": "What are the regulations for building height?",
+        "metrics": {
+          "faithfulness": 0.7857,
+          "answer_correctness": 1.0,
+          "hallucination_rate": 0.3684,
+          "format_compliance": 1.0,
+          "completeness": 1.0,
+          "latency_seconds": 9.91,
+          "latency_score": 0.6698
+        },
+        "answer_preview": "\ud83d\udcac **Answer:**\n**Building Height Regulations**\n\n* **Definition of High Rise Building**: A building exceeding **18.30m** height.\n* **Regulation Reference**: [Regulation] (58)\n\n**Compliance Check**\n\n* The building height is not specified in the provided context.\n* However, we can infer that a building "
+      },
+      {
+        "id": "Q7",
+        "query": "List all doors in the project",
+        "metrics": {
+          "faithfulness": 0.8,
+          "answer_correctness": 1.0,
+          "hallucination_rate": 0.2895,
+          "format_compliance": 1.0,
+          "completeness": 1.0,
+          "latency_seconds": 4.96,
+          "latency_score": 0.8346
+        },
+        "answer_preview": "\ud83d\udce6 **Door Elements in Project**\n\nKnown properties: Actual, IFC Element] Type, Name, ObjectType, Required <, Required >, Width_mm\n\n[IFC Element] Type=door Name=YC-AR-DO-EXT. Name=YC-AR-DO-EXT. ObjectType=T1. Width_mm=1510.0.\n\n\ud83d\udca1 **Summary:**\n**Doors in the Project**\n\n* **Found Doors:**\n\t+ YC-AR-DO-EXT "
+      },
+      {
+        "id": "Q8",
+        "query": "What is the fire rating requirement for walls?",
+        "metrics": {
+          "faithfulness": 0.0,
+          "answer_correctness": 1.0,
+          "hallucination_rate": 1.0,
+          "format_compliance": 1.0,
+          "completeness": 0.75,
+          "latency_seconds": 8.22,
+          "latency_score": 0.726
+        },
+        "answer_preview": "\ud83d\udccb **FireRating_min for Wall elements**\n\n\ud83d\udca1 **Analysis:**\n**Compliance Status:** NON-COMPLIANT\n\n**Element:** IfcWall 'YC-ST-WA-EIP'\n\n**Property:** FireRating_min\n\n* **Found Value:** NOT FOUND in L1 or L2 data\n* **Required Value:** >= 2000.0 litres\n* **Gap:** The required value is not present in the pr"
+      },
+      {
+        "id": "Q9",
+        "query": "How many beams are in the project?",
+        "metrics": {
+          "faithfulness": 0.9429,
+          "answer_correctness": 1.0,
+          "hallucination_rate": 0.0893,
+          "format_compliance": 1.0,
+          "completeness": 1.0,
+          "latency_seconds": 8.89,
+          "latency_score": 0.7036
+        },
+        "answer_preview": "\ud83d\udce6 **Beam Elements in Project**\n\nKnown properties: FLEXURE, IFC Element] Type, Length, Material, Mel, Name, Nom, ObjectType, Product] Type, Required <, Required >, ST, Singly Reinforced T, The equation given in E, The moment of resistancoef a T\n\n[Product] Type=beam Name=Unknown Product. and B=4 of th"
+      },
+      {
+        "id": "Q10",
+        "query": "What is the width of walls in this building?",
+        "metrics": {
+          "faithfulness": 0.7,
+          "answer_correctness": 1.0,
+          "hallucination_rate": 0.5833,
+          "format_compliance": 1.0,
+          "completeness": 1.0,
+          "latency_seconds": 6.34,
+          "latency_score": 0.7886
+        },
+        "answer_preview": "\ud83d\udccb **Width_mm for Wall elements**\n\n\ud83d\udca1 **Analysis:**\n**Width of Walls**\n\n* The width of walls in this building is **114.30000000000003 mm**.\n\n**Compliance Check**\n\n* The width of walls is COMPLIANT with the project's standard wall width.\n\n**Additional Information**\n\n* There are multiple wall types in t"
+      }
+    ],
+    "aggregate": {
+      "faithfulness": {
+        "mean": 0.655,
+        "std": 0.2454,
+        "min": 0.0,
+        "max": 0.9429
+      },
+      "answer_correctness": {
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "hallucination_rate": {
+        "mean": 0.411,
+        "std": 0.2622,
+        "min": 0.0893,
+        "max": 1.0
+      },
+      "format_compliance": {
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "completeness": {
+        "mean": 0.9417,
+        "std": 0.1181,
+        "min": 0.6667,
+        "max": 1.0
+      },
+      "latency_score": {
+        "mean": 0.6997,
+        "std": 0.0848,
+        "min": 0.539,
+        "max": 0.8346
+      }
+    }
+  }
+}

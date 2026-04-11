@@ -111,14 +111,17 @@ class StructuredResponder:
 
         # ── Path A: User asks about specific element + property ───────
         if entity_type and property_name:
-            return self._handle_specific(query, entity_type, property_name,
-                                         is_compliance_query, llm_client)
+            result = self._handle_specific(query, entity_type, property_name,
+                                           is_compliance_query, llm_client)
+            if result:
+                return result
+            # If _handle_specific returns None, fall through to general RAG
 
         # ── Path B: Compliance-only query ─────────────────────────────
         if is_compliance_query:
             return self._handle_compliance_summary(query, entity_type, llm_client)
 
-        # ── Path C: List query ("show all elements", "what elements exist") ─
+        # ── Path C: Entity info without specific property ─────────────
         if entity_type and not property_name:
             return self._handle_entity_info(query, entity_type, llm_client)
 
@@ -146,57 +149,73 @@ class StructuredResponder:
                 break
 
         if comp_chunk:
-            return self._format_compliance_response(comp_chunk, query, llm)
+            # Skip MISSING_PROPERTY responses — fall through to LLM instead
+            if comp_chunk["meta"].get("status") != "MISSING_PROPERTY":
+                return self._format_compliance_response(comp_chunk, query, llm)
 
-        # 2. Check if element+property exists in L1/L2 knowledge
-        prop_chunks = self.store.search_with_metadata(
+        # 2. Broad semantic search: find ANY relevant chunks for this element
+        all_chunks = self.store.search_with_metadata(
             query=f"{entity_type} {property_name}",
             k=10,
             filter_element_type=entity_type,
         )
-        el_chunks = [c for c in prop_chunks if
-                     c["meta"].get("layer") in ("L1", "L2")
-                     and property_name.lower() in c["text"].lower()]
+        # Accept both exact property match AND semantically relevant chunks
+        relevant = [c for c in all_chunks if
+                    c["meta"].get("layer") in ("L1", "L2", "L4", "L5")
+                    or c["meta"].get("chunk_type") == "compliance"]
 
-        if not el_chunks:
-            # Property genuinely not in project
-            available_types = self.store.get_all_element_types()
-            available_props = self.store.get_all_properties_for_type(entity_type)
-            return self._format_not_found(entity_type, property_name,
-                                          available_types, available_props)
+        if relevant:
+            values_text = "\n".join(c["text"] for c in relevant[:5])
+            context = f"Project data for {entity_type} (query: {property_name}):\n{values_text}"
+            explanation = llm.reason(query, context)
+            return (
+                f"📋 **{property_name} for {entity_type.title()} elements**\n\n"
+                f"💡 **Analysis:**\n{explanation}"
+            )
 
-        # Property found but no compliance check done yet
-        values_text = "\n".join(c["text"] for c in el_chunks[:3])
-        context = f"Project data for {entity_type} {property_name}:\n{values_text}"
-        explanation = llm.reason(query, context)
-        return (
-            f"📋 **{property_name} for {entity_type.title()} elements**\n\n"
-            f"{values_text}\n\n"
-            f"💡 **Analysis:**\n{explanation}"
-        )
+        # 3. Nothing found at all — return None to fall through to general RAG
+        return None
 
     # ─────────────────────────────────────────────────────────────────
     # Path B: Compliance summary
     # ─────────────────────────────────────────────────────────────────
     def _handle_compliance_summary(self, query: str, entity_type: Optional[str], llm) -> str:
         filter_et = entity_type  # may be None for global scan
-        chunks = self.store.search_with_metadata(query, k=15,
+        chunks = self.store.search_with_metadata(query, k=20,
                                                   filter_element_type=filter_et)
         non_compliant = [c for c in chunks if c["meta"].get("status") == "NON_COMPLIANT"]
         missing = [c for c in chunks if c["meta"].get("status") == "MISSING_PROPERTY"]
         compliant = [c for c in chunks if c["meta"].get("status") == "COMPLIANT"]
 
+        # If user explicitly asked about compliant elements, show those
+        if compliant and re.search(r'\bcompliant\b', query, re.IGNORECASE) and not re.search(r'\bnon.?compliant\b', query, re.IGNORECASE):
+            lines = [f"✅ **COMPLIANT elements ({len(compliant)} found):**"]
+            seen = set()
+            for c in compliant:
+                m = c["meta"]
+                name = m.get('element_name', '?')
+                prop = m.get('property', '?')
+                key = f"{name}-{prop}"
+                if key not in seen:
+                    seen.add(key)
+                    lines.append(f"  • **{name}** ({m.get('element_type','')}) — {prop}: {c['text'][:150]}")
+            context = "\n".join(c["text"] for c in compliant[:5])
+            explanation = llm.reason(query, context)
+            lines.append(f"\n💡 **Summary:**\n{explanation}")
+            return "\n".join(lines)
+
         if not non_compliant and not missing:
             if compliant:
                 names = set(c["meta"].get("element_name", "") for c in compliant)
+                context = "\n".join(c["text"] for c in compliant[:5])
+                explanation = llm.reason(query, context)
                 return (
                     f"✅ **All checked {entity_type or 'element'} elements are COMPLIANT.**\n\n"
                     f"Compliant elements: {', '.join(n for n in names if n)}\n\n"
-                    + "\n".join(c["text"] for c in compliant[:3])
+                    f"💡 **Details:**\n{explanation}"
                 )
-            # No compliance data at all
-            return ("⚠️ No compliance check results found. "
-                    "Please run inference (option 7) before querying compliance.")
+            # No compliance data — fall through to general RAG
+            return self._handle_general(query, llm)
 
         lines = []
         if non_compliant:
