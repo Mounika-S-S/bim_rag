@@ -36,8 +36,9 @@ class JSONStorage:
                 except json.JSONDecodeError:
                     existing_records = []
 
-        # Append new records
-        combined_records = existing_records + new_records
+        # Append and de-duplicate exact record payloads so repeated uploads
+        # do not silently pollute downstream inference and retrieval.
+        combined_records = JSONStorage._dedupe_records(existing_records + new_records)
 
         # Write back combined records
         with open(file_path, "w", encoding="utf-8") as f:
@@ -62,3 +63,22 @@ class JSONStorage:
                 return json.load(f)
             except json.JSONDecodeError:
                 return []
+
+    @staticmethod
+    def _dedupe_records(records):
+        unique_records = []
+        seen = set()
+
+        for record in records:
+            try:
+                key = json.dumps(record, sort_keys=True, ensure_ascii=False)
+            except TypeError:
+                key = str(record)
+
+            if key in seen:
+                continue
+
+            seen.add(key)
+            unique_records.append(record)
+
+        return unique_records

@@ -4,6 +4,7 @@ from typing import List, Optional
 import os
 import json
 import shutil
+from dotenv import load_dotenv
 from src.core.json_storage import JSONStorage
 from src.app import query_vector_store_api, run_inference, run_l123, run_l125, run_l45, build_vector_store
 from src.ingestion.ifc_parser import IFCParser
@@ -12,6 +13,8 @@ from src.l3.main_l3_pipeline import L3Pipeline
 from src.ingestion.main_l4_pipeline import L4Pipeline
 from src.l5.main_l5_pipeline import L5Pipeline
 from src.app import run_unified_compliance
+
+load_dotenv()
 
 app = FastAPI()
 

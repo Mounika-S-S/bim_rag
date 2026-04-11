@@ -439,7 +439,7 @@ def query_vector_store_api(project_id, question, chat_context=None):
     if chat_context:
         context_parts.append(chat_context)
 
-    # ── FIXED: was results[:2] which caused only 2 elements to be seen ──
+    # ── FIXED: max_chunks dynamic scaling ──
     # Compliance route gets up to 10 chunks; other routes get 5.
     route = routing.get("route", "")
     max_chunks = 10 if route == "Compliance" else 5

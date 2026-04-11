@@ -1,32 +1,16 @@
-import pdfplumber
 import re
+from src.ingestion.base_pdf_cleaner import BasePDFCleaner
 
-
-class PDFCleaner:
-
-    def clean(self, pdf_path):
-
-        text = ""
-
-        with pdfplumber.open(pdf_path) as pdf:
-
-            for page in pdf.pages:
-
-                t = page.extract_text()
-
-                if t:
-                    text += t + "\n"
-
-        return self._post_process(text)
-
-    def _post_process(self, text):
-
-        text = re.sub(r"Annexure.*", "", text, flags=re.I)
-
+class PDFCleaner(BasePDFCleaner):
+    
+    def _clean_page_text(self, text: str) -> str:
+        text = super()._clean_page_text(text)
+        
+        text = re.sub(r"Annexure.*", "", text, flags=re.IGNORECASE)
         text = re.sub(r"Sl\.?\s*No.*", "", text)
-
         text = re.sub(r"[A-Z]-\d{4}.*", "", text)
-
-        text = re.sub(r"\s+", " ", text)
-
+        
+        # normalize whitespace again if regex resulted in gaps
+        text = re.sub(r"[ \t]+", " ", text)
+        
         return text.strip()
