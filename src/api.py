@@ -11,6 +11,7 @@ from src.l2.main_l2_pipeline import L2Pipeline
 from src.l3.main_l3_pipeline import L3Pipeline
 from src.ingestion.main_l4_pipeline import L4Pipeline
 from src.l5.main_l5_pipeline import L5Pipeline
+from src.app import run_unified_compliance
 
 app = FastAPI()
 
@@ -138,7 +139,9 @@ def upload_layer(
 
 @app.post("/run-inference")
 def run_inference_endpoint(project_id: str = Form(...), inference_type: str = Form(...)):
-    if inference_type == "l124":
+    if inference_type == "compliance":           # NEW unified type
+        run_unified_compliance(project_id)
+    elif inference_type == "l124":              # keep for backward compat
         run_inference(project_id)
     elif inference_type == "l123":
         run_l123(project_id)
