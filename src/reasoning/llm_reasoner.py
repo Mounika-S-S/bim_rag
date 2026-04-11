@@ -8,7 +8,10 @@ class LLMReasoner:
 
     def reason(self, query, retrieved_chunks):
 
-        context = "\n".join(retrieved_chunks)
+        if isinstance(retrieved_chunks, str):
+            context = retrieved_chunks
+        else:
+            context = "\n".join(retrieved_chunks)
 
         result = self.client.reason(query, context)
 

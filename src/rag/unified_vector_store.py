@@ -6,266 +6,211 @@ from sentence_transformers import SentenceTransformer
 from src.core.json_storage import JSONStorage
 from src.core.model_manager import model_manager
 
+
 class UnifiedVectorStore:
 
     def __init__(self):
-
-        # Use shared model manager to avoid repeated downloads
         self.model = model_manager.get_model("all-mpnet-base-v2")
         self.index = None
         self.text_chunks = []
+        self.metadata = []   # parallel list: {layer, element_id, element_type, property}
 
-    # --------------------------------------------------
-    # Build unified knowledge base
-    # --------------------------------------------------
-
+    # ------------------------------------------------------------------
     def build_from_project(self, project_id):
-
         knowledge_chunks = []
+        meta = []
 
-        # =========================
-        # L1 IFC Elements
-        # =========================
-        l1 = JSONStorage.load(project_id, "L1_ifc.json")
-
-        for element in l1:
-
+        # ── L1 IFC Elements ──────────────────────────────────────────
+        for element in JSONStorage.load(project_id, "L1_ifc.json"):
             props = element.get("properties", {})
-            name = props.get("Name", "Unknown Element")
+            name = props.get("Name", "Unknown")
+            etype = element.get("element_type_normalized", element.get("entity_type", "element"))
+            eid = element.get("id", "")
 
-            text = f"[IFC Element] {name}. "
-
+            text = f"[IFC Element] Type={etype} Name={name}. "
             for k, v in props.items():
-                text += f"{k} = {v}. "
+                if v is not None:
+                    text += f"{k}={v}. "
 
             knowledge_chunks.append(text.strip())
+            meta.append({"layer": "L1", "element_id": eid, "element_type": etype,
+                          "element_name": name, "chunk_type": "element"})
 
-        # =========================
-        # L2 Products
-        # =========================
-        l2 = JSONStorage.load(project_id, "L2_product.json")
-
-        for product in l2:
-
+        # ── L2 Products ───────────────────────────────────────────────
+        for product in JSONStorage.load(project_id, "L2_product.json"):
             props = product.get("properties", {})
+            etype = product.get("element_type_normalized") or props.get("ElementType", "product")
+            eid = product.get("id", "")
+            pname = props.get("ProductName", props.get("product_name", "Unknown Product"))
 
-            name = props.get("Product_Name", "Unknown Product")
-
-            text = f"[Product] {name}. "
-
+            text = f"[Product] Type={etype} Name={pname}. "
             for k, v in props.items():
-                text += f"{k} = {v}. "
+                if v is not None:
+                    text += f"{k}={v}. "
 
             knowledge_chunks.append(text.strip())
+            meta.append({"layer": "L2", "element_id": eid, "element_type": etype,
+                          "element_name": pname, "chunk_type": "product"})
 
-        # =========================
-        # L3 Process Rules
-        # =========================
-        l3 = JSONStorage.load(project_id, "L3_process.json")
-
-        for process in l3:
-
+        # ── L3 Process Rules ──────────────────────────────────────────
+        for process in JSONStorage.load(project_id, "L3_process.json"):
             text = process.get("properties", {}).get("text", "")
-
             if text and len(text) > 20:
                 knowledge_chunks.append(f"[Process Rule] {text}")
+                meta.append({"layer": "L3", "element_id": process.get("id", ""),
+                              "chunk_type": "process_rule"})
 
-        # =========================
-        # L4 Regulations
-        # =========================
-        l4 = JSONStorage.load(project_id, "L4_regulation.json")
-
-        for rule in l4:
-
-            text = rule.get("properties", {}).get("text", "")
-
+        # ── L4 Regulations ────────────────────────────────────────────
+        for rule in JSONStorage.load(project_id, "L4_regulation.json"):
+            text = rule.get("text", "") or rule.get("properties", {}).get("text", "")
+            etypes = rule.get("element_types", [])
             if text and len(text) > 20:
                 knowledge_chunks.append(f"[Regulation] {text}")
+                meta.append({"layer": "L4", "element_id": "",
+                              "element_types": etypes,
+                              "rule_type": rule.get("rule_type", ""),
+                              "chunk_type": "regulation"})
 
-        # =========================
-        # L5 Requirements / Rate table
-        # =========================
-        l5 = JSONStorage.load(project_id, "L5_requirement.json")
-
-        for req in l5:
-
+        # ── L5 Requirements ───────────────────────────────────────────
+        for req in JSONStorage.load(project_id, "L5_requirement.json"):
             props = req.get("properties", {})
-
-            code = props.get("item_code", "")
             desc = props.get("description", "")
-            unit = props.get("unit", "")
-            rate = props.get("rate", "")
-
             if desc:
-                text = f"[Requirement] {desc}. Code: {code}. Unit: {unit}. Rate: {rate}."
+                text = f"[Requirement] {desc}. Code: {props.get('item_code','')}. Unit: {props.get('unit','')}. Rate: {props.get('rate','')}."
                 knowledge_chunks.append(text)
+                meta.append({"layer": "L5", "element_id": req.get("id", ""), "chunk_type": "requirement"})
 
-        # ==========================================
-        # L1-L2-L4 inference
-        # ==========================================
+        # ── Compliance Results ─────────────────────────────────────────
+        for issue in JSONStorage.load(project_id, "l124_inference.json"):
+            status = issue.get("status", "")
+            ename = issue.get("element_name", "")
+            etype = issue.get("element_type", "")
+            prop = issue.get("property", "")
+            eff = issue.get("effective_value")
+            req = issue.get("required_value")
+            op = issue.get("operator", "")
+            unit = issue.get("unit", "")
+            rule_text = issue.get("source_rule", "")
+            suggestion = issue.get("suggestion", "")
 
-        l124 = JSONStorage.load(project_id, "l124_inference.json")
-
-        if l124:
-
-            for issue in l124:
-
-                element_name = issue.get("element_name", "")
-                element_type = issue.get("element_type", "")
-                rule_text = issue.get("rule_text", "")
-                product_value = issue.get("product_value", "")
-                required = issue.get("required", "")
-                unit = issue.get("unit", "")
-
-                if not rule_text:
-                    continue
-
-                text = (
-                    f"[L124 Inference] {element_type} '{element_name}' "
-                    f"is NON-COMPLIANT. Rule: {rule_text}. "
-                    f"Provided: {product_value} {unit}. "
-                    f"Required: {required} {unit}."
-                )
-
-                knowledge_chunks.append(text)
-
-        # =========================
-        # L1-L2-L3 inference
-        # =========================
-        l123 = JSONStorage.load(project_id, "l123_inference.json")
-
-        for r in l123:
-
-            element = r.get("element_name", "")
-            product = r.get("product", "")
-            rule = r.get("process_rule", "")
-
-            text = f"[L123 Inference] {element} uses {product}. Process rule: {rule}"
+            if status == "COMPLIANT":
+                text = (f"[Compliance] {etype} '{ename}' is COMPLIANT. "
+                        f"Properties: {json.dumps(issue.get('properties_summary', {}))}")
+            elif status == "NON_COMPLIANT":
+                text = (f"[Compliance] {etype} '{ename}' is NON_COMPLIANT for {prop}. "
+                        f"Actual={eff}{unit}, Required {op} {req}{unit}. "
+                        f"Rule: {rule_text[:200]}. Suggestion: {suggestion}")
+            elif status == "MISSING_PROPERTY":
+                text = (f"[Compliance] {etype} '{ename}' — property '{prop}' NOT FOUND. "
+                        f"Required {op} {req}{unit}. {suggestion}")
+            else:
+                continue
 
             knowledge_chunks.append(text)
+            meta.append({"layer": "compliance", "element_type": etype,
+                          "element_name": ename, "property": prop,
+                          "status": status, "chunk_type": "compliance"})
 
-        # =========================
-        # L1-L2-L5 inference
-        # =========================
-        l125 = JSONStorage.load(project_id, "l125_inference.json")
-
-        for r in l125:
-
-            element = r.get("element_name", "")
-            product = r.get("product", "")
-            req = r.get("requirement", "")
-
-            text = f"[L125 Inference] {element} uses {product}. Requirement: {req}"
-
-            knowledge_chunks.append(text)
-
-        # =========================
-        # L4-L5 inference
-        # =========================
-        l45 = JSONStorage.load(project_id, "l45_inference.json")
-
-        for r in l45:
-
-            reg = r.get("regulation_clause", "")
-            req = r.get("requirement", "")
-
-            text = f"[L45 Inference] Regulation: {reg}. Requirement: {req}"
-
-            knowledge_chunks.append(text)
-
-        # =========================
-        # Clean empty chunks
-        # =========================
-        knowledge_chunks = [
-            c for c in knowledge_chunks if c and len(c.strip()) > 20
-        ]
+        knowledge_chunks = [c for c in knowledge_chunks if c and len(c.strip()) > 20]
+        self.metadata = meta[:len(knowledge_chunks)]
 
         if not knowledge_chunks:
             print("No knowledge chunks found.")
             return
 
         self.text_chunks = knowledge_chunks
-
-        # =========================
-        # Generate embeddings
-        # =========================
-        embeddings = self.model.encode(knowledge_chunks)
-
-        embeddings = np.array(embeddings).astype("float32")
-
+        embeddings = np.array(self.model.encode(knowledge_chunks)).astype("float32")
         faiss.normalize_L2(embeddings)
-
-        dimension = embeddings.shape[1]
-
-        # Use HNSW index for better performance on larger datasets
-        # M=32 provides good balance of speed vs accuracy
-        self.index = faiss.IndexHNSWFlat(dimension, 32)
-        self.index.hnsw.efConstruction = 200  # Higher = better quality, slower build
-        self.index.hnsw.efSearch = 128  # Higher = better search quality, slower search
-
+        dim = embeddings.shape[1]
+        self.index = faiss.IndexHNSWFlat(dim, 32)
+        self.index.hnsw.efConstruction = 200
+        self.index.hnsw.efSearch = 128
         self.index.add(embeddings)
-
         print(f"Vector store built with {len(knowledge_chunks)} chunks.")
 
-    # --------------------------------------------------
-    # Save index
-    # --------------------------------------------------
-
+    # ------------------------------------------------------------------
     def save(self, path):
-
         os.makedirs(os.path.dirname(path), exist_ok=True)
-
         faiss.write_index(self.index, path)
-
         with open(path + ".texts", "w", encoding="utf-8") as f:
             json.dump(self.text_chunks, f)
-
+        with open(path + ".meta", "w", encoding="utf-8") as f:
+            json.dump(self.metadata, f)
         print("Vector store saved.")
 
-    # --------------------------------------------------
-    # Load index
-    # --------------------------------------------------
-
     def load(self, path):
-
         self.index = faiss.read_index(path)
-
-        # Detect dimension mismatch (old index vs current embedding size)
         expected_dim = self.model.get_sentence_embedding_dimension()
-        if hasattr(self.index, 'd') and self.index.d != expected_dim:
+        if hasattr(self.index, "d") and self.index.d != expected_dim:
             raise ValueError(
-                f"Embedded dimension mismatch: index is {self.index.d}, "
-                f"model is {expected_dim}. Please rebuild vector store (option 11)."
+                f"Dimension mismatch: index={self.index.d}, model={expected_dim}. Rebuild vector store."
             )
-
         with open(path + ".texts", "r", encoding="utf-8") as f:
             self.text_chunks = json.load(f)
-
+        meta_path = path + ".meta"
+        if os.path.exists(meta_path):
+            with open(meta_path, "r", encoding="utf-8") as f:
+                self.metadata = json.load(f)
+        else:
+            self.metadata = [{} for _ in self.text_chunks]
         print("Vector store loaded.")
 
-    # --------------------------------------------------
-    # Search
-    # --------------------------------------------------
+    # ------------------------------------------------------------------
+    def search(self, query: str, k: int = 5) -> list[str]:
+        qemb = np.array(self.model.encode([query])).astype("float32")
+        faiss.normalize_L2(qemb)
+        if hasattr(self.index, "hnsw"):
+            self.index.hnsw.efSearch = max(k * 2, 64)
+        distances, indices = self.index.search(qemb, k)
+        return [self.text_chunks[i] for i in indices[0] if i < len(self.text_chunks)]
 
-    def search(self, query, k=5):
-
-        query_embedding = self.model.encode([query])
-
-        query_embedding = np.array(query_embedding).astype("float32")
-
-        faiss.normalize_L2(query_embedding)
-
-        # Set efSearch for HNSW (higher = more accurate but slower)
-        if hasattr(self.index, 'hnsw'):
-            self.index.hnsw.efSearch = max(k * 2, 64)  # Adaptive based on k
-
-        distances, indices = self.index.search(query_embedding, k)
+    def search_with_metadata(self, query: str, k: int = 5,
+                             filter_layer: str = None,
+                             filter_element_type: str = None,
+                             filter_status: str = None) -> list[dict]:
+        """Return chunks WITH metadata, with optional filters."""
+        qemb = np.array(self.model.encode([query])).astype("float32")
+        faiss.normalize_L2(qemb)
+        if hasattr(self.index, "hnsw"):
+            self.index.hnsw.efSearch = max(k * 10, 128)
+        distances, indices = self.index.search(qemb, min(k * 10, len(self.text_chunks)))
 
         results = []
-
-        for idx in indices[0]:
-
-            if idx < len(self.text_chunks):
-                results.append(self.text_chunks[idx])
+        for i, idx in enumerate(indices[0]):
+            if idx >= len(self.text_chunks):
+                continue
+            m = self.metadata[idx] if idx < len(self.metadata) else {}
+            if filter_layer and m.get("layer") != filter_layer:
+                continue
+            if filter_element_type and m.get("element_type") != filter_element_type:
+                continue
+            if filter_status and m.get("status") != filter_status:
+                continue
+            results.append({"text": self.text_chunks[idx], "meta": m, "score": float(distances[0][i])})
+            if len(results) >= k:
+                break
 
         return results
+
+    def get_all_element_types(self) -> list[str]:
+        """Returns all unique element types in the store (for 'not found' responses)."""
+        types = set()
+        for m in self.metadata:
+            et = m.get("element_type")
+            if et:
+                types.add(et)
+        return sorted(types)
+
+    def get_all_properties_for_type(self, element_type: str) -> list[str]:
+        """Returns all property names recorded for a given element type."""
+        props = set()
+        for i, m in enumerate(self.metadata):
+            if m.get("element_type") == element_type:
+                # parse chunk text for property keys
+                text = self.text_chunks[i] if i < len(self.text_chunks) else ""
+                for part in text.split(". "):
+                    if "=" in part:
+                        key = part.split("=")[0].strip().lstrip("[").strip()
+                        if key and len(key) < 40:
+                            props.add(key)
+        return sorted(props)

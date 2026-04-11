@@ -2,7 +2,7 @@
 # Python virtual environment
 # =========================
 venv/
-.env/
+.env
 
 # =========================
 # Python cache files
@@ -18,21 +18,32 @@ __pycache__/
 Thumbs.db
 .vscode/
 .idea/
-*/data/input
-# =========================
-# Data files (company sensitive)
-# =========================
-# data/ifc/
-*/data/processed
 
 # =========================
-# Generated outputs
+# Data files (sensitive — do NOT commit)
 # =========================
-# data/output/
-# chroma_db/
-# faiss_index/
+data/raw/Input/
+data/processed/
+data/feedback_loop.db
+data/finetuning_dataset.jsonl
+data/chat_history/
+
+# =========================
+# Model weights (too large for GitHub)
+# =========================
+models/
+*.bin
+*.safetensors
+*.gguf
+*.pt
 
 # =========================
 # Logs
 # =========================
 *.log
+logs/
+
+# =========================
+# Notebook checkpoints
+# =========================
+.ipynb_checkpoints/

@@ -391,41 +391,49 @@ def query_vector_store(project_id):
 
     # CLI path: ask user, then route to API helper
     question = input("Enter your question: ")
-    answer = query_vector_store_api(project_id, question)
+    answer, interaction_id = query_vector_store_api(project_id, question)
     print("\nLLM Reasoning Result:\n")
     print(answer)
+    if interaction_id:
+        print(f"\n[Logged as interaction #{interaction_id} for feedback]")
 
 
 def query_vector_store_api(project_id, question, chat_context=None):
 
-    router = QueryRouter()
-    retriever = Retriever()
-
     path = f"data/processed/{project_id}/unified.index"
     if not os.path.exists(path):
-        raise FileNotFoundError("Vector store not built yet")
+        raise FileNotFoundError("Vector store not built yet. Run 'Build Unified Vector Store' first.")
 
-    retriever.load_unified_store(path)
-    retriever.clear_chroma_store()
+    store = UnifiedVectorStore()
+    store.load(path)
 
-    routing = router.route_query(question, mode="faiss")
+    from src.reasoning.structured_responder import StructuredResponder
+    from src.reasoning.llm_client import LLMClient
 
-    results = retriever.retrieve(question, routing)
+    llm_client = LLMClient()
+    responder = StructuredResponder(store)
 
-    # Merge past chat context with retrieved chunks
-    context_parts = []
+    # Prepend chat history to the question for context
+    augmented_question = question
     if chat_context:
-        context_parts.append(chat_context)
+        augmented_question = f"[Previous conversation]\n{chat_context}\n\n[Current question]\n{question}"
 
-    # keep 2 retrieved chunks to stay under Groq token limits
-    context_parts.extend(results[:2])
+    answer = responder.respond(augmented_question, llm_client)
 
-    context = "\n".join(context_parts).strip()
+    # ---------------------------------------------------
+    # Log Interaction for Fine-Tuning
+    # ---------------------------------------------------
+    interaction_id = None
+    try:
+        from src.finetuning.db_logger import FeedbackLogger
+        logger = FeedbackLogger()
+        sys_prompt = "You are an expert BIM compliance assistant."
+        interaction_id = logger.log_interaction(question, sys_prompt, augmented_question, answer)
+    except Exception as e:
+        print(f"DB Logging Error: {e}")
 
-    llm = LLMReasoner()
-    answer = llm.reason(question, context)
+    return answer, interaction_id
 
-    return answer
 #====smart query=============
 def smart_query(project_id):
 

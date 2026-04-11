@@ -3,240 +3,760 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BIM RAG Chat</title>
+  <title>BIM RAG — Compliance Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f6f8; }
-    .container { max-width: 1024px; margin: 20px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
-    h1 { margin-top: 0; }
-    .card { border: 1px solid #ddd; border-radius: 8px; padding: 12px; margin-bottom: 16px; background: #fafafa; }
-    label { font-weight: bold; }
-    select,input,button { font-size: 14px; }
-    input,select { padding: 8px; width: 100%; margin: 4px 0; border: 1px solid #bbb; border-radius: 6px; }
-    button { background: #0066cc; color: white; border: none; border-radius: 6px; padding: 8px 15px; cursor: pointer; }
-    button:hover { background: #0050a3; }
-    #chat { height: 44vh; overflow-y: auto; border: 1px solid #ccc; border-radius: 8px; padding: 10px; background: #fff; display: flex; flex-direction: column; gap: 8px; }
-    .bubble { padding: 10px 12px; border-radius: 12px; max-width: 80%; white-space: pre-wrap; word-wrap: break-word; }
-    .user { background: #DCF8C6; align-self: flex-end; text-align: right; }
-    .assistant { background: #E8F0FE; align-self: flex-start; text-align: left; }
-    small { color: #555; }
-    .row { display: flex; gap: 10px; flex-wrap: wrap; }
-    .col { flex: 1; min-width: 180px; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --surface2: #212436;
+      --border: #2e3250;
+      --accent: #6c63ff;
+      --accent2: #4ecdc4;
+      --danger: #ff4757;
+      --warn: #ffa502;
+      --success: #2ed573;
+      --text: #e8eaf0;
+      --text-muted: #8b8fa8;
+      --user-bubble: #6c63ff22;
+      --user-border: #6c63ff55;
+      --bot-bubble: #1e2235;
+      --bot-border: #2e3250;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1a1d2e 0%, #212436 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: sticky; top: 0; z-index: 50;
+    }
+    header .logo { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+    header .logo span { color: var(--accent); }
+    header .badge {
+      background: var(--accent); color: white; font-size: 10px;
+      font-weight: 600; padding: 2px 8px; border-radius: 20px; letter-spacing: 1px;
+    }
+    header .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--success); box-shadow: 0 0 6px var(--success);
+      margin-left: auto; animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    /* ── Layout ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      height: calc(100vh - 57px);
+      overflow: hidden;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 20px 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .sidebar h3 {
+      font-size: 10px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 8px;
+    }
+    .panel { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+
+    label { font-size: 12px; font-weight: 500; color: var(--text-muted); display: block; margin-bottom: 4px; }
+    select, input[type=text] {
+      width: 100%; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 10px; color: var(--text);
+      font-family: inherit; font-size: 13px; outline: none;
+      transition: border-color 0.2s;
+    }
+    select:focus, input[type=text]:focus { border-color: var(--accent); }
+    input[type=file] {
+      width: 100%; background: var(--bg); border: 1px dashed var(--border);
+      border-radius: 8px; padding: 8px; color: var(--text-muted); font-size: 12px;
+      cursor: pointer;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 6px; padding: 8px 14px; border: none; border-radius: 8px;
+      font-family: inherit; font-size: 13px; font-weight: 500;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: #7c74ff; transform: translateY(-1px); }
+    .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-success { background: #1a3a2a; color: var(--success); border: 1px solid #2ed57344; }
+    .btn-success:hover { background: #1e4432; }
+    .btn-danger { background: #3a1a1a; color: var(--danger); border: 1px solid #ff475744; }
+    .btn-danger:hover { background: #441e1e; }
+    .btn-warn { background: #3a2a0a; color: var(--warn); border: 1px solid #ffa50244; }
+    .btn-warn:hover { background: #44340e; }
+    .btn-full { width: 100%; margin-top: 8px; }
+    .btn:disabled { opacity: 0.5; pointer-events: none; }
+
+    .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+
+    .status-msg {
+      font-size: 11px; padding: 6px 10px; border-radius: 6px;
+      margin-top: 8px; display: none;
+    }
+    .status-msg.show { display: block; }
+    .status-msg.ok { background: #1a3a2a; color: var(--success); border: 1px solid #2ed57322; }
+    .status-msg.err { background: #3a1a1a; color: var(--danger); border: 1px solid #ff475722; }
+    .status-msg.loading { background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
+
+    /* ── Chat area ── */
+    .chat-area {
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .chat-project-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+    .chat-project-bar strong { color: var(--accent); }
+
+    #chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      scroll-behavior: smooth;
+    }
+
+    /* ── Message bubbles ── */
+    .msg-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      animation: fadeUp 0.25s ease;
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+
+    .msg-row.user { flex-direction: row-reverse; }
+
+    .avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0;
+    }
+    .avatar.user { background: var(--user-bubble); border: 1px solid var(--user-border); }
+    .avatar.bot { background: var(--surface2); border: 1px solid var(--border); }
+
+    .bubble-wrap { display: flex; flex-direction: column; gap: 4px; max-width: 78%; }
+    .msg-row.user .bubble-wrap { align-items: flex-end; }
+
+    .bubble {
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+    .bubble.user {
+      background: var(--user-bubble);
+      border: 1px solid var(--user-border);
+      border-top-right-radius: 4px;
+      color: var(--text);
+    }
+    .bubble.bot {
+      background: var(--bot-bubble);
+      border: 1px solid var(--bot-border);
+      border-top-left-radius: 4px;
+      color: var(--text);
+    }
+
+    /* Markdown rendering inside bot bubble */
+    .bubble.bot strong { color: #c8caff; }
+    .bubble.bot code {
+      background: #0f1117; padding: 2px 6px; border-radius: 4px;
+      font-family: monospace; font-size: 12px; color: var(--accent2);
+    }
+    .bubble.bot ul, .bubble.bot ol { padding-left: 18px; margin-top: 4px; }
+    .bubble.bot li { margin-bottom: 2px; }
+    .bubble.bot h1, .bubble.bot h2, .bubble.bot h3 {
+      margin: 8px 0 4px; font-size: 14px; color: var(--accent);
+    }
+    .bubble.bot hr { border: 0; border-top: 1px solid var(--border); margin: 8px 0; }
+
+    /* Feedback buttons row */
+    .feedback-row {
+      display: flex; gap: 6px; align-items: center;
+    }
+    .fb-btn {
+      background: none; border: 1px solid var(--border); border-radius: 6px;
+      padding: 3px 8px; font-size: 13px; cursor: pointer; color: var(--text-muted);
+      transition: all 0.15s;
+    }
+    .fb-btn:hover { border-color: var(--accent); color: var(--accent); transform: scale(1.1); }
+    .fb-btn.active-up { border-color: var(--success); color: var(--success); }
+    .fb-btn.active-down { border-color: var(--danger); color: var(--danger); }
+    .correction-box {
+      display: none; margin-top: 6px;
+    }
+    .correction-box.open { display: flex; gap: 6px; }
+    .correction-box textarea {
+      flex: 1; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px; color: var(--text); font-family: inherit;
+      font-size: 12px; resize: vertical; min-height: 54px; outline: none;
+    }
+    .correction-box textarea:focus { border-color: var(--accent); }
+
+    /* ── Input bar ── */
+    .input-bar {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 16px 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    #questionInput {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    #questionInput:focus { border-color: var(--accent); }
+    #questionInput::placeholder { color: var(--text-muted); }
+
+    #sendBtn {
+      background: linear-gradient(135deg, var(--accent), #7c74ff);
+      border: none; border-radius: 10px;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: white; font-size: 18px;
+      transition: all 0.2s; flex-shrink: 0;
+    }
+    #sendBtn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px #6c63ff55; }
+    #sendBtn:disabled { opacity: 0.4; pointer-events: none; }
+
+    /* Typing indicator */
+    .typing-indicator { display: flex; gap: 5px; padding: 10px 14px; }
+    .typing-indicator span {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--text-muted);
+      animation: bounce 1.2s infinite;
+    }
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-8px)} }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>BIM RAG Chat + Ingestion</h1>
-    <p>Run backend: <code>uvicorn src.api:app --reload --port 8000</code><br/>Run frontend: <code>python -m http.server 9000</code> in <code>frontend</code> folder.</p>
 
-    <div class="card">
-      <h2>Project</h2>
-      <div class="row">
-        <div class="col">
-          <label for="projectSelect">Existing Projects</label>
-          <select id="projectSelect"></select>
+<!-- ── Header ─────────────────────────────────────── -->
+<header>
+  <div class="logo">BIM<span>RAG</span></div>
+  <div class="badge">AI COMPLIANCE</div>
+  <div class="status-dot" id="statusDot" title="Backend status"></div>
+</header>
+
+<!-- ── Main Layout ────────────────────────────────── -->
+<div class="layout">
+
+  <!-- ── Sidebar ──────────────────────────────────── -->
+  <aside class="sidebar">
+
+    <!-- Project -->
+    <div>
+      <h3>Project</h3>
+      <div class="panel">
+        <label for="projectSelect">Active Project</label>
+        <select id="projectSelect"></select>
+        <label for="newProjectInput" style="margin-top:10px;">Create New</label>
+        <div style="display:flex;gap:6px;">
+          <input type="text" id="newProjectInput" placeholder="project-name" />
+          <button class="btn btn-primary" id="createProjectBtn">+</button>
         </div>
-        <div class="col">
-          <label for="newProject">Create New Project</label>
-          <div style="display:flex; gap:8px;"><input id="newProject" placeholder="new project id"/><button id="createProject">Create</button></div>
-        </div>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:6px;">
+          Active: <strong id="activeProjectLabel" style="color:var(--accent)">none</strong>
+        </p>
       </div>
-      <p><strong>Current project:</strong> <span id="activeProject">(none)</span></p>
     </div>
 
-    <div class="card">
-      <h2>Layer Upload & Parse</h2>
-      <div class="row">
-        <div class="col">
-          <label for="layerSelect">Layer</label>
-          <select id="layerSelect">
-            <option value="L1">L1 IFC</option>
-            <option value="L2">L2 Product</option>
-            <option value="L3">L3 Process</option>
-            <option value="L4">L4 Regulation</option>
-            <option value="L5">L5 Requirement</option>
-          </select>
-        </div>
-        <div class="col">
-          <label for="layerFile">File</label>
-          <input id="layerFile" type="file" />
-        </div>
-        <div class="col" style="align-self:flex-end;">
-          <button id="uploadLayer">Upload + Parse</button>
-        </div>
+    <!-- Upload -->
+    <div>
+      <h3>Layer Upload</h3>
+      <div class="panel">
+        <label for="layerSelect">Layer</label>
+        <select id="layerSelect">
+          <option value="L1">L1 — IFC Model</option>
+          <option value="L2">L2 — Product Data (PDF/Excel)</option>
+          <option value="L3">L3 — Process Rules</option>
+          <option value="L4">L4 — Regulations (PDF)</option>
+          <option value="L5">L5 — Project Requirements</option>
+        </select>
+        <label style="margin-top:10px;">File</label>
+        <input type="file" id="layerFile" />
+        <button class="btn btn-primary btn-full" id="uploadLayerBtn">⬆ Upload + Parse</button>
+        <div class="status-msg" id="uploadStatus"></div>
       </div>
-      <div id="uploadStatus"></div>
     </div>
 
-    <div class="card">
-      <h2>Inference + Build</h2>
-      <div class="row" style="margin-bottom: 8px;">
-        <button class="inference-btn" data-type="l124">Run L1-L2-L4</button>
-        <button class="inference-btn" data-type="l123">Run L1-L2-L3</button>
-        <button class="inference-btn" data-type="l125">Run L1-L2-L5</button>
-        <button class="inference-btn" data-type="l45">Run L4-L5</button>
+    <!-- Inference -->
+    <div>
+      <h3>Compliance Inference</h3>
+      <div class="panel">
+        <div class="btn-grid">
+          <button class="btn btn-secondary inference-btn" data-type="l124">L1+L2+L4</button>
+          <button class="btn btn-secondary inference-btn" data-type="l123">L1+L2+L3</button>
+          <button class="btn btn-secondary inference-btn" data-type="l125">L1+L2+L5</button>
+          <button class="btn btn-secondary inference-btn" data-type="l45">L4+L5</button>
+        </div>
+        <button class="btn btn-success btn-full" id="buildIndexBtn">🔨 Build Vector Store</button>
+        <div class="status-msg" id="inferenceStatus"></div>
       </div>
-      <button id="buildIndex">Build Unified Vector Store</button>
-      <button id="clearProject" style="margin-left:12px; background:#cc0000;">Delete Project Files</button>
-      <button id="clearHistory" style="margin-left:12px; background:#ff9900;">Clear Chat History</button>
-      <div id="inferenceStatus"></div>
     </div>
 
-    <div class="card">
-      <h2>Chat</h2>
-      <div id="chat"></div>
-      <div style="margin-top:10px; display:flex; gap:8px; align-items:center;">
-        <input id="question" placeholder="Ask about BIM compliance, layer data, or project requirements..." style="flex:1;" />
-        <button id="send">Send</button>
+    <!-- Danger zone -->
+    <div>
+      <h3>Manage</h3>
+      <div class="panel" style="display:flex;flex-direction:column;gap:6px;">
+        <button class="btn btn-warn btn-full" id="clearHistoryBtn">🗑 Clear Chat History</button>
+        <button class="btn btn-danger btn-full" id="clearProjectBtn">⚠ Delete Project</button>
       </div>
+    </div>
+
+  </aside>
+
+  <!-- ── Chat Area ─────────────────────────────────── -->
+  <div class="chat-area">
+    <div class="chat-project-bar">
+      <span>💬 Chat — Project: <strong id="chatProjectLabel">none selected</strong></span>
+    </div>
+
+    <div id="chat">
+      <!-- Welcome message -->
+      <div class="msg-row">
+        <div class="avatar bot">🏗</div>
+        <div class="bubble-wrap">
+          <div class="bubble bot">
+            <strong>Welcome to BIM RAG Compliance Assistant!</strong><br><br>
+            Upload your files on the left, run inference, build the vector store, then ask me anything about your BIM project.<br><br>
+            <strong>Example queries:</strong><br>
+            • "Is the wall fire rating compliant?"<br>
+            • "What is the beam compressive strength?"<br>
+            • "Show all non-compliant elements"<br>
+            • "Why is column C1 non-compliant?"
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-bar">
+      <input type="text" id="questionInput"
+        placeholder="Ask about compliance, properties, regulations..." />
+      <button id="sendBtn" title="Send (Enter)">➤</button>
     </div>
   </div>
 
-  <script>
-    const projectSelect = document.getElementById('projectSelect');
-    const newProject = document.getElementById('newProject');
-    const createProjectBtn = document.getElementById('createProject');
-    const activeProjectLabel = document.getElementById('activeProject');
-    const layerSelect = document.getElementById('layerSelect');
-    const layerFile = document.getElementById('layerFile');
-    const uploadLayerBtn = document.getElementById('uploadLayer');
-    const uploadStatus = document.getElementById('uploadStatus');
-    const inferenceStatus = document.getElementById('inferenceStatus');
-    const buildIndexBtn = document.getElementById('buildIndex');
-    const inferenceButtons = document.querySelectorAll('.inference-btn');
+</div>
 
-    const chat = document.getElementById('chat');
-    const question = document.getElementById('question');
-    const sendBtn = document.getElementById('send');
+<script>
+  const API_BASE = 'http://localhost:8000';
+  let currentProject = null;
+  let sessionId = null;
 
-    const API_BASE = 'http://localhost:8000';
-    let currentProject = null;
-    let sessionId = null;
+  // ── DOM refs ────────────────────────────────────────────────────────
+  const projectSelect     = document.getElementById('projectSelect');
+  const newProjectInput   = document.getElementById('newProjectInput');
+  const createProjectBtn  = document.getElementById('createProjectBtn');
+  const activeProjectLabel= document.getElementById('activeProjectLabel');
+  const chatProjectLabel  = document.getElementById('chatProjectLabel');
+  const layerSelect       = document.getElementById('layerSelect');
+  const layerFile         = document.getElementById('layerFile');
+  const uploadLayerBtn    = document.getElementById('uploadLayerBtn');
+  const uploadStatus      = document.getElementById('uploadStatus');
+  const buildIndexBtn     = document.getElementById('buildIndexBtn');
+  const inferenceStatus   = document.getElementById('inferenceStatus');
+  const clearHistoryBtn   = document.getElementById('clearHistoryBtn');
+  const clearProjectBtn   = document.getElementById('clearProjectBtn');
+  const chat              = document.getElementById('chat');
+  const questionInput     = document.getElementById('questionInput');
+  const sendBtn           = document.getElementById('sendBtn');
+  const statusDot         = document.getElementById('statusDot');
 
-    function setStatus(el, msg, color='black') {
-      el.innerHTML = `<small style="color:${color};">${msg}</small>`;
+  // ── Backend health check ────────────────────────────────────────────
+  async function checkHealth() {
+    try {
+      const r = await fetch(`${API_BASE}/ping`, { signal: AbortSignal.timeout(3000) });
+      statusDot.style.background = r.ok ? 'var(--success)' : 'var(--danger)';
+      statusDot.style.boxShadow = r.ok ? '0 0 6px var(--success)' : '0 0 6px var(--danger)';
+    } catch {
+      statusDot.style.background = 'var(--danger)';
+      statusDot.style.boxShadow = '0 0 6px var(--danger)';
     }
+  }
+  checkHealth();
+  setInterval(checkHealth, 10000);
 
-    async function refreshProjects() {
-      const res = await fetch(`${API_BASE}/projects`);
-      const data = await res.json();
-      projectSelect.innerHTML = '';
+  // ── Status helpers ──────────────────────────────────────────────────
+  function setStatus(el, msg, type='loading') {
+    el.textContent = msg;
+    el.className = `status-msg show ${type}`;
+  }
+  function clearStatus(el) { el.className = 'status-msg'; }
+
+  // ── Project management ──────────────────────────────────────────────
+  async function refreshProjects() {
+    try {
+      const r = await fetch(`${API_BASE}/projects`);
+      const data = await r.json();
+      projectSelect.innerHTML = '<option value="">— select —</option>';
       data.projects.forEach(p => {
-        const opt = document.createElement('option'); opt.value = p; opt.textContent = p;
+        const opt = document.createElement('option');
+        opt.value = p; opt.textContent = p;
         projectSelect.append(opt);
       });
-      if (data.projects.length > 0 && !currentProject) {
-        selectProject(data.projects[0]);
-      }
-    }
+      if (data.projects.length > 0 && !currentProject) selectProject(data.projects[0]);
+    } catch { /* backend not running */ }
+  }
 
-    async function selectProject(projectId) {
-      currentProject = projectId;
-      activeProjectLabel.textContent = projectId;
-      projectSelect.value = projectId;
-      sessionId = null;
-      setStatus(inferenceStatus, `Selected project ${projectId}`, 'green');
-    }
+  function selectProject(id) {
+    currentProject = id;
+    activeProjectLabel.textContent = id || 'none';
+    chatProjectLabel.textContent = id || 'none';
+    if (projectSelect.value !== id) projectSelect.value = id;
+    sessionId = null;
+  }
 
-    projectSelect.addEventListener('change', () => selectProject(projectSelect.value));
+  projectSelect.addEventListener('change', () => selectProject(projectSelect.value));
 
-    createProjectBtn.addEventListener('click', async () => {
-      const name = newProject.value.trim();
-      if (!name) return alert('Enter project name');
-      const form = new FormData();
-      form.append('project_id', name);
-      const r = await fetch(`${API_BASE}/projects`, { method: 'POST', body: form });
-      if (!r.ok) return alert('Create failed');
-      await refreshProjects();
-      await selectProject(name);
-      newProject.value = '';
-      setStatus(inferenceStatus, `Project ${name} created`, 'green');
-    });
+  createProjectBtn.addEventListener('click', async () => {
+    const name = newProjectInput.value.trim();
+    if (!name) return alert('Enter project name');
+    const form = new FormData();
+    form.append('project_id', name);
+    const r = await fetch(`${API_BASE}/projects`, { method: 'POST', body: form });
+    if (!r.ok) return alert('Create failed: ' + (await r.json()).detail);
+    await refreshProjects();
+    selectProject(name);
+    newProjectInput.value = '';
+  });
 
-    uploadLayerBtn.addEventListener('click', async () => {
-      if (!currentProject) return alert('Select a project first');
-      const file = layerFile.files[0];
-      if (!file) return alert('Select file');
-      const layer = layerSelect.value;
-      const form = new FormData();
-      form.append('project_id', currentProject);
-      form.append('layer', layer);
-      form.append('file', file);
-      setStatus(uploadStatus, 'Uploading...');
+  // ── Layer Upload ────────────────────────────────────────────────────
+  uploadLayerBtn.addEventListener('click', async () => {
+    if (!currentProject) return alert('Select a project first');
+    const file = layerFile.files[0];
+    if (!file) return alert('Select a file');
+    const layer = layerSelect.value;
+    const form = new FormData();
+    form.append('project_id', currentProject);
+    form.append('layer', layer);
+    form.append('file', file);
+    setStatus(uploadStatus, `Uploading ${file.name}...`);
+    uploadLayerBtn.disabled = true;
+    try {
       const r = await fetch(`${API_BASE}/upload`, { method: 'POST', body: form });
       const j = await r.json();
-      if (!r.ok) {
-        setStatus(uploadStatus, 'Upload failed: ' + (j.detail || r.statusText), 'red');
-        return;
-      }
-      setStatus(uploadStatus, `Uploaded ${file.name}, parsed ${j.count} records`, 'green');
-    });
+      if (!r.ok) { setStatus(uploadStatus, j.detail || r.statusText, 'err'); }
+      else        { setStatus(uploadStatus, `✓ ${file.name} — ${j.count} records parsed`, 'ok'); }
+    } catch (e) { setStatus(uploadStatus, 'Network error: ' + e.message, 'err'); }
+    uploadLayerBtn.disabled = false;
+  });
 
-    inferenceButtons.forEach(btn => {
-      btn.addEventListener('click', async () => {
-        if (!currentProject) return alert('Select a project first');
-        const type = btn.dataset.type;
-        setStatus(inferenceStatus, `Running ${type}...`);
+  // ── Inference ───────────────────────────────────────────────────────
+  document.querySelectorAll('.inference-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      if (!currentProject) return alert('Select a project first');
+      const type = btn.dataset.type;
+      setStatus(inferenceStatus, `Running ${type.toUpperCase()} inference...`);
+      btn.disabled = true;
+      try {
         const form = new FormData();
         form.append('project_id', currentProject);
         form.append('inference_type', type);
         const r = await fetch(`${API_BASE}/run-inference`, { method: 'POST', body: form });
         const j = await r.json();
-        if (!r.ok) {
-          setStatus(inferenceStatus, 'Inference failed: ' + (j.detail || r.statusText), 'red');
-          return;
-        }
-        setStatus(inferenceStatus, `Inference ${type} completed`, 'green');
-      });
+        if (!r.ok) setStatus(inferenceStatus, j.detail || r.statusText, 'err');
+        else        setStatus(inferenceStatus, `✓ ${type.toUpperCase()} inference done`, 'ok');
+      } catch (e) { setStatus(inferenceStatus, 'Error: ' + e.message, 'err'); }
+      btn.disabled = false;
     });
+  });
 
-    buildIndexBtn.addEventListener('click', async () => {
-      if (!currentProject) return alert('Select a project first');
-      setStatus(inferenceStatus, 'Building vector store...');
+  buildIndexBtn.addEventListener('click', async () => {
+    if (!currentProject) return alert('Select a project first');
+    setStatus(inferenceStatus, 'Building vector store...');
+    buildIndexBtn.disabled = true;
+    try {
       const form = new FormData();
       form.append('project_id', currentProject);
       const r = await fetch(`${API_BASE}/build-vector-store`, { method: 'POST', body: form });
       const j = await r.json();
-      if (!r.ok) {
-        setStatus(inferenceStatus, 'Build failed: ' + (j.detail || r.statusText), 'red');
-        return;
-      }
-      setStatus(inferenceStatus, 'Vector store built', 'green');
-    });
+      if (!r.ok) setStatus(inferenceStatus, j.detail || r.statusText, 'err');
+      else        setStatus(inferenceStatus, '✓ Vector store built — ready to chat!', 'ok');
+    } catch (e) { setStatus(inferenceStatus, 'Error: ' + e.message, 'err'); }
+    buildIndexBtn.disabled = false;
+  });
 
-    function appendBubble(role, text) {
-      const div = document.createElement('div');
-      div.className = `bubble ${role === 'user' ? 'user' : 'assistant'}`;
-      div.textContent = text;
-      chat.appendChild(div);
-      chat.scrollTop = chat.scrollHeight;
+  // ── Clear History / Project ────────────────────────────────────────
+  clearHistoryBtn.addEventListener('click', async () => {
+    if (!currentProject) return;
+    if (!confirm('Clear chat history for this project?')) return;
+    const form = new FormData();
+    form.append('project_id', currentProject);
+    await fetch(`${API_BASE}/history/clear`, { method: 'POST', body: form });
+    sessionId = null;
+    const welcome = chat.firstElementChild;
+    chat.innerHTML = '';
+    chat.appendChild(welcome);
+  });
+
+  clearProjectBtn.addEventListener('click', async () => {
+    if (!currentProject) return;
+    if (!confirm(`DELETE all data for "${currentProject}"? This cannot be undone.`)) return;
+    const form = new FormData();
+    form.append('project_id', currentProject);
+    await fetch(`${API_BASE}/project`, { method: 'DELETE', body: form });
+    currentProject = null; sessionId = null;
+    activeProjectLabel.textContent = 'none';
+    chatProjectLabel.textContent = 'none';
+    await refreshProjects();
+  });
+
+  // ── Chat ─────────────────────────────────────────────────────────────
+  // Simple markdown → HTML (bold, code, bullet, emoji headings)
+  function renderMarkdown(text) {
+    // Escape HTML first
+    let h = text
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+    // Lines and blocks
+    const lines = h.split('\n');
+    const out = [];
+    let inList = false;
+
+    for (let line of lines) {
+      // Horizontal rule
+      if (/^---+$/.test(line.trim())) {
+        if (inList) { out.push('</ul>'); inList = false; }
+        out.push('<hr>'); continue;
+      }
+      // Bullet list
+      if (/^\s*[•\-\*]\s/.test(line)) {
+        if (!inList) { out.push('<ul>'); inList = true; }
+        out.push('<li>' + inlineFormat(line.replace(/^\s*[•\-\*]\s/, '')) + '</li>');
+        continue;
+      }
+      if (inList) { out.push('</ul>'); inList = false; }
+
+      // Bold header lines (##, **text**)
+      if (/^\*\*(.+)\*\*$/.test(line.trim())) {
+        out.push('<strong>' + inlineFormat(line.trim().replace(/^\*\*|\*\*$/g, '')) + '</strong><br>');
+        continue;
+      }
+      // Empty line
+      if (line.trim() === '') { out.push('<br>'); continue; }
+
+      out.push(inlineFormat(line) + '<br>');
+    }
+    if (inList) out.push('</ul>');
+    return out.join('');
+  }
+
+  function inlineFormat(text) {
+    return text
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\[([^\]]+)\]\([^\)]+\)/g, '<em>$1</em>');
+  }
+
+  let lastInteractionId = null;
+
+  function appendBubble(role, text, interactionId) {
+    const row = document.createElement('div');
+    row.className = `msg-row ${role}`;
+
+    const avatar = document.createElement('div');
+    avatar.className = `avatar ${role === 'user' ? 'user' : 'bot'}`;
+    avatar.textContent = role === 'user' ? '👤' : '🤖';
+
+    const wrap = document.createElement('div');
+    wrap.className = 'bubble-wrap';
+
+    const bubble = document.createElement('div');
+    bubble.className = `bubble ${role === 'user' ? 'user' : 'bot'}`;
+
+    if (role === 'user') {
+      bubble.textContent = text;
+    } else {
+      bubble.innerHTML = renderMarkdown(text);
+    }
+    wrap.appendChild(bubble);
+
+    // Feedback buttons for assistant messages
+    if (role !== 'user' && interactionId) {
+      const fbRow = document.createElement('div');
+      fbRow.className = 'feedback-row';
+
+      const thumbUp = document.createElement('button');
+      thumbUp.className = 'fb-btn'; thumbUp.textContent = '👍';
+      thumbUp.title = 'Good response';
+
+      const thumbDown = document.createElement('button');
+      thumbDown.className = 'fb-btn'; thumbDown.textContent = '👎';
+      thumbDown.title = 'Bad response — add correction';
+
+      const corrBox = document.createElement('div');
+      corrBox.className = 'correction-box';
+      const corrTA = document.createElement('textarea');
+      corrTA.placeholder = 'What should the correct answer be?';
+      const corrBtn = document.createElement('button');
+      corrBtn.className = 'btn btn-primary'; corrBtn.textContent = 'Submit';
+      corrBtn.style.cssText = 'padding:6px 10px;font-size:12px;';
+      corrBox.appendChild(corrTA); corrBox.appendChild(corrBtn);
+
+      thumbUp.addEventListener('click', async () => {
+        thumbUp.classList.add('active-up'); thumbDown.classList.remove('active-down');
+        corrBox.classList.remove('open');
+        await submitFeedback(interactionId, 1, null);
+      });
+
+      thumbDown.addEventListener('click', () => {
+        thumbDown.classList.add('active-down'); thumbUp.classList.remove('active-up');
+        corrBox.classList.toggle('open');
+      });
+
+      corrBtn.addEventListener('click', async () => {
+        const correction = corrTA.value.trim();
+        if (!correction) return;
+        await submitFeedback(interactionId, -1, correction);
+        corrBox.classList.remove('open');
+        corrTA.value = '';
+        corrBtn.textContent = '✓ Sent';
+        setTimeout(() => corrBtn.textContent = 'Submit', 2000);
+      });
+
+      fbRow.appendChild(thumbUp); fbRow.appendChild(thumbDown);
+      wrap.appendChild(fbRow); wrap.appendChild(corrBox);
     }
 
-    async function sendMessage() {
-      if (!currentProject) return alert('Select/open project first');
-      const text = question.value.trim();
-      if (!text) return;
-      appendBubble('user', text);
-      question.value = '';
-      sendBtn.disabled = true;
+    row.appendChild(avatar); row.appendChild(wrap);
+    chat.appendChild(row);
+    chat.scrollTop = chat.scrollHeight;
+    return row;
+  }
 
-      const payload = { project_id: currentProject, text, session_id: sessionId };
+  async function submitFeedback(interactionId, score, correction) {
+    try {
+      const payload = { interaction_id: interactionId, score };
+      if (correction) payload.correction = correction;
+      await fetch(`${API_BASE}/feedback`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+    } catch (e) {
+      console.error('Feedback submission failed:', e);
+    }
+  }
+
+  function showTyping() {
+    const row = document.createElement('div');
+    row.className = 'msg-row'; row.id = 'typingRow';
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar bot'; avatar.textContent = '🤖';
+    const wrap = document.createElement('div');
+    wrap.className = 'bubble-wrap';
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble bot';
+    bubble.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+    wrap.appendChild(bubble); row.appendChild(avatar); row.appendChild(wrap);
+    chat.appendChild(row);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function removeTyping() {
+    const t = document.getElementById('typingRow');
+    if (t) t.remove();
+  }
+
+  async function sendMessage() {
+    if (!currentProject) return alert('Select a project first');
+    const text = questionInput.value.trim();
+    if (!text) return;
+
+    appendBubble('user', text, null);
+    questionInput.value = '';
+    sendBtn.disabled = true;
+    showTyping();
+
+    const payload = { project_id: currentProject, text, session_id: sessionId };
+    try {
       const r = await fetch(`${API_BASE}/query`, {
-        method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
       const data = await r.json();
+      removeTyping();
       if (!r.ok) {
-        appendBubble('assistant', `API error: ${data.detail || r.statusText}`);
+        appendBubble('bot', `⚠ Error: ${data.detail || r.statusText}`, null);
       } else {
         sessionId = data.session_id;
-        appendBubble('assistant', data.answer || 'No answer');
+        appendBubble('bot', data.answer || '(No answer returned)', data.interaction_id);
       }
-      sendBtn.disabled = false;
+    } catch (e) {
+      removeTyping();
+      appendBubble('bot', `⚠ Cannot reach backend. Make sure it is running at ${API_BASE}`, null);
     }
+    sendBtn.disabled = false;
+    questionInput.focus();
+  }
 
-    sendBtn.addEventListener('click', sendMessage);
-    question.addEventListener('keyup', (e) => { if (e.key === 'Enter') sendMessage(); });
+  sendBtn.addEventListener('click', sendMessage);
+  questionInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  });
 
-    (async () => { await refreshProjects(); })();
-  </script>
+  // ── Boot ────────────────────────────────────────────────────────────
+  (async () => { await refreshProjects(); })();
+</script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 from groq import Groq
+from openai import OpenAI
 import os
 import hashlib
 import json
@@ -7,8 +8,21 @@ from functools import lru_cache
 class LLMClient:
 
     def __init__(self):
-        self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-        # Simple in-memory cache for responses
+        self.custom_url = os.getenv("CUSTOM_LLM_URL")
+        self.custom_model = os.getenv("LLM_MODEL_NAME", "llama3.1-bim-rag-lora")
+
+        if self.custom_url:
+            # Connect to a self-hosted GCP vLLM Endpoint (which uses OpenAI compatible API)
+            self.client_type = "openai"
+            self.client = OpenAI(
+                base_url=self.custom_url,
+                api_key=os.getenv("CUSTOM_LLM_API_KEY", "sk-no-key-required") 
+            )
+        else:
+            # Fallback to Groq API
+            self.client_type = "groq"
+            self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
         self._response_cache = {}
 
     def _get_cache_key(self, query, context):
@@ -43,14 +57,24 @@ Context:
 Answer:
 """
 
-        response = self.client.chat.completions.create(
-            model="llama-3.1-8b-instant",
-            messages=[
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.3,
-            max_tokens=800  # Increased for detailed responses
-        )
+        messages = [
+            {"role": "user", "content": prompt}
+        ]
+
+        if self.client_type == "openai":
+            response = self.client.chat.completions.create(
+                model=self.custom_model,
+                messages=messages,
+                temperature=0.3,
+                max_tokens=800
+            )
+        else:
+            response = self.client.chat.completions.create(
+                model="llama-3.1-8b-instant",
+                messages=messages,
+                temperature=0.3,
+                max_tokens=800
+            )
 
         result = response.choices[0].message.content
 

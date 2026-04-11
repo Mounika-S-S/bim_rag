@@ -39,17 +39,32 @@ class L3ProcessParser:
         records = []
         clause = None
         clause_text = ""
+        
+        from src.ingestion.base_pdf_cleaner import BasePDFCleaner
+        cleaner = BasePDFCleaner()
 
         with pdfplumber.open(pdf_path) as pdf:
 
             for page_number, page in enumerate(pdf.pages, start=1):
-
-                text = page.extract_text()
+                
+                width = page.width
+                height = page.height
+                box = (0, 0.07 * height, width, 0.93 * height)
+                
+                try:
+                    cropped_page = page.within_bbox(box)
+                    text = cropped_page.extract_text(x_tolerance=2, y_tolerance=2)
+                except Exception:
+                    text = page.extract_text(x_tolerance=2, y_tolerance=2)
 
                 if not text:
                     continue
+                    
+                if cleaner._is_noise_page(text):
+                    continue
 
                 text = self.clean_text(text)
+                text = cleaner._clean_page(text)
 
                 lines = text.split("\n")
 

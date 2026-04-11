@@ -40,6 +40,7 @@ class QueryResponse(BaseModel):
     session_id: str
     answer: str
     history: List[ChatTurn]
+    interaction_id: Optional[int] = None
 
 
 def history_file(project_id: str, session_id: str) -> str:
@@ -192,7 +193,7 @@ def query(request: QueryRequest):
     chat_context = "\n".join(f"{h['role']}: {h['text']}" for h in history[-3:]) if history else ""
 
     try:
-        answer = query_vector_store_api(request.project_id, request.text, chat_context)
+        answer, interaction_id = query_vector_store_api(request.project_id, request.text, chat_context)
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
     except Exception as exc:
@@ -208,4 +209,20 @@ def query(request: QueryRequest):
         session_id=session_id,
         answer=answer,
         history=recent_history,
+        interaction_id=interaction_id
     )
+
+class FeedbackRequest(BaseModel):
+    interaction_id: int
+    score: int
+    correction: Optional[str] = None
+
+@app.post("/feedback")
+def submit_feedback(req: FeedbackRequest):
+    try:
+        from src.finetuning.db_logger import FeedbackLogger
+        logger = FeedbackLogger()
+        logger.update_feedback(req.interaction_id, req.score, req.correction)
+        return {"status": "success", "interaction_id": req.interaction_id}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
