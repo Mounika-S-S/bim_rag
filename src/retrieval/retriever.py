@@ -20,51 +20,46 @@ class Retriever:
         return self.reranker
 
     def retrieve(self, query, routing_decision):
+        """
+        Retrieve relevant documents based on routing decision
+        """
         strategy = routing_decision["strategy"]
         k = routing_decision["k"]
         use_reranking = routing_decision.get("use_reranking", False)
-        tag_prefix = routing_decision.get("tag_prefix", "")
 
         if strategy == "unified_vector_store":
-            return self._retrieve_unified(query, k, use_reranking, tag_prefix)
+            return self._retrieve_unified(query, k, use_reranking)
+        elif strategy == "chroma_vector_store":
+            return self._retrieve_chroma(query, k)
+        elif strategy == "deterministic_engine":
+            return self._retrieve_deterministic(query)
         else:
-            return self._retrieve_unified(query, k, use_reranking, tag_prefix)
+            # Fallback
+            return self._retrieve_unified(query, k, use_reranking)
 
-    def _retrieve_unified(self, query, k, use_reranking, tag_prefix=""):
+    def _retrieve_unified(self, query, k, use_reranking):
+        """Retrieve from FAISS unified store with optional reranking"""
         if not self.unified_store:
             raise ValueError("Unified vector store not loaded")
 
-        # Fetch more candidates to allow tag filtering
-        candidate_k = max(k * 6, 30)
+        # Get more candidates for reranking
+        candidate_k = k * 4 if use_reranking else k
         candidates = self.unified_store.search(query, k=candidate_k)
 
-        # ── Tag-based layer filtering ──────────────────────────────────
-        if tag_prefix:
-            tagged = [c for c in candidates if c.startswith(tag_prefix)]
-            untagged = [c for c in candidates if not c.startswith(tag_prefix)]
+        if not use_reranking or len(candidates) <= k:
+            return candidates[:k]
 
-            # Always include at least min(k//2, len(tagged)) tagged results
-            # Fall back to untagged if not enough tagged
-            if len(tagged) >= k:
-                filtered = tagged[:k * 2]    # pass more to reranker
-            elif len(tagged) > 0:
-                # Mix: all tagged + fill up with untagged
-                need = k * 2 - len(tagged)
-                filtered = tagged + untagged[:need]
-            else:
-                filtered = candidates  # no tag match — use all
-        else:
-            filtered = candidates
-
-        if not use_reranking or len(filtered) <= k:
-            return filtered[:k]
-
-        # ── Cross-encoder reranking ────────────────────────────────────
-        query_doc_pairs = [[query, doc] for doc in filtered]
+        # Rerank using cross-encoder
+        query_doc_pairs = [[query, doc] for doc in candidates]
         reranker = self._get_reranker()
         scores = reranker.predict(query_doc_pairs)
-        scored = sorted(zip(filtered, scores), key=lambda x: x[1], reverse=True)
-        return [doc for doc, _ in scored[:k]]
+
+        # Sort by reranker scores (higher is better)
+        scored_docs = list(zip(candidates, scores))
+        scored_docs.sort(key=lambda x: x[1], reverse=True)
+
+        return [doc for doc, score in scored_docs[:k]]
+
     def _retrieve_chroma(self, query, k):
         """Retrieve from ChromaDB for property lookups"""
         if not self.chroma_store:

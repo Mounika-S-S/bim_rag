@@ -100,79 +100,34 @@ class UnifiedVectorStore:
                 text = f"[Requirement] {desc}. Code: {code}. Unit: {unit}. Rate: {rate}."
                 knowledge_chunks.append(text)
 
-        # =========================
-        # Unified Compliance Records (compliance.json)
-        # Schema from UnifiedComplianceBuilder:
-        #   record["compliance"]["status"]        → COMPLIANT / NON_COMPLIANT
-        #   record["compliance"]["is_compliant"]  → bool
-        #   record["compliance"]["layer_responsible"]
-        #   record["compliance"]["actual_value"]  → {value, unit, field}
-        #   record["compliance"]["required_value"]→ {operator, value, unit, field}
-        #   record["compliance"]["reason"]        → human explanation
-        #   record["compliance"]["why_required"]  → why the rule exists
-        #   record["element"]  → {id, name, type}
-        #   record["product"]  → {name, layer}
-        #   record["source"]   → {rule_text, origin}
-        #   record["layers_involved"] → list[str]
-        # =========================
-        compliance = JSONStorage.load(project_id, "compliance.json")
+        # ==========================================
+        # L1-L2-L4 inference
+        # ==========================================
 
-        for record in compliance:
-            cid    = record.get("compliance_id", "")
-            layers = ", ".join(record.get("layers_involved", []))
+        l124 = JSONStorage.load(project_id, "l124_inference.json")
 
-            # --- nested sub-objects ---
-            element  = record.get("element") or {}
-            product  = record.get("product") or {}
-            comp     = record.get("compliance") or {}
-            source   = record.get("source") or {}
+        if l124:
 
-            elem_name  = element.get("name", "")
-            elem_type  = element.get("type", "")
-            prod_name  = product.get("name", "")
+            for issue in l124:
 
-            # ← FIXED: read from comp sub-dict, not top-level
-            status      = comp.get("status", "")                   # COMPLIANT / NON_COMPLIANT
-            is_compliant= comp.get("is_compliant", True)
-            layer_resp  = comp.get("layer_responsible", "")
-            act_val     = comp.get("actual_value") or {}
-            req_val     = comp.get("required_value") or {}
-            reason      = comp.get("reason", "")                   # ← was compliance_explanation
-            why_req     = comp.get("why_required", "")             # ← was why_value_required
+                element_name = issue.get("element_name", "")
+                element_type = issue.get("element_type", "")
+                rule_text = issue.get("rule_text", "")
+                product_value = issue.get("product_value", "")
+                required = issue.get("required", "")
+                unit = issue.get("unit", "")
 
-            source_text   = source.get("rule_text", "")[:300]     # ← was source_rule
-            source_origin = source.get("origin", "")
+                if not rule_text:
+                    continue
 
-            # Build rich, semantically dense text chunk
-            verdict = "NON-COMPLIANT" if not is_compliant else "COMPLIANT"
-            text = (
-                f"[Compliance] ID:{cid} Status:{verdict} "
-                f"Layers:{layers} LayerResponsible:{layer_resp}. "
-            )
-            if elem_name:
-                text += f"Element:{elem_name} ({elem_type}). "
-            if prod_name:
-                text += f"Product:{prod_name}. "
-            if reason:
-                text += f"Reason:{reason}. "
-            if act_val:
-                text += (
-                    f"ActualValue:{act_val.get('value','')} "
-                    f"{act_val.get('unit','')} Field:{act_val.get('field','')}. "
+                text = (
+                    f"[L124 Inference] {element_type} '{element_name}' "
+                    f"is NON-COMPLIANT. Rule: {rule_text}. "
+                    f"Provided: {product_value} {unit}. "
+                    f"Required: {required} {unit}."
                 )
-            if req_val:
-                text += (
-                    f"RequiredValue:{req_val.get('operator','')} "
-                    f"{req_val.get('value','')} {req_val.get('unit','')} "
-                    f"Field:{req_val.get('field','')}. "
-                )
-            if why_req:
-                text += f"WhyRequired:{why_req[:300]} "
-            if source_text:
-                text += f"SourceRule({source_origin}):{source_text}"
 
-            if len(text.strip()) > 20:
-                knowledge_chunks.append(text.strip())
+                knowledge_chunks.append(text)
 
         # =========================
         # L1-L2-L3 inference
@@ -189,9 +144,34 @@ class UnifiedVectorStore:
 
             knowledge_chunks.append(text)
 
-        
+        # =========================
+        # L1-L2-L5 inference
+        # =========================
+        l125 = JSONStorage.load(project_id, "l125_inference.json")
 
-        
+        for r in l125:
+
+            element = r.get("element_name", "")
+            product = r.get("product", "")
+            req = r.get("requirement", "")
+
+            text = f"[L125 Inference] {element} uses {product}. Requirement: {req}"
+
+            knowledge_chunks.append(text)
+
+        # =========================
+        # L4-L5 inference
+        # =========================
+        l45 = JSONStorage.load(project_id, "l45_inference.json")
+
+        for r in l45:
+
+            reg = r.get("regulation_clause", "")
+            req = r.get("requirement", "")
+
+            text = f"[L45 Inference] Regulation: {reg}. Requirement: {req}"
+
+            knowledge_chunks.append(text)
 
         # =========================
         # Clean empty chunks

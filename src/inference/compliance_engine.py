@@ -1,3 +1,5 @@
+# src/inference/compliance_engine.py
+
 class ComplianceEngine:
 
     def __init__(self, l1_records, l2_records, l4_records):
@@ -9,7 +11,7 @@ class ComplianceEngine:
 
     def run(self):
 
-        results = []
+        l124_inference = []
 
         for element in self.l1:
 
@@ -18,86 +20,33 @@ class ComplianceEngine:
             element_name = element_props.get("Name", "")
             element_type = element.get("entity_type", "")
 
+            # ---------------------------
+            # Match product
+            # ---------------------------
+
             product = self._match_product(element)
 
             if not product:
-                continue
 
-            product_props = product.get("properties", {})
-
-            # ---------------------------
-            # Check ALL L4 rules
-            # ---------------------------
-
-            for rule in self.l4:
-
-                if not rule.get("is_numeric_rule"):
-                    continue
-
-                rule_text = rule.get("text", "")
-                threshold = rule.get("threshold_value")
-                operator = rule.get("comparison_operator")
-                unit = rule.get("unit")
-
-                if not rule_text or threshold is None or not operator:
-                    continue
-
-                # =========================
-                # 🔥 SMART FIELD MAPPING
-                # =========================
-                field = self._map_rule_to_field(rule_text)
-
-                if not field:
-                    continue
-
-                value = product_props.get(field)
-
-                if value is None:
-                    continue
-
-                try:
-                    value = float(value)
-                except:
-                    continue
-
-                # =========================
-                # COMPARISON
-                # =========================
-                violation = False
-
-                if operator == ">=":
-                    violation = value < threshold
-                elif operator == "<=":
-                    violation = value > threshold
-                elif operator == ">":
-                    violation = value <= threshold
-                elif operator == "<":
-                    violation = value >= threshold
-                elif operator == "==":
-                    violation = value != threshold
-
-                # =========================
-                # ALWAYS ADD RECORD
-                # =========================
-                results.append({
+                l124_inference.append({
                     "element_id": element_id,
                     "element_name": element_name,
                     "element_type": element_type,
-
-                    "is_compliant": not violation,
-
-                    "rule_text": rule_text,
-                    "product_value": value,
-                    "required": f"{operator} {threshold}",
-                    "unit": unit,
-                    "field": field,
-
-                    "threshold_value": threshold,
-                    "comparison_operator": operator,
-                    "layer_origin": "L4",
+                    "issue": "No matching product found",
+                    "layer": "L2"
                 })
 
-        return results
+                continue
+
+            # ---------------------------
+            # Check regulation compliance
+            # ---------------------------
+
+            reg_issues = self._check_regulation(product, element)
+
+            l124_inference.extend(reg_issues)
+
+        return l124_inference
 
     # --------------------------------------------------
 
@@ -106,7 +55,10 @@ class ComplianceEngine:
         element_name = element.get("properties", {}).get("Name", "")
 
         for product in self.l2:
-            product_name = product.get("properties", {}).get("Product_Name", "")
+
+            product_props = product.get("properties", {})
+            product_name = product_props.get("Product_Name", "")
+
             if element_name and product_name and element_name in product_name:
                 return product
 
@@ -114,19 +66,65 @@ class ComplianceEngine:
 
     # --------------------------------------------------
 
-    def _map_rule_to_field(self, rule_text):
+    def _check_regulation(self, product, element):
 
-        text = rule_text.lower()
+        issues = []
 
-        if "fire" in text:
-            return "Fire_Rating_Hours"
-        elif "height" in text:
-            return "Clear_Height_m"
-        elif "road" in text or "width" in text:
-            return "Road_Width_m"
-        elif "litre" in text or "oil" in text:
-            return "Oil_Capacity"
-        elif "distance" in text or "meter" in text:
-            return "Distance_m"
+        product_props = product.get("properties", {})
+        element_id = element.get("id")
+        element_name = element.get("properties", {}).get("Name", "")
+        element_type = element.get("entity_type", "")
 
-        return None
+        for rule in self.l4:
+
+            if not rule.get("is_numeric_rule"):
+                continue
+
+            rule_text = rule.get("text")
+            threshold = rule.get("threshold_value")
+            operator = rule.get("comparison_operator")
+            unit = rule.get("unit")
+
+            if not rule_text or threshold is None or not operator:
+                continue
+
+            # Example: fire rule
+            if "fire" in rule_text.lower():
+
+                fire_rating = product_props.get("Fire_Rating_Hours")
+
+                if fire_rating is None:
+                    continue
+
+                try:
+                    fire_rating = float(fire_rating)
+                except:
+                    continue
+
+                violation = False
+
+                if operator == ">=" and fire_rating < threshold:
+                    violation = True
+                elif operator == "<=" and fire_rating > threshold:
+                    violation = True
+                elif operator == ">" and fire_rating <= threshold:
+                    violation = True
+                elif operator == "<" and fire_rating >= threshold:
+                    violation = True
+                elif operator == "==" and fire_rating != threshold:
+                    violation = True
+
+                if violation:
+
+                    issues.append({
+                        "element_id": element_id,
+                        "element_name": element_name,
+                        "element_type": element_type,
+                        "rule_text": rule_text,
+                        "product_value": fire_rating,
+                        "required": f"{operator} {threshold}",
+                        "unit": unit,
+                        "issue": "Fire rating does not meet requirement"
+                    })
+
+        return issues

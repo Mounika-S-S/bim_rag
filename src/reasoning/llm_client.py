@@ -23,39 +23,25 @@ class LLMClient:
         cache_key = self._get_cache_key(query, context)
         if cache_key in self._response_cache:
             return self._response_cache[cache_key]
-        prompt = f"""You are a STRICT BIM compliance reasoning engine.
 
-Answer ONLY using the given context. Do NOT invent values.
+        prompt = f"""
+You are an expert BIM compliance assistant. Answer questions based on the provided context from BIM layers (L1-L5).
 
-For compliance questions, structure your answer as:
-- Element Name (and type)
-- Compliance Status: COMPLIANT / NON-COMPLIANT
-- Layer Responsible (L4 = code-book regulation, L5 = company rule)
-- Actual Value (what the building has)
-- Required Value (what the rule demands)
-- Reason (why it fails or passes)
-- Why This Value Is Required (regulatory / company rationale)
-
-For listing questions ("show all", "list all"):
-- List EVERY element mentioned in the context.
-- Include violation count per element.
-- Do NOT skip elements.
-- Do NOT say "None" for values that are in the context.
-
-For general queries:
-- Structure answers clearly with sections.
+Guidelines:
+- Use the context to provide accurate, detailed answers.
+- For compliance questions, identify violations clearly.
+- For cost-cutting or planning, suggest practical, safe recommendations.
+- Structure answers clearly with sections if needed.
 - Be comprehensive but concise.
-- If information is insufficient, say so clearly.
+- If information is insufficient, say so.
 
-Question:
-{query}
+Question: {query}
 
 Context:
 {context}
 
-Answer clearly:
+Answer:
 """
-       
 
         response = self.client.chat.completions.create(
             model="llama-3.1-8b-instant",
