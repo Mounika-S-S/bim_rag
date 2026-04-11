@@ -124,7 +124,11 @@ class ComplianceEngine:
                         "product_value": fire_rating,
                         "required": f"{operator} {threshold}",
                         "unit": unit,
-                        "issue": "Fire rating does not meet requirement"
+                        "issue": "Value does not meet regulatory requirement",
+                        # ── NEW FIELDS ──
+                        "layer_origin": "L4",
+                        "comparison_operator": operator,
+                        "threshold_value": threshold,
                     })
 
         return issues
