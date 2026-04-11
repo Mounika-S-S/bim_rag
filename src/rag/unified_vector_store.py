@@ -100,34 +100,7 @@ class UnifiedVectorStore:
                 text = f"[Requirement] {desc}. Code: {code}. Unit: {unit}. Rate: {rate}."
                 knowledge_chunks.append(text)
 
-        # ==========================================
-        # L1-L2-L4 inference
-        # ==========================================
-
-        l124 = JSONStorage.load(project_id, "l124_inference.json")
-
-        if l124:
-
-            for issue in l124:
-
-                element_name = issue.get("element_name", "")
-                element_type = issue.get("element_type", "")
-                rule_text = issue.get("rule_text", "")
-                product_value = issue.get("product_value", "")
-                required = issue.get("required", "")
-                unit = issue.get("unit", "")
-
-                if not rule_text:
-                    continue
-
-                text = (
-                    f"[L124 Inference] {element_type} '{element_name}' "
-                    f"is NON-COMPLIANT. Rule: {rule_text}. "
-                    f"Provided: {product_value} {unit}. "
-                    f"Required: {required} {unit}."
-                )
-
-                knowledge_chunks.append(text)
+        
 
         # =========================
         # L1-L2-L3 inference
@@ -144,34 +117,63 @@ class UnifiedVectorStore:
 
             knowledge_chunks.append(text)
 
-        # =========================
-        # L1-L2-L5 inference
-        # =========================
-        l125 = JSONStorage.load(project_id, "l125_inference.json")
+         
+        # ── REMOVE these three separate blocks: ─────────────────────────
+        # l124 = JSONStorage.load(project_id, "l124_inference.json")  ← DELETE
+        # l123 = JSONStorage.load(...)                                ← KEEP l123 as is
+        # l125 = JSONStorage.load(...)                                ← DELETE
+        # l45  = JSONStorage.load(...)                                ← DELETE
 
-        for r in l125:
+        # ── ADD this single unified compliance block: ────────────────────
+        compliance = JSONStorage.load(project_id, "compliance.json")
 
-            element = r.get("element_name", "")
-            product = r.get("product", "")
-            req = r.get("requirement", "")
+        for record in compliance:
+            cid = record.get("compliance_id", "")
+            status = record.get("compliance_status", "")
+            itype = record.get("inference_type", "")
+            layers = ", ".join(record.get("layers_involved", []))
 
-            text = f"[L125 Inference] {element} uses {product}. Requirement: {req}"
+            element = record.get("element") or {}
+            product = record.get("product") or {}
+            elem_name = element.get("name", "")
+            elem_type = element.get("type", "")
+            prod_name = product.get("name", "")
 
-            knowledge_chunks.append(text)
+            why = record.get("why_non_compliant", "")
+            why_required = record.get("why_value_required", "")
 
-        # =========================
-        # L4-L5 inference
-        # =========================
-        l45 = JSONStorage.load(project_id, "l45_inference.json")
+            req_val = record.get("required_value") or {}
+            act_val = record.get("actual_value") or {}
 
-        for r in l45:
+            source = record.get("source_rule") or {}
+            source_text = source.get("rule_text", "")[:300]
+            source_origin = source.get("origin", "")
 
-            reg = r.get("regulation_clause", "")
-            req = r.get("requirement", "")
+            # Build a rich, semantically dense text chunk
+            text = (
+                f"[Compliance:{itype}] ID:{cid} Status:{status}. "
+                f"Layers:{layers}. "
+            )
+            if elem_name:
+                text += f"Element:{elem_name} ({elem_type}). "
+            if prod_name:
+                text += f"Product:{prod_name}. "
+            if why:
+                text += f"Issue:{why} "
+            if req_val:
+                text += (
+                    f"Required:{req_val.get('operator','')} {req_val.get('value','')} "
+                    f"{req_val.get('unit','')} [{req_val.get('field','')}]. "
+                )
+            if act_val:
+                text += f"Actual:{act_val.get('value','')} {act_val.get('unit','')}. "
+            if why_required:
+                text += f"WhyRequired:{why_required[:250]} "
+            if source_text:
+                text += f"SourceRule({source_origin}):{source_text}"
 
-            text = f"[L45 Inference] Regulation: {reg}. Requirement: {req}"
-
-            knowledge_chunks.append(text)
+            if len(text.strip()) > 20:
+                knowledge_chunks.append(text.strip())
 
         # =========================
         # Clean empty chunks
