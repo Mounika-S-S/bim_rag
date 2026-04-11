@@ -100,7 +100,79 @@ class UnifiedVectorStore:
                 text = f"[Requirement] {desc}. Code: {code}. Unit: {unit}. Rate: {rate}."
                 knowledge_chunks.append(text)
 
-        
+        # =========================
+        # Unified Compliance Records (compliance.json)
+        # Schema from UnifiedComplianceBuilder:
+        #   record["compliance"]["status"]        → COMPLIANT / NON_COMPLIANT
+        #   record["compliance"]["is_compliant"]  → bool
+        #   record["compliance"]["layer_responsible"]
+        #   record["compliance"]["actual_value"]  → {value, unit, field}
+        #   record["compliance"]["required_value"]→ {operator, value, unit, field}
+        #   record["compliance"]["reason"]        → human explanation
+        #   record["compliance"]["why_required"]  → why the rule exists
+        #   record["element"]  → {id, name, type}
+        #   record["product"]  → {name, layer}
+        #   record["source"]   → {rule_text, origin}
+        #   record["layers_involved"] → list[str]
+        # =========================
+        compliance = JSONStorage.load(project_id, "compliance.json")
+
+        for record in compliance:
+            cid    = record.get("compliance_id", "")
+            layers = ", ".join(record.get("layers_involved", []))
+
+            # --- nested sub-objects ---
+            element  = record.get("element") or {}
+            product  = record.get("product") or {}
+            comp     = record.get("compliance") or {}
+            source   = record.get("source") or {}
+
+            elem_name  = element.get("name", "")
+            elem_type  = element.get("type", "")
+            prod_name  = product.get("name", "")
+
+            # ← FIXED: read from comp sub-dict, not top-level
+            status      = comp.get("status", "")                   # COMPLIANT / NON_COMPLIANT
+            is_compliant= comp.get("is_compliant", True)
+            layer_resp  = comp.get("layer_responsible", "")
+            act_val     = comp.get("actual_value") or {}
+            req_val     = comp.get("required_value") or {}
+            reason      = comp.get("reason", "")                   # ← was compliance_explanation
+            why_req     = comp.get("why_required", "")             # ← was why_value_required
+
+            source_text   = source.get("rule_text", "")[:300]     # ← was source_rule
+            source_origin = source.get("origin", "")
+
+            # Build rich, semantically dense text chunk
+            verdict = "NON-COMPLIANT" if not is_compliant else "COMPLIANT"
+            text = (
+                f"[Compliance] ID:{cid} Status:{verdict} "
+                f"Layers:{layers} LayerResponsible:{layer_resp}. "
+            )
+            if elem_name:
+                text += f"Element:{elem_name} ({elem_type}). "
+            if prod_name:
+                text += f"Product:{prod_name}. "
+            if reason:
+                text += f"Reason:{reason}. "
+            if act_val:
+                text += (
+                    f"ActualValue:{act_val.get('value','')} "
+                    f"{act_val.get('unit','')} Field:{act_val.get('field','')}. "
+                )
+            if req_val:
+                text += (
+                    f"RequiredValue:{req_val.get('operator','')} "
+                    f"{req_val.get('value','')} {req_val.get('unit','')} "
+                    f"Field:{req_val.get('field','')}. "
+                )
+            if why_req:
+                text += f"WhyRequired:{why_req[:300]} "
+            if source_text:
+                text += f"SourceRule({source_origin}):{source_text}"
+
+            if len(text.strip()) > 20:
+                knowledge_chunks.append(text.strip())
 
         # =========================
         # L1-L2-L3 inference
@@ -117,63 +189,9 @@ class UnifiedVectorStore:
 
             knowledge_chunks.append(text)
 
-         
-        # ── REMOVE these three separate blocks: ─────────────────────────
-        # l124 = JSONStorage.load(project_id, "l124_inference.json")  ← DELETE
-        # l123 = JSONStorage.load(...)                                ← KEEP l123 as is
-        # l125 = JSONStorage.load(...)                                ← DELETE
-        # l45  = JSONStorage.load(...)                                ← DELETE
+        
 
-        # ── ADD this single unified compliance block: ────────────────────
-        compliance = JSONStorage.load(project_id, "compliance.json")
-
-        for record in compliance:
-            cid = record.get("compliance_id", "")
-            status = record.get("compliance_status", "")
-            itype = record.get("inference_type", "")
-            layers = ", ".join(record.get("layers_involved", []))
-
-            element = record.get("element") or {}
-            product = record.get("product") or {}
-            elem_name = element.get("name", "")
-            elem_type = element.get("type", "")
-            prod_name = product.get("name", "")
-
-            why = record.get("why_non_compliant", "")
-            why_required = record.get("why_value_required", "")
-
-            req_val = record.get("required_value") or {}
-            act_val = record.get("actual_value") or {}
-
-            source = record.get("source_rule") or {}
-            source_text = source.get("rule_text", "")[:300]
-            source_origin = source.get("origin", "")
-
-            # Build a rich, semantically dense text chunk
-            text = (
-                f"[Compliance:{itype}] ID:{cid} Status:{status}. "
-                f"Layers:{layers}. "
-            )
-            if elem_name:
-                text += f"Element:{elem_name} ({elem_type}). "
-            if prod_name:
-                text += f"Product:{prod_name}. "
-            if why:
-                text += f"Issue:{why} "
-            if req_val:
-                text += (
-                    f"Required:{req_val.get('operator','')} {req_val.get('value','')} "
-                    f"{req_val.get('unit','')} [{req_val.get('field','')}]. "
-                )
-            if act_val:
-                text += f"Actual:{act_val.get('value','')} {act_val.get('unit','')}. "
-            if why_required:
-                text += f"WhyRequired:{why_required[:250]} "
-            if source_text:
-                text += f"SourceRule({source_origin}):{source_text}"
-
-            if len(text.strip()) > 20:
-                knowledge_chunks.append(text.strip())
+        
 
         # =========================
         # Clean empty chunks
