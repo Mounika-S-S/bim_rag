@@ -182,8 +182,10 @@ class UnifiedVectorStore:
             m = self.metadata[idx] if idx < len(self.metadata) else {}
             if filter_layer and m.get("layer") != filter_layer:
                 continue
-            if filter_element_type and m.get("element_type") != filter_element_type:
-                continue
+            if filter_element_type:
+                et = m.get("element_type", "").lower()
+                if filter_element_type.lower() not in et:
+                    continue
             if filter_status and m.get("status") != filter_status:
                 continue
             results.append({"text": self.text_chunks[idx], "meta": m, "score": float(distances[0][i])})
@@ -204,8 +206,10 @@ class UnifiedVectorStore:
     def get_all_properties_for_type(self, element_type: str) -> list[str]:
         """Returns all property names recorded for a given element type."""
         props = set()
+        query_type = element_type.lower()
         for i, m in enumerate(self.metadata):
-            if m.get("element_type") == element_type:
+            et = m.get("element_type", "").lower()
+            if query_type in et:
                 # parse chunk text for property keys
                 text = self.text_chunks[i] if i < len(self.text_chunks) else ""
                 for part in text.split(". "):
