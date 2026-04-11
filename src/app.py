@@ -16,6 +16,7 @@ from src.reasoning.llm_reasoner import LLMReasoner
 from src.retrieval.query_router import QueryRouter
 from src.retrieval.retriever import Retriever
 from src.core.model_manager import model_manager
+from src.inference.unified_compliance_builder import UnifiedComplianceBuilder
 
 load_dotenv()
 PROJECTS_PATH = "data/processed"
@@ -84,13 +85,12 @@ def interactive_menu(project_id):
         print("4. Add Regulation (L4)")
         print("5. Add Requirement (L5)")
         print("6. View Stored JSON Files")
-        print("7. Run Compliance Inference (L1-L2-L4)")
-        print("8. Run L1-L2-L3 Inference")
-        print("9. Run L1-L2-L5 Inference")
-        print("10. Run L4-L5 Inference")
-        print("11. Build Unified Vector Store")
-        print("12. Query Semantic Knowledge")
-        print("13. Exit")
+        print("7. Run Unified Compliance Inference (L124 + L125 + L45 → compliance.json)")
+         
+        
+        print("8. Build Unified Vector Store")
+        print("9. Query Semantic Knowledge")
+        print("10. Exit")
 
         choice = input("Select option: ").strip()
 
@@ -113,24 +113,16 @@ def interactive_menu(project_id):
             view_json_files(project_id)
 
         elif choice == "7":
-            run_inference(project_id)
+            run_unified_compliance(project_id)
+
 
         elif choice == "8":
-            run_l123(project_id)
-
-        elif choice == "9":
-            run_l125(project_id)
-
-        elif choice == "10":
-            run_l45(project_id)
-
-        elif choice == "11":
             build_vector_store(project_id)
 
-        elif choice == "12":
+        elif choice == "9":
             query_vector_store(project_id)
 
-        elif choice == "13":
+        elif choice == "10":
             print("Exiting system.")
             break
 
@@ -361,22 +353,27 @@ def view_json_files(project_id):
         print(f" - {f}")
 
 #==========mismatch layer1,2,4=========
-def run_inference(project_id):
-
+def run_unified_compliance(project_id):
     l1 = JSONStorage.load(project_id, "L1_ifc.json")
     l2 = JSONStorage.load(project_id, "L2_product.json")
+    l3 = JSONStorage.load(project_id, "L3_process.json")
     l4 = JSONStorage.load(project_id, "L4_regulation.json")
+    l5 = JSONStorage.load(project_id, "L5_requirement.json")
 
     if not l1 or not l2 or not l4:
-        print("Missing one or more layers.")
+        print("Missing required layers (L1, L2, L4 minimum).")
         return
 
-    engine = ComplianceEngine(l1, l2, l4)
-    mismatches = engine.run()
+    builder = UnifiedComplianceBuilder(l1, l2, l3, l4, l5)
+    records = builder.build()
 
-    JSONStorage.save(project_id, "l124_inference.json", mismatches)
+    # Save as single compliance.json (overwrite, not append)
+    path = os.path.join("data/processed", project_id, "compliance.json")
+    with open(path, "w", encoding="utf-8") as f:
+        import json
+        json.dump(records, f, indent=2)
 
-    print(f"Mismatch JSON generated. Total issues: {len(mismatches)}")
+    print(f"Unified compliance.json saved. Total records: {len(records)}")
 
 #=========build vector store===========
 def build_vector_store(project_id):
@@ -397,13 +394,38 @@ def query_vector_store(project_id):
 
 
 def query_vector_store_api(project_id, question, chat_context=None):
+    """
+    Main query entry point.
 
+    Routing logic (no deterministic_router / UnifiedSemanticRouter):
+      1. If the question is a LISTING or COUNTING query about non-compliant
+         elements → answer directly from compliance.json (100% recall, no FAISS
+         hallucination).
+      2. For all other queries → use QueryRouter (semantic, 6-target) + FAISS
+         retrieval + LLM reasoning.
+    """
+    # ── Step 1: detect listing / counting intent ──────────────────────────
+    q_lower = question.lower()
+    is_list_query = any(kw in q_lower for kw in [
+        "show all", "list all", "all non-compliant", "all elements",
+        "which elements", "how many", "count", "give me all",
+        "non compliant elements", "non-compliant elements",
+        "show non-compliant", "list non-compliant",
+    ])
+
+    if is_list_query and any(kw in q_lower for kw in [
+        "non-compliant", "non compliant", "violation", "failed", "fail",
+        "compliant", "compliance",
+    ]):
+        return _answer_compliance_list_from_json(project_id, question)
+
+    # ── Step 2: semantic RAG path ─────────────────────────────────────────
     router = QueryRouter()
     retriever = Retriever()
 
     path = f"data/processed/{project_id}/unified.index"
     if not os.path.exists(path):
-        raise FileNotFoundError("Vector store not built yet")
+        raise FileNotFoundError("Vector store not built yet. Run option 8 first.")
 
     retriever.load_unified_store(path)
     retriever.clear_chroma_store()
@@ -417,8 +439,11 @@ def query_vector_store_api(project_id, question, chat_context=None):
     if chat_context:
         context_parts.append(chat_context)
 
-    # keep 2 retrieved chunks to stay under Groq token limits
-    context_parts.extend(results[:2])
+    # ── FIXED: was results[:2] which caused only 2 elements to be seen ──
+    # Compliance route gets up to 10 chunks; other routes get 5.
+    route = routing.get("route", "")
+    max_chunks = 10 if route == "Compliance" else 5
+    context_parts.extend(results[:max_chunks])
 
     context = "\n".join(context_parts).strip()
 
@@ -426,6 +451,83 @@ def query_vector_store_api(project_id, question, chat_context=None):
     answer = llm.reason(question, context)
 
     return answer
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Direct compliance listing — reads compliance.json, NO FAISS, 100% recall
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _answer_compliance_list_from_json(project_id, question):
+    """
+    Answers 'show all non-compliant elements' type questions by scanning
+    compliance.json directly.  This guarantees every element is covered.
+    """
+    compliance_path = os.path.join("data/processed", project_id, "compliance.json")
+    if not os.path.exists(compliance_path):
+        return "Compliance data not found. Please run Unified Compliance Inference first (option 7)."
+
+    with open(compliance_path, "r", encoding="utf-8") as f:
+        records = json.load(f)
+
+    q_lower = question.lower()
+
+    # ---- Count-only query ----
+    if "how many" in q_lower or "count" in q_lower:
+        non_compliant = [r for r in records
+                         if not r.get("compliance", {}).get("is_compliant", True)]
+        unique_elements = {r.get("element", {}).get("name", "") for r in non_compliant}
+        unique_elements.discard("")
+        return (
+            f"There are **{len(unique_elements)} non-compliant elements** "
+            f"with a total of **{len(non_compliant)} violations** across all rules.\n\n"
+            f"Non-compliant elements:\n" +
+            "\n".join(f"  - {e}" for e in sorted(unique_elements))
+        )
+
+    # ---- Full listing query (show all / list all) ----
+    non_compliant = [r for r in records
+                     if not r.get("compliance", {}).get("is_compliant", True)]
+
+    if not non_compliant:
+        return "No non-compliant elements found in the project."
+
+    # Group by element name → collect worst violations per element
+    grouped = {}
+    for r in non_compliant:
+        name = r.get("element", {}).get("name", "Unknown")
+        if name not in grouped:
+            grouped[name] = []
+        grouped[name].append(r)
+
+    lines = [f"**{len(grouped)} non-compliant elements found ({len(non_compliant)} total violations):**\n"]
+
+    for idx, (elem_name, violations) in enumerate(sorted(grouped.items()), 1):
+        # Representative violation (first one)
+        rep   = violations[0]
+        comp  = rep.get("compliance", {})
+        elem  = rep.get("element", {})
+        prod  = rep.get("product", {})
+        src   = rep.get("source", {})
+
+        act   = comp.get("actual_value") or {}
+        req   = comp.get("required_value") or {}
+        layer = comp.get("layer_responsible", "?")
+        reason= comp.get("reason", "")
+        why   = comp.get("why_required", "")
+
+        lines.append(f"{idx}. **{elem_name}** ({elem.get('type','?')})")
+        lines.append(f"   - Product: {prod.get('name','N/A')}")
+        lines.append(f"   - Layer Responsible: {layer}")
+        lines.append(f"   - Violations: {len(violations)}")
+        lines.append(f"   - Example: Actual={act.get('value','?')} {act.get('unit','')} | "
+                     f"Required={req.get('operator','')}{req.get('value','?')} {req.get('unit','')}")
+        if reason:
+            lines.append(f"   - Reason: {reason}")
+        if why:
+            lines.append(f"   - Why Required: {why[:200]}...")
+        lines.append("")
+
+    return "\n".join(lines)
 #====smart query=============
 def smart_query(project_id):
 
@@ -552,43 +654,7 @@ def run_l123(project_id):
 
     print("L1-L2-L3 inference complete.")
 
-#============l1-l2-l5 inference===========
-def run_l125(project_id):
-
-    l1 = JSONStorage.load(project_id, "L1_ifc.json")
-    l2 = JSONStorage.load(project_id, "L2_product.json")
-    l5 = JSONStorage.load(project_id, "L5_requirement.json")
-
-    if not l1 or not l2 or not l5:
-        print("Missing layers for L1-L2-L5 inference.")
-        return
-
-    engine = L125Engine(l1, l2, l5)
-
-    result = engine.run()
-
-    JSONStorage.save(project_id, "l125_inference.json", result)
-
-    print("L1-L2-L5 inference complete.")
-
-#============l4-l5 inference===========
-def run_l45(project_id):
-
-    l4 = JSONStorage.load(project_id, "L4_regulation.json")
-    l5 = JSONStorage.load(project_id, "L5_requirement.json")
-
-    if not l4 or not l5:
-        print("Missing layers for L4-L5 inference.")
-        return
-
-    engine = L45Engine(l4, l5)
-
-    result = engine.run()
-
-    JSONStorage.save(project_id, "l45_inference.json", result)
-
-    print("L4-L5 inference complete.")
-
+ 
 # =====================================================
 
 if __name__ == "__main__":
