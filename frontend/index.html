@@ -342,11 +342,8 @@
     <div>
       <h3>Compliance Inference</h3>
       <div class="panel">
-        <div class="btn-grid">
-          <button class="btn btn-secondary inference-btn" data-type="l124">L1+L2+L4</button>
-          <button class="btn btn-secondary inference-btn" data-type="l123">L1+L2+L3</button>
-          <button class="btn btn-secondary inference-btn" data-type="l125">L1+L2+L5</button>
-          <button class="btn btn-secondary inference-btn" data-type="l45">L4+L5</button>
+        <div class="btn-grid" style="grid-template-columns: 1fr;">
+          <button class="btn btn-secondary inference-btn" data-type="all">Run Compliance Inference</button>
         </div>
         <button class="btn btn-success btn-full" id="buildIndexBtn">🔨 Build Vector Store</button>
         <div class="status-msg" id="inferenceStatus"></div>

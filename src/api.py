@@ -5,7 +5,7 @@ import os
 import json
 import shutil
 from src.core.json_storage import JSONStorage
-from src.app import query_vector_store_api, run_inference, run_l123, run_l125, run_l45, build_vector_store
+from src.app import query_vector_store_api, run_inference, build_vector_store
 from src.ingestion.ifc_parser import IFCParser
 from src.l2.main_l2_pipeline import L2Pipeline
 from src.l3.main_l3_pipeline import L3Pipeline
@@ -139,16 +139,8 @@ def upload_layer(
 
 @app.post("/run-inference")
 def run_inference_endpoint(project_id: str = Form(...), inference_type: str = Form(...)):
-    if inference_type == "l124":
-        run_inference(project_id)
-    elif inference_type == "l123":
-        run_l123(project_id)
-    elif inference_type == "l125":
-        run_l125(project_id)
-    elif inference_type == "l45":
-        run_l45(project_id)
-    else:
-        raise HTTPException(status_code=400, detail="Unsupported inference type")
+    # Legacy parameter support — always run our unified ComplianceEngine
+    run_inference(project_id)
 
     return {"project_id": project_id, "inference": inference_type, "status": "done"}
 

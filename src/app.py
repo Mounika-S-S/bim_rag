@@ -360,23 +360,24 @@ def view_json_files(project_id):
     for f in files:
         print(f" - {f}")
 
-#==========mismatch layer1,2,4=========
+#==========Unified Compliance Inference=========
 def run_inference(project_id):
 
-    l1 = JSONStorage.load(project_id, "L1_ifc.json")
-    l2 = JSONStorage.load(project_id, "L2_product.json")
-    l4 = JSONStorage.load(project_id, "L4_regulation.json")
+    l1 = JSONStorage.load(project_id, "L1_ifc.json") or []
+    l2 = JSONStorage.load(project_id, "L2_product.json") or []
+    l4 = JSONStorage.load(project_id, "L4_regulation.json") or []
+    l5 = JSONStorage.load(project_id, "L5_requirement.json") or []
 
-    if not l1 or not l2 or not l4:
-        print("Missing one or more layers.")
+    if not l1:
+        print("Missing L1 (IFC) records. Cannot run deterministic inference.")
         return
 
-    engine = ComplianceEngine(l1, l2, l4)
+    engine = ComplianceEngine(l1, l2, l4, l5)
     mismatches = engine.run()
 
-    JSONStorage.save(project_id, "l124_inference.json", mismatches)
+    JSONStorage.save(project_id, "compliance_inference.json", mismatches)
 
-    print(f"Mismatch JSON generated. Total issues: {len(mismatches)}")
+    print(f"Compliance JSON generated. Total issues: {len(mismatches)}")
 
 #=========build vector store===========
 def build_vector_store(project_id):
@@ -541,61 +542,7 @@ def classify_query(query):
         return "COST_QUERY"
 
     return "REGULATION_QUERY"
-#============l1-l2-l3 inference===========
-def run_l123(project_id):
 
-    l1 = JSONStorage.load(project_id, "L1_ifc.json")
-    l2 = JSONStorage.load(project_id, "L2_product.json")
-    l3 = JSONStorage.load(project_id, "L3_process.json")
-
-    if not l1 or not l2 or not l3:
-        print("Missing layers for L1-L2-L3 inference.")
-        return
-
-    engine = L123Engine(l1, l2, l3)
-
-    result = engine.run()
-
-    JSONStorage.save(project_id, "l123_inference.json", result)
-
-    print("L1-L2-L3 inference complete.")
-
-#============l1-l2-l5 inference===========
-def run_l125(project_id):
-
-    l1 = JSONStorage.load(project_id, "L1_ifc.json")
-    l2 = JSONStorage.load(project_id, "L2_product.json")
-    l5 = JSONStorage.load(project_id, "L5_requirement.json")
-
-    if not l1 or not l2 or not l5:
-        print("Missing layers for L1-L2-L5 inference.")
-        return
-
-    engine = L125Engine(l1, l2, l5)
-
-    result = engine.run()
-
-    JSONStorage.save(project_id, "l125_inference.json", result)
-
-    print("L1-L2-L5 inference complete.")
-
-#============l4-l5 inference===========
-def run_l45(project_id):
-
-    l4 = JSONStorage.load(project_id, "L4_regulation.json")
-    l5 = JSONStorage.load(project_id, "L5_requirement.json")
-
-    if not l4 or not l5:
-        print("Missing layers for L4-L5 inference.")
-        return
-
-    engine = L45Engine(l4, l5)
-
-    result = engine.run()
-
-    JSONStorage.save(project_id, "l45_inference.json", result)
-
-    print("L4-L5 inference complete.")
 
 # =====================================================
 
