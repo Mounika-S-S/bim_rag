@@ -1,243 +1,293 @@
-**BIM Compliance Intelligence System (RAG-Enabled)**
-**Overview**
+# BIM Compliance Intelligence System
 
-This project implements a BIM compliance intelligence system that analyzes IFC models against project requirements, product data, and regulations to identify non-compliant building elements and explain the results using Retrieval-Augmented Generation (RAG).
+> **RAG-Enabled Compliance Analysis for Building Information Models**
 
-The system is designed with a clear separation between deterministic engineering logic and AI-based explanation:
+A deterministic compliance intelligence system that parses IFC models, product data sheets, building regulations, and project requirements — then uses Retrieval-Augmented Generation (RAG) to answer compliance questions with verifiable, auditable reasoning.
 
-✅ Compliance decisions are rule-based and auditable
+---
 
-✅ RAG retrieves verified evidence
+## 🏗️ What Problem Does This Solve?
 
-✅ LLMs (optional) are used only for explanation, never for decision-making
-**
-What Problem Does This Solve?**
+In real BIM workflows, compliance information lives in disconnected silos:
 
-In real BIM workflows, information is fragmented:
+| Source | Format | Used For |
+|---|---|---|
+| Geometry | `.ifc` files | What is actually built |
+| Product specs | Excel / PDF | Material properties & fire ratings |
+| Process docs | PDF | Construction procedures |
+| Regulations | PDF (Building codes) | Legal compliance thresholds |
+| Requirements | Excel | Project-specific standards |
 
-Geometry → IFC files
+This system **unifies all five layers** into a single, explainable pipeline — enabling engineers to ask plain-language questions and receive answers grounded in deterministic compliance logic, not LLM hallucination.
 
-Requirements → Excel sheets
+---
 
-Products → Manufacturer catalogs
+## ✨ Key Design Principles
 
-Regulations → PDFs
+- **Deterministic before generative** — compliance verdicts are rule-based and auditable; LLMs are only used for *explanation*
+- **Explainability by design** — every answer cites a source layer (L1–L5)
+- **Privacy-first** — runs fully locally; no data leaves your machine
+- **Engineering-grade correctness** — built for BIM engineers, not chatbot users
 
-Explanations → Manual, error-prone
+---
 
-This system unifies all these sources into a single, explainable compliance pipeline.
+## 🏛️ Architecture
 
-**High-Level Architecture**
-User Question
-   ↓
-Query Router (intent detection)
-   ↓
-Vector DB (ChromaDB) — RAG retrieval
-   ↓
-Deterministic Results (mismatches, rules, products, regulations)
-   ↓
-( Optional ) LLM — explanation only
-   ↓
-Engineer-readable answer
+```
+┌─────────────────────────────────────────────────────────┐
+│                    DATA INGESTION                        │
+│  L1 IFC   │  L2 Product  │  L3 Process  │  L4 Regs  │  L5 Req  │
+└────────────────────────┬────────────────────────────────┘
+                         │ Parsed → JSON records
+                         ▼
+┌─────────────────────────────────────────────────────────┐
+│              COMPLIANCE ENGINE (Deterministic)          │
+│   Matches L1 elements → L4 regulations → Flags issues  │
+│   Output: compliance_inference.json                     │
+└────────────────────────┬────────────────────────────────┘
+                         │ All records + compliance results
+                         ▼
+┌─────────────────────────────────────────────────────────┐
+│             UNIFIED VECTOR STORE (FAISS)                │
+│   Chunked text embeddings for semantic retrieval         │
+└────────────────────────┬────────────────────────────────┘
+                         │
+            ┌────────────┴────────────┐
+            │     User Question        │
+            ▼                         ▼
+┌───────────────────┐      ┌──────────────────────┐
+│   Query Router     │      │  Structured Responder │
+│  (Intent detect)  │      │  (Anti-hallucination)  │
+└─────────┬─────────┘      └──────────┬─────────────┘
+          │                           │
+          ▼                           ▼
+┌─────────────────────────────────────────────────────────┐
+│              LLM LAYER (Groq / Gemini — Optional)       │
+│   Used ONLY for explanation; never for decisions        │
+└────────────────────────┬────────────────────────────────┘
+                         ▼
+              Engineer-readable answer
+```
 
-**
-Data Layers**
-**Layer 1 — IFC Model (What is Built)**
+---
 
-Input: .ifc file
+## 📂 Data Layers (L1–L5)
 
-Output: ifc_walls.json
+### L1 — IFC Model *(What is Built)*
+- **Input:** `.ifc` file
+- **Output:** `L1_ifc.json`
+- Extracts element IDs, entity types, materials, geometric properties (Width, Length, FireRating, etc.)
 
-Extracts:
+### L2 — Product Data *(What It Is)*
+- **Input:** Manufacturer Excel or PDF
+- **Output:** `L2_product.json`
+- Contains system type, fire ratings, manufacturer constraints, compressive strength
 
-Wall IDs
+### L3 — Process Documents *(How It is Built)*
+- **Input:** Technical PDFs, Excel
+- **Output:** `L3_process.json`
+- Construction procedures used as supporting RAG context
 
-Names
+### L4 — Regulations *(The Authority)*
+- **Input:** Building code PDFs (e.g., TN Combined Development & Building Rules 2019)
+- **Output:** `L4_regulation.json`
+- Structured clauses with numeric thresholds, element types, operators (≥, ≤, >)
 
-Types
+### L5 — Project Requirements *(The Context)*
+- **Input:** Project Excel or PDF
+- **Output:** `L5_requirement.json`
+- Defines required fire ratings, scope, compliance priority
 
-Property sets (Psets)
+---
 
-**Layer 2 — Product Data (What It Is)**
+## ⚙️ Compliance Engine
 
-Input: Manufacturer Excel / PDF
+The deterministic engine (`src/inference/compliance_engine.py`) performs:
 
-Output: products.json
+1. **Element matching** — L1 elements matched against L4 rules by `element_type_normalized`
+2. **Property merging** — L2 product data fills gaps missing in L1 records
+3. **Numeric evaluation** — thresholds checked with operators (`>=`, `<=`, `>`, `<`)
+4. **Status assignment** — each element assigned `COMPLIANT`, `NON_COMPLIANT`, or `MISSING_PROPERTY`
 
-Contains:
-
-System type
-
-Fire rating
-
-Manufacturer
-
-Constraints
-
-**Layer 3 — Documents (Proof)**
-
-Input: Technical PDFs
-
-Output: documents.json
-
-Used as:
-
-Supporting evidence
-
-RAG context only
-
-**Layer 4 — Regulations (Authority)**
-
-Input: Fire code PDFs
-
-Output: regulations.json
-
-Used to:
-
-Ground explanations
-
-Reference standards and codes
-
-**Layer 5 — Project Requirements (Context)**
-
-Input: Project Excel
-
-Output: rules.json
-
-Defines:
-
-Required fire ratings
-
-Scope (internal / external)
-
-Priority and description
-
-Compliance Engine (Core Logic)
-
-The compliance engine compares:
-
-IFC elements (Layer 1)
-
-Against project requirements (Layer 5)
-
-Using available product systems (Layer 2)
-
-Output
-mismatches.json
-
-
-Example:
-
+**Output format** (`compliance_inference.json`):
+```json
 {
-  "wall_id": "2DedXznHnDaeAWsrTB_qBp",
-  "wall_name": "Basic Wall:Yttervägg Paroc",
-  "issue": "No compliant product found",
-  "required_fire_rating": "EI120",
-  "wall_fire_rating": null
+  "element_id": "1IwQbMyrr3zPxzRC_0XKuh",
+  "element_name": "YC-ST-WA-EIP",
+  "element_type": "IfcWall",
+  "property": "FireRating_min",
+  "effective_value": 60,
+  "required_value": 120,
+  "operator": ">=",
+  "unit": "min",
+  "status": "NON_COMPLIANT",
+  "gap": -60,
+  "suggestion": "Upgrade to a product with higher fire resistance rating meeting the required 120 min.",
+  "source_rule": "Fire resistance clause 45...",
+  "source_layer": "L4"
 }
+```
 
+---
 
-✔ Deterministic
-✔ Explainable
-✔ Auditable
+## 🔍 RAG Pipeline
 
-**RAG Pipeline**
-Vector Database
+| Component | Technology |
+|---|---|
+| Vector Store | FAISS (local, no cloud) |
+| Embeddings | `sentence-transformers` |
+| LLM (optional) | Groq API (Llama 3) |
+| Query Routing | Custom intent detection |
+| Anti-hallucination | `StructuredResponder` layer |
 
-Engine: ChromaDB
+### Query Routing
 
-Storage: Local (data/vector_db)
+| Question Type | Example | Retrieved Sources |
+|---|---|---|
+| Compliance | *"Which walls fail fire safety?"* | `compliance_inference.json` |
+| Element info | *"What is the width of beams?"* | L1 + L2 chunks |
+| Regulations | *"What does clause 58 say?"* | L4 regulation chunks |
+| Product | *"Which products meet EI120?"* | L2 product chunks |
+| General | *"Explain TNRB 2019 setbacks"* | Full semantic RAG |
 
-No cloud, no accounts, no API keys
+---
 
-Embedded Sources
+## 🚀 Quick Start
 
-mismatches.json
+### Prerequisites
+- Python 3.9+
+- A Groq API key (free tier) or Gemini API key
 
-rules.json
+### 1. Clone & install
+```bash
+git clone https://github.com/Mounika-S-S/bim_rag.git
+cd bim_rag
+python -m venv venv
+venv\Scripts\activate        # Windows
+pip install -r requirements.txt
+```
 
-products.json
+### 2. Configure environment
+```bash
+cp .env.example .env
+# Edit .env and add your GROQ_API_KEY or GEMINI_API_KEY
+```
 
-documents.json
+### 3. Run the CLI
+```bash
+python -m src.app
+```
 
-regulations.json
+### 4. Run the API server
+```bash
+uvicorn src.api:app --reload --port 8000
+```
 
-Query Routing (General Explanation RAG)
+### 5. Run the frontend
+```bash
+cd frontend
+# Open index.html in a browser or serve with live-server
+```
 
-The system supports different question types using query routing:
+---
 
-Question Type	Example	Retrieved Sources
-Compliance	“Which walls violate fire safety?”	mismatches
-Project overview	“Explain the project”	documents, rules
-Regulations	“Which regulation requires EI120?”	regulations
-Products	“Which products are approved?”	products
-Unsupported	“Total cost?”	Graceful fallback
+## 🖥️ API Reference
 
-This ensures relevant and precise retrieval.
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/ping` | Health check |
+| `GET` | `/projects` | List all projects |
+| `POST` | `/projects` | Create a new project |
+| `POST` | `/upload` | Upload and parse a layer file (L1–L5) |
+| `POST` | `/run-inference` | Run compliance engine |
+| `POST` | `/build-vector-store` | Embed all records into FAISS |
+| `POST` | `/query` | Ask a compliance question |
+| `POST` | `/feedback` | Submit rating on an answer |
+| `POST` | `/history/clear` | Clear chat session history |
+| `DELETE` | `/project` | Delete a project and all its data |
 
-Query Engine
+---
 
-Engineers can ask questions such as:
+## 📁 Project Structure
 
-Which walls violate fire safety?
+```
+bim_rag/
+├── src/
+│   ├── app.py                  # CLI entry point & orchestration
+│   ├── api.py                  # FastAPI REST layer
+│   ├── core/                   # Schema, JSON storage, model manager
+│   ├── ingestion/              # IFC parser, L4 pipeline
+│   ├── l2/                     # Product data pipeline
+│   ├── l3/                     # Process document pipeline
+│   ├── l4/                     # Regulation clause segmenter
+│   ├── l5/                     # Requirements pipeline
+│   ├── inference/              # Deterministic compliance engine
+│   ├── rag/                    # Unified FAISS vector store
+│   ├── reasoning/              # LLM client, structured responder
+│   ├── retrieval/              # Query router, retriever
+│   ├── embedding/              # Embedding utilities
+│   ├── evaluation/             # RAGAS, BLEU, ROUGE metrics
+│   ├── finetuning/             # DB logger for feedback loop
+│   └── utils/                  # Shared helpers
+├── data/
+│   ├── processed/              # Per-project JSON records & FAISS index
+│   └── chat_history/           # Session chat logs
+├── frontend/                   # Web UI
+├── evaluation/                 # Evaluation scripts & reports
+├── notebooks/                  # Colab fine-tuning notebooks
+├── tests/                      # Unit & integration tests
+├── requirements.txt
+└── .env
+```
 
-Why is wall X non-compliant?
+---
 
-What fire rating is required?
+## 🛠️ Technology Stack
 
-Which regulations apply?
+| Layer | Technology |
+|---|---|
+| IFC Parsing | `ifcopenshell` |
+| PDF Extraction | `pdfplumber`, `PyMuPDF`, `PyPDF2` |
+| Excel Parsing | `pandas`, `openpyxl` |
+| Vector Store | `faiss-cpu` |
+| Embeddings | `sentence-transformers` |
+| LLM API | `groq` (Llama 3) |
+| REST API | `fastapi`, `uvicorn` |
+| Evaluation | `ragas`, `rouge-score`, `nltk` |
+| Fuzzy Matching | `fuzzywuzzy` |
 
-Which products are approved?
+---
 
-The system retrieves verified context and presents it clearly.
-**project structure**
-<img width="495" height="870" alt="image" src="https://github.com/user-attachments/assets/30f08bb5-3a8f-4055-8fde-c8891110891f" />
+## ✅ Current Status
 
-**Technology Stack**
+| Feature | Status |
+|---|---|
+| IFC parsing (L1) | ✅ Complete |
+| Product ingestion (L2) | ✅ Complete |
+| Process ingestion (L3) | ✅ Complete |
+| Regulation parsing (L4) | ✅ Complete |
+| Requirements modeling (L5) | ✅ Complete |
+| Deterministic compliance engine | ✅ Complete |
+| FAISS vector store | ✅ Complete |
+| Structured anti-hallucination responder | ✅ Complete |
+| FastAPI REST layer | ✅ Complete |
+| Web frontend | ✅ Complete |
+| Chat history & sessions | ✅ Complete |
+| Feedback logging for fine-tuning | ✅ Complete |
+| RAGAS / BLEU / ROUGE evaluation | ✅ Complete |
+| LLM fine-tuning pipeline (Colab) | ⏳ In Progress |
 
-Python
+---
 
-ifcopenshell
+## 👥 Intended Users
 
-pandas
+- **BIM Engineers** verifying model compliance before submission
+- **Fire Safety Reviewers** checking against building codes
+- **Compliance Teams** conducting regulatory audits
+- **Digital Construction Teams** integrating AI reasoning into BIM workflows
 
-PyPDF2
+---
 
-ChromaDB
+## 📄 License
 
-sentence-transformers
-
-(Optional) Ollama / Local LLM
-
-**Design Principles**
-
-Deterministic before generative
-
-Explainability by design
-
-Clear separation of logic and language
-
-Privacy-first (local execution)
-
-Engineering-grade correctness
-
-**Current Status**
-
-✅ IFC parsing
-✅ Product ingestion
-✅ Regulation ingestion
-✅ Project requirements modeling
-✅ Compliance detection
-✅ RAG with query routing
-✅ Engineer-readable answers
-⏳ LLM explanation layer (optional)
-
-**Intended Users**
-
-BIM engineers
-
-Fire safety reviewers
-
-Compliance teams
-
-Digital construction workflows
+This project is for academic and research purposes. See `LICENSE` for details.
