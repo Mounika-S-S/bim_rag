@@ -8,6 +8,8 @@ LLM Metrics: faithfulness, answer_correctness, hallucination_rate, format_compli
 """
 import os, sys, json, time, math, re
 import numpy as np
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+from rouge_score import rouge_scorer
 
 # Fix Windows console encoding
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -143,6 +145,26 @@ TEST_CASES = [
         "expected_status": None,
         "category": "property_lookup",
     },
+    {
+        "id": "Q11",
+        "query": "Which walls have a length greater than 5000mm and are they compliant with fire safety?",
+        "relevant_layers": ["L1", "L4", "compliance"],
+        "relevant_keywords": ["wall", "length", "5000", "fire", "compliant"],
+        "expected_element_type": "wall",
+        "expected_answer_keywords": ["wall", "compliant", "fire"],
+        "expected_status": None,
+        "category": "complex_query",
+    },
+    {
+        "id": "Q12",
+        "query": "Compare the material of beams and columns and identify any non-compliant materials.",
+        "relevant_layers": ["L1", "compliance"],
+        "relevant_keywords": ["beam", "column", "material", "NON_COMPLIANT"],
+        "expected_element_type": None,
+        "expected_answer_keywords": ["beam", "column", "material"],
+        "expected_status": "NON_COMPLIANT",
+        "category": "complex_query",
+    },
 ]
 
 
@@ -269,13 +291,25 @@ def compute_faithfulness(answer, context_chunks):
     return grounded / len(sentences)
 
 
-def compute_answer_correctness(answer, expected_keywords):
-    """Fraction of expected keywords present in the answer."""
+def compute_bleu_score(answer, expected_keywords):
+    """Compute BLEU score against expected keywords as a pseudo-reference."""
     if not expected_keywords:
         return 1.0
-    answer_lower = answer.lower()
-    found = sum(1 for kw in expected_keywords if kw.lower() in answer_lower)
-    return found / len(expected_keywords)
+    reference = " ".join(expected_keywords).lower().split()
+    hypothesis = answer.lower().split()
+    try:
+        return sentence_bleu([reference], hypothesis, smoothing_function=SmoothingFunction().method1)
+    except:
+        return 0.0
+
+def compute_rouge_score(answer, expected_keywords):
+    """Compute ROUGE-L f1 score against expected keywords."""
+    if not expected_keywords:
+        return 1.0
+    reference = " ".join(expected_keywords).lower()
+    scorer = rouge_scorer.RougeScorer(['rougeL'], use_stemmer=True)
+    scores = scorer.score(reference, answer.lower())
+    return scores['rougeL'].fmeasure
 
 
 def compute_hallucination_rate(answer, context_chunks):
@@ -473,7 +507,8 @@ def run_full_evaluation():
 
             # Compute LLM metrics
             faith = compute_faithfulness(answer, chunks)
-            correct = compute_answer_correctness(answer, tc["expected_answer_keywords"])
+            bleu = compute_bleu_score(answer, tc["expected_answer_keywords"])
+            rouge = compute_rouge_score(answer, tc["expected_answer_keywords"])
             halluc = compute_hallucination_rate(answer, chunks)
             fmt = compute_format_compliance(answer)
             compl = compute_completeness(answer, tc)
@@ -481,7 +516,8 @@ def run_full_evaluation():
 
             metrics = {
                 "faithfulness": round(faith, 4),
-                "answer_correctness": round(correct, 4),
+                "bleu_score": round(bleu, 4),
+                "rouge_score": round(rouge, 4),
                 "hallucination_rate": round(halluc, 4),
                 "format_compliance": round(fmt, 4),
                 "completeness": round(compl, 4),
@@ -510,7 +546,7 @@ def run_full_evaluation():
         print(" PART 4: AGGREGATE LLM METRICS (averaged over all queries)")
         print("=" * 70)
 
-        llm_metric_names = ["faithfulness", "answer_correctness", "hallucination_rate",
+        llm_metric_names = ["faithfulness", "bleu_score", "rouge_score", "hallucination_rate",
                             "format_compliance", "completeness", "latency_score"]
 
         print(f"\n  +{'-'*60}+")
