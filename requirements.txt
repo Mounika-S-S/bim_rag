@@ -6,3 +6,15 @@ chromadb
 numpy
 PyPDF2
 pypandoc
+pdfplumber
+PyMuPDF
+faiss-cpu
+groq
+fuzzywuzzy
+dotenv
+fastapi
+uvicorn
+ragas
+nltk
+rouge-score
+datasets

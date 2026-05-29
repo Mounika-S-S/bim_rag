@@ -1,0 +1,499 @@
+[
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$CEw",
+        "element_name": "YC-ST-SF-BIP",
+        "element_type": "IfcBeam",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$CEd",
+        "element_name": "YC-ST-SF-BIP",
+        "element_type": "IfcBeam",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$CFN",
+        "element_name": "YC-ST-SF-BIP",
+        "element_type": "IfcBeam",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$CF2",
+        "element_name": "YC-ST-SF-BIP",
+        "element_type": "IfcBeam",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$CFv",
+        "element_name": "YC-ST-SF-BIP",
+        "element_type": "IfcBeam",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$CpP",
+        "element_name": "YC-ST-SF-BIP",
+        "element_type": "IfcBeam",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$CpD",
+        "element_name": "YC-ST-SF-BIP",
+        "element_type": "IfcBeam",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$Cpz",
+        "element_name": "YC-ST-SF-BIP",
+        "element_type": "IfcBeam",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$Cpl",
+        "element_name": "YC-ST-SF-BIP",
+        "element_type": "IfcBeam",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1FFFWQ3Nn7SQRMK$3B1XHi",
+        "element_name": "M_Muntin Pattern_2x2:M_Muntin Pattern_2x2:374222",
+        "element_type": "IfcBuildingElementProxy",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1FFFWQ3Nn7SQRMK$3B1XHj",
+        "element_name": "M_Muntin Pattern_2x2:M_Muntin Pattern_2x2:374223",
+        "element_type": "IfcBuildingElementProxy",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1FFFWQ3Nn7SQRMK$3B1XHo",
+        "element_name": "M_Trim-Window-Exterior-Flat:with Sill:374224",
+        "element_type": "IfcBuildingElementProxy",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1FFFWQ3Nn7SQRMK$3B1XHp",
+        "element_name": "M_Trim-Window-Interior-Flat:Picture Frame:374225",
+        "element_type": "IfcBuildingElementProxy",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1FFFWQ3Nn7SQRMK$3B1XQ9",
+        "element_name": "M_Muntin Pattern_2x2:M_Muntin Pattern_2x2:374571",
+        "element_type": "IfcBuildingElementProxy",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1FFFWQ3Nn7SQRMK$3B1XQE",
+        "element_name": "M_Muntin Pattern_2x2:M_Muntin Pattern_2x2:374572",
+        "element_type": "IfcBuildingElementProxy",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1FFFWQ3Nn7SQRMK$3B1XQF",
+        "element_name": "M_Trim-Window-Exterior-Flat:with Sill:374573",
+        "element_type": "IfcBuildingElementProxy",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1FFFWQ3Nn7SQRMK$3B1XQC",
+        "element_name": "M_Trim-Window-Interior-Flat:Picture Frame:374574",
+        "element_type": "IfcBuildingElementProxy",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XKDR",
+        "element_name": "YC-ST-SC-CIP",
+        "element_type": "IfcColumn",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XKJf",
+        "element_name": "YC-ST-SC-CIP",
+        "element_type": "IfcColumn",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XKkM",
+        "element_name": "YC-ST-SC-CIP",
+        "element_type": "IfcColumn",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XKpX",
+        "element_name": "YC-ST-SC-CIP",
+        "element_type": "IfcColumn",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XKpW",
+        "element_name": "YC-ST-SC-CIP",
+        "element_type": "IfcColumn",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XKpd",
+        "element_name": "YC-ST-SC-CIP",
+        "element_type": "IfcColumn",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "2e5xoSmZTDKx27isxFREI8",
+        "element_name": "YC-AR-FL-TIL",
+        "element_type": "IfcCovering",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "2e5xoSmZTDKx27isxFREK_",
+        "element_name": "YC-AR-FL-TIL",
+        "element_type": "IfcCovering",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "2e5xoSmZTDKx27isxFRECV",
+        "element_name": "YC-AR-CE-GBC",
+        "element_type": "IfcCovering",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$DHW",
+        "element_name": "YC-AR-FL-TIL",
+        "element_type": "IfcCovering",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "0IcT_QJFD3ExIsqyyQooP6",
+        "element_name": "YC-AR-FL-TIL",
+        "element_type": "IfcCovering",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "2e5xoSmZTDKx27isxFRC7d",
+        "element_name": "YC-AR-DO-INT",
+        "element_type": "IfcDoor",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "0NPR3VLEzFY9u8mft9FsAZ",
+        "element_name": "YC-AR-DO-EXT",
+        "element_type": "IfcDoor",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "0cb3Uj4LjFhxB47KD4k2$j",
+        "element_name": "YC-AR-DO-INT",
+        "element_type": "IfcDoor",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1FFFWQ3Nn7SQRMK$3B1X1w",
+        "element_name": "YC-AR-DO-EXT",
+        "element_type": "IfcDoor",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XJJs",
+        "element_name": "YC-ST-FO-STR",
+        "element_type": "IfcFooting",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XJP$",
+        "element_name": "YC-ST-FO-STR",
+        "element_type": "IfcFooting",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XJP_",
+        "element_name": "YC-ST-FO-STR",
+        "element_type": "IfcFooting",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XJRS",
+        "element_name": "YC-ST-FO-STR",
+        "element_type": "IfcFooting",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XJQZ",
+        "element_name": "YC-ST-FO-STR",
+        "element_type": "IfcFooting",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XJVZ",
+        "element_name": "YC-ST-FO-STR",
+        "element_type": "IfcFooting",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XJUt",
+        "element_name": "YC-ST-FL-SOG",
+        "element_type": "IfcSlab",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "2e5xoSmZTDKx27isxFREVF",
+        "element_name": "YC-ST-FL-SOW",
+        "element_type": "IfcSlab",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XKuh",
+        "element_name": "YC-ST-WA-EIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XKzn",
+        "element_name": "YC-AR-WA-IIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XKy0",
+        "element_name": "YC-ST-WA-EIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1IwQbMyrr3zPxzRC_0XK_k",
+        "element_name": "YC-ST-WA-EIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$Ccn",
+        "element_name": "YC-AR-WA-PIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$Cbo",
+        "element_name": "YC-AR-WA-PIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$ChC",
+        "element_name": "YC-AR-WA-PIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$CkH",
+        "element_name": "YC-AR-WA-PIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$Cia",
+        "element_name": "YC-AR-WA-PIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1Wl25_be57y9BVJc_M$DIl",
+        "element_name": "YC-AR-WA-PIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "0HMYaQNLf8AQw7bLT$GLYH",
+        "element_name": "YC-ST-WA-EIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "0HMYaQNLf8AQw7bLT$GLdW",
+        "element_name": "YC-ST-WA-EIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "0HMYaQNLf8AQw7bLT$GMTS",
+        "element_name": "YC-ST-WA-EIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "0cb3Uj4LjFhxB47KD4k2v0",
+        "element_name": "YC-AR-WA-IIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "0cb3Uj4LjFhxB47KD4k2xU",
+        "element_name": "YC-AR-WA-IIP",
+        "element_type": "IfcWall",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "2e5xoSmZTDKx27isxFRCXi",
+        "element_name": "YC-AR-WN-CAW",
+        "element_type": "IfcWindow",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1FFFWQ3Nn7SQRMK$3B1XHf",
+        "element_name": "YC-AR-WN-DHW",
+        "element_type": "IfcWindow",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1FFFWQ3Nn7SQRMK$3B1XQA",
+        "element_name": "YC-AR-WN-CAW",
+        "element_type": "IfcWindow",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1FFFWQ3Nn7SQRMK$3B1cFG",
+        "element_name": "YC-AR-WN-LOW",
+        "element_type": "IfcWindow",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "0KHHXyecbBHxFCAZNZtGQd",
+        "element_name": "Halo Plus Suspended Downlight:Halo Plus Suspended Downlight:469023",
+        "element_type": "IfcLightFixture",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "2e5xoSmZTDKx27isxFRDU0",
+        "element_name": "YC-PM-PL-WCC",
+        "element_type": "IfcSanitaryTerminal",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "13eDzWMtr9YOk6BNWzUehW",
+        "element_name": "YC-PM-PL-SNK",
+        "element_type": "IfcSanitaryTerminal",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "0_l6buBI37FFrnn$FWl$aF",
+        "element_name": "YC-AR-FL-TIL",
+        "element_type": "IfcOpeningElement",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "059TsWMuTyYUmDb67gBXCc",
+        "element_name": "YC-AR-DO-EXT",
+        "element_type": "IfcOpeningElement",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1aympPPu7gWnAYOVwXMGrX",
+        "element_name": "YC-AR-WN-CAW",
+        "element_type": "IfcOpeningElement",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "0aoVBtJdXAe$9E8PGbTgRl",
+        "element_name": "YC-AR-DO-INT",
+        "element_type": "IfcOpeningElement",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "2d7hL7ZH7XZDCWayVFzVBg",
+        "element_name": "YC-AR-WN-LOW",
+        "element_type": "IfcOpeningElement",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1cANvfQ7Tw9Syb0QEWxtWJ",
+        "element_name": "YC-AR-WN-CAW",
+        "element_type": "IfcOpeningElement",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "2dOxcH9DhpsKaoMHVsmWGJ",
+        "element_name": "YC-AR-DO-EXT",
+        "element_type": "IfcOpeningElement",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "1NTv0b67Az4ZRf15tXgG0f",
+        "element_name": "YC-AR-WN-DHW",
+        "element_type": "IfcOpeningElement",
+        "issue": "No matching product found",
+        "layer": "L2"
+    },
+    {
+        "element_id": "2g3fE$xulfoRSURyaEWRp$",
+        "element_name": "YC-AR-DO-INT",
+        "element_type": "IfcOpeningElement",
+        "issue": "No matching product found",
+        "layer": "L2"
+    }
+]

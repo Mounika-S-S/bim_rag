@@ -3,6 +3,7 @@
 # =========================
 venv/
 .env/
+.env
 
 # =========================
 # Python cache files
@@ -18,12 +19,12 @@ __pycache__/
 Thumbs.db
 .vscode/
 .idea/
-
+*/data/input
 # =========================
 # Data files (company sensitive)
 # =========================
 # data/ifc/
-# data/excel/
+*/data/processed
 
 # =========================
 # Generated outputs

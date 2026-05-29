@@ -1,0 +1,1825 @@
+[
+    {
+        "id": "L5_b5267943",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0001",
+            "description": "Acetylene",
+            "unit": "Cu.m.",
+            "rate": 525.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_f90059f3",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0002",
+            "description": "Airless spray gun tip and metal washers 1 set 6818.00 WR-M0003 Alloy steel",
+            "unit": "Kg",
+            "rate": 488.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_34b091c8",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0004",
+            "description": "Auto weld coil",
+            "unit": "Kg",
+            "rate": 1500.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_6489bddf",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0005",
+            "description": "Auto weld flux",
+            "unit": "Kg",
+            "rate": 690.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_1282ca88",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0006",
+            "description": "Brake drum coupling",
+            "unit": "No",
+            "rate": 51000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_ede98b42",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0007",
+            "description": "Carbon steels",
+            "unit": "Kg",
+            "rate": 340.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_1b063b2f",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0008",
+            "description": "Centre joint rubber seal",
+            "unit": "RM",
+            "rate": 1640.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_b9ae2e74",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0009",
+            "description": "Coal tar epoxy paint",
+            "unit": "Ltr",
+            "rate": 575.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_5bd5e9e0",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0010",
+            "description": "Composite chequered plate",
+            "unit": "Sq.m.",
+            "rate": 24000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_1be6cfb0",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0011",
+            "description": "Core cut bit",
+            "unit": "No",
+            "rate": 6300.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_587c6104",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0012",
+            "description": "Corner rubber seal Nos 2800.00 WR-M0013 Degreasing/derusting/phophating",
+            "unit": "Ltr",
+            "rate": 770.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_deac4d44",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0014",
+            "description": "Dial gate position indicator",
+            "unit": "No",
+            "rate": 210000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_49d7b16f",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0015",
+            "description": "Diesel",
+            "unit": "Ltr",
+            "rate": 100.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_ec4ba558",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0016",
+            "description": "Dog clutch",
+            "unit": "No",
+            "rate": 19677.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_551227b6",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0017",
+            "description": "Electromagnetic brake",
+            "unit": "No",
+            "rate": 34000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_7cc4bb8a",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0018",
+            "description": "Enamel Thinner",
+            "unit": "Ltr",
+            "rate": 150.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_a9611fa6",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0019",
+            "description": "Epoxy primer paint",
+            "unit": "Ltr",
+            "rate": 950.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_9fc86138",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0020",
+            "description": "Epoxy thinner",
+            "unit": "Ltr",
+            "rate": 400.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_db2746d4",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0021",
+            "description": "Ferro-Nickelweld electrode",
+            "unit": "No",
+            "rate": 60.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_cb3f1724",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0022",
+            "description": "Flat type rubber seal",
+            "unit": "RM",
+            "rate": 820.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_332e6736",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0023",
+            "description": "Gate - FRP composite",
+            "unit": "Sq.m.",
+            "rate": 48000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_9eb96e89",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0024",
+            "description": "Gear motor heavy duty",
+            "unit": "No",
+            "rate": 40000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_5b25582d",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0025",
+            "description": "Gear oil (high viscosity)",
+            "unit": "Ltr",
+            "rate": 420.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_6c6b2357",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0026",
+            "description": "General purpose electrode",
+            "unit": "No",
+            "rate": 19.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_970f1e2d",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0027",
+            "description": "Gl bolts & nuts",
+            "unit": "No",
+            "rate": 100.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_268ff6f8",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0028",
+            "description": "75mm worm gear",
+            "unit": "No",
+            "rate": 279400.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_60637dfd",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0029",
+            "description": "Gl pipe",
+            "unit": "RM",
+            "rate": 795.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_7ce1ad1f",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0030",
+            "description": "Grease",
+            "unit": "Kg",
+            "rate": 580.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_7e87711c",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0031",
+            "description": "Grey iron castings",
+            "unit": "Kg",
+            "rate": 101.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_735f603d",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0032",
+            "description": "Grinding wheel",
+            "unit": "No",
+            "rate": 580.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_27c8c522",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0033",
+            "description": "Groove channel - FRP composite",
+            "unit": "RM",
+            "rate": 18000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_5bab5923",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0034",
+            "description": "Headset - FRP composite N\u043e 24000.00 WR-M0035 Hoist bearing",
+            "unit": "No",
+            "rate": 21796.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_f4334a8c",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0036",
+            "description": "HT Bolts & nuts coated",
+            "unit": "No",
+            "rate": 235.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_796ebf0e",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0037",
+            "description": "Limit switch",
+            "unit": "No",
+            "rate": 3500.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_a9c358ee",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0038",
+            "description": "Low hydrogen electrode",
+            "unit": "No",
+            "rate": 24.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_bd1f39ee",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0039",
+            "description": "Metalizing wire coil",
+            "unit": "Kg",
+            "rate": 1350.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_083527ba",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0040",
+            "description": "Micaceous iron oxide paint intermediate coat",
+            "unit": "Ltr",
+            "rate": 960.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_4f5ca72e",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0041",
+            "description": "Mig weld coil",
+            "unit": "Kg",
+            "rate": 1500.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_da8165f7",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0042",
+            "description": "Motor heavy duty with double end shaft",
+            "unit": "No",
+            "rate": 119948.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_78140ee1",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0043",
+            "description": "Ms Bolts & nuts coated",
+            "unit": "No",
+            "rate": 105.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_30e966bc",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0044",
+            "description": "MS chequered plate",
+            "unit": "Kg",
+            "rate": 68.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_2b927602",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0045",
+            "description": "MS Pipes",
+            "unit": "Kg",
+            "rate": 212.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_f2513dc4",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0046",
+            "description": "Non-ferrous alloy casting",
+            "unit": "Kg",
+            "rate": 1117.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_ea349322",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0047",
+            "description": "Oxygen gas",
+            "unit": "Cu.m.",
+            "rate": 110.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_3f2d1a7e",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0048",
+            "description": "P type rubber seal",
+            "unit": "RM",
+            "rate": 1400.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_d74be164",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0049",
+            "description": "Paddle shutter - FRP composite",
+            "unit": "Sq.m.",
+            "rate": 42600.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_d2289b93",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0050",
+            "description": "Pin bush coupling",
+            "unit": "No",
+            "rate": 15614.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_49f46e55",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0051",
+            "description": "Plates/flats - Mild Steel",
+            "unit": "Kg",
+            "rate": 68.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_7eb7d7db",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0052",
+            "description": "Plug-FRP composite No. 15700.00 WR-M0053 Plummer block No. 14451.00 WR-M0054 Polyurethane paint",
+            "unit": "Ltr",
+            "rate": 740.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_7ebd1f49",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0055",
+            "description": "Reinforced panels - FRP composite",
+            "unit": "Sq.m.",
+            "rate": 14000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_b45f93a7",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0056",
+            "description": "Rods-Mild Steel",
+            "unit": "Kg",
+            "rate": 66.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_a79b2968",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0057",
+            "description": "Roller bearing No. 33688.00 WR-M0058 Roofing sheet",
+            "unit": "Sq.m.",
+            "rate": 730.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_7ed277f5",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0059",
+            "description": "Rope socket No. 36000.00 WR-M0060 Servo coat/cardium compound",
+            "unit": "Ltr",
+            "rate": 480.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_9316ea68",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0061",
+            "description": "Sleeve No. 1143.00 Solvent, penetrant, Developer each 400ml container WR-M0062 1 set 2850.00 (LPI kit) WR-M0063 SS Bolts & nuts No. 281.00 WR-M0064 SS plate/flats",
+            "unit": "Kg",
+            "rate": 316.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_47f3cc3e",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0066",
+            "description": "Starter box heavy duty with forward & reverse No. 76000.00 WR-M0067 Steel Abrasive",
+            "unit": "Kg",
+            "rate": 90.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_1fb0177a",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0068",
+            "description": "Steel castings",
+            "unit": "Kg",
+            "rate": 265.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_69255874",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0069",
+            "description": "Steel Wire rope",
+            "unit": "RM",
+            "rate": 1354.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_d32dde3d",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0070",
+            "description": "Structurals - MS",
+            "unit": "Kg",
+            "rate": 65.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_43dbbd5c",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0071",
+            "description": "Synthetic enamel paint",
+            "unit": "Ltr",
+            "rate": 480.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_3da3656d",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0072",
+            "description": "Top channel - FRP composite",
+            "unit": "RM",
+            "rate": 2066.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_420759dd",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0073",
+            "description": "Vernier coupling No. 31400.00 WR-M0074 100mm worm gear No. 426800.00 WR-M0075 Weld mesh",
+            "unit": "Sq.m.",
+            "rate": 485.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_ff154adf",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0076",
+            "description": "Worm reducer No. 241004.00 WR-M0077 Z type rubber seal",
+            "unit": "RM",
+            "rate": 1600.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_bbfc77bf",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0078",
+            "description": "Zinc chromate red oxide primer",
+            "unit": "Ltr",
+            "rate": 230.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_d98d2cf5",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0079",
+            "description": "Gauge plate m 3000.00 WR-M0080 Vinyl ether hybrid epoxy mortar",
+            "unit": "Kg",
+            "rate": 3800.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_3df8b2ea",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0081",
+            "description": "Iron oxide powder",
+            "unit": "Kg",
+            "rate": 600.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_1e386547",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0082",
+            "description": "Heavy duty plate spring",
+            "unit": "No",
+            "rate": 50000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_fd4e772a",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0083",
+            "description": "Center Joint Rubber Strip M 1990.00 WR-M0084 Pattern cost Cuft 5000.00 WR-M0085 Em Break Coil",
+            "unit": "No",
+            "rate": 18000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_124bfbfb",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0086",
+            "description": "Pendant box",
+            "unit": "No",
+            "rate": 25000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_b55fb8b4",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0087",
+            "description": "Aluminum extendable ladder upto 25ft",
+            "unit": "No",
+            "rate": 28500.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_78ae8fe1",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0088",
+            "description": "Hydraulic oil",
+            "unit": "Ltr",
+            "rate": 440.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_a2513839",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0089",
+            "description": "Solenoid valve with coil",
+            "unit": "No",
+            "rate": 11000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_d4df029b",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0090",
+            "description": "Counter balance valve",
+            "unit": "No",
+            "rate": 43000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_03e664af",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0091",
+            "description": "Equalizer valve",
+            "unit": "No",
+            "rate": 25000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_aa6403ef",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0092",
+            "description": "Oil pressure transmitter",
+            "unit": "No",
+            "rate": 35000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_a94b859e",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0093",
+            "description": "Oil level indicator",
+            "unit": "No",
+            "rate": 22000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_324a2ffe",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0094",
+            "description": "Cylinder seal kit",
+            "unit": "No",
+            "rate": 34000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_1ea63547",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0095",
+            "description": "Single Mode Optic fiber cable",
+            "unit": "Mtr",
+            "rate": 210.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_c346bf26",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0096",
+            "description": "Armed Ethernet cable category 6",
+            "unit": "Mtr",
+            "rate": 140.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_9ef76e11",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0097",
+            "description": "Encoder",
+            "unit": "No",
+            "rate": 113000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_efc0124e",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0098",
+            "description": "Human Machine Interface",
+            "unit": "No",
+            "rate": 159000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_56379eaa",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0099",
+            "description": "Programmable logic controller CPU unit",
+            "unit": "No",
+            "rate": 213000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_1afe93c4",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0100",
+            "description": "Programmable logic controller expansion input unit",
+            "unit": "No",
+            "rate": 40000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_41d8f268",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0101",
+            "description": "Programmable logic controller expansion output unit",
+            "unit": "No",
+            "rate": 40000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_88b69c8d",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0102",
+            "description": "Ethernet switch managed switch",
+            "unit": "No",
+            "rate": 144000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_b2607bde",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0103",
+            "description": "Ethernet switch unmanaged switch",
+            "unit": "No",
+            "rate": 17500.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_37475a5b",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0104",
+            "description": "Switched Mode Power Supply",
+            "unit": "No",
+            "rate": 38600.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_79c7cb3c",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0105",
+            "description": "Surge protector",
+            "unit": "No",
+            "rate": 28000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_47b3f577",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0106",
+            "description": "Indication lamps",
+            "unit": "No",
+            "rate": 1220.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_04d28b48",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0107",
+            "description": "Push buttons with elements",
+            "unit": "No",
+            "rate": 1230.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_8657fa7c",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0108",
+            "description": "Selector switch with elements",
+            "unit": "No",
+            "rate": 4300.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_8f2b8d4f",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0109",
+            "description": "Emergency stop switch with elements",
+            "unit": "No",
+            "rate": 6000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_fed2c4a8",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0110",
+            "description": "Profibus connector",
+            "unit": "No",
+            "rate": 8800.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_0dc38484",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0111",
+            "description": "Current transformer 415 V / 230",
+            "unit": "No",
+            "rate": 26000.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_226c70ea",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-M0112",
+            "description": "Copper Slag for Sand Blasting",
+            "unit": "Qtl.",
+            "rate": 650.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_d496d239",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0001",
+            "description": "III phase welding machine",
+            "unit": "Hour",
+            "rate": 85.6,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_9daa6bce",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0002",
+            "description": "Gas cutting set",
+            "unit": "Hour",
+            "rate": 13.9,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_e779438c",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0003",
+            "description": "Pug cutting machine",
+            "unit": "Hour",
+            "rate": 41.75,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_1a361cc5",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0004",
+            "description": "Grinding machine",
+            "unit": "Hour",
+            "rate": 19.25,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_ad2a389a",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0005",
+            "description": "Plasma cutting machine",
+            "unit": "Hour",
+            "rate": 108.05,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_42500ff7",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0006",
+            "description": "Auto welding machine",
+            "unit": "Hour",
+            "rate": 237.55,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_04ae6546",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0007",
+            "description": "Magnetic core cut machine",
+            "unit": "Hour",
+            "rate": 96.3,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_16d6caf6",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0008",
+            "description": "Mother Oven",
+            "unit": "Hour",
+            "rate": 22.45,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_fb06e13b",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0009",
+            "description": "Flask oven",
+            "unit": "Hour",
+            "rate": 7.5,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_19d9e4c6",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0010",
+            "description": "Airless spray machine",
+            "unit": "Hour",
+            "rate": 208.65,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_cbcfb6f8",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0011",
+            "description": "Centrifugal grinding",
+            "unit": "Hour",
+            "rate": 1284.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_b422e7bb",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0012",
+            "description": "Water jet machine",
+            "unit": "Hour",
+            "rate": 240.75,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_9fae5da1",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0013",
+            "description": "Chain Pulley block",
+            "unit": "Hour",
+            "rate": 90.95,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_5d596ce7",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0014",
+            "description": "Winch",
+            "unit": "Hour",
+            "rate": 652.7,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_f054a190",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0015",
+            "description": "Turkey Posts",
+            "unit": "Hour",
+            "rate": 342.4,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_ac22e9fb",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0016",
+            "description": "Heavy duty Concrete drilling machine",
+            "unit": "Hour",
+            "rate": 750.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_ae6b299e",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0017",
+            "description": "Heavy duty electrical Concrete breaker machine",
+            "unit": "Hour",
+            "rate": 750.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_ff0b475c",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0018",
+            "description": "Concrete core cut machine",
+            "unit": "Hour",
+            "rate": 1800.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_01157f80",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0019",
+            "description": "Magnetic practical inspection machine",
+            "unit": "Hour",
+            "rate": 750.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_4e1ace9d",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0020",
+            "description": "Vacuum Infusion Machine",
+            "unit": "Hour",
+            "rate": 750.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_0712df2b",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0021",
+            "description": "PMI Spectrometer",
+            "unit": "Hour",
+            "rate": 2500.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_86dbcc63",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0022",
+            "description": "Brinell Hardness Meter",
+            "unit": "Hour",
+            "rate": 350.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_5e673dd0",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0023",
+            "description": "Shore \"A\" Hardness Meter",
+            "unit": "Hour",
+            "rate": 350.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_9d69cfb2",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0024",
+            "description": "Genset 40 KVA",
+            "unit": "Hour",
+            "rate": 2089.7,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_5dd10f4e",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0025",
+            "description": "Mobile crane",
+            "unit": "Hour",
+            "rate": 2306.9,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_d0e7a917",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0026",
+            "description": "Telescopic crane",
+            "unit": "Hour",
+            "rate": 12077.1,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_7b38fe8d",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0027",
+            "description": "Plate shearing machine",
+            "unit": "Hour",
+            "rate": 1578.25,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_0b3c9b24",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0028",
+            "description": "Planing machine",
+            "unit": "Hour",
+            "rate": 2209.55,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_2abe17d2",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0029",
+            "description": "Plate rolling machine",
+            "unit": "Hour",
+            "rate": 1599.65,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_cb915f05",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0030",
+            "description": "Hydraulic press",
+            "unit": "Hour",
+            "rate": 2675.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_38298d22",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0031",
+            "description": "Radial drilling machine",
+            "unit": "Hour",
+            "rate": 1123.5,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_5e4b815b",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0032",
+            "description": "Band saw",
+            "unit": "Hour",
+            "rate": 1123.5,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_e7183362",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0033",
+            "description": "Lathe machine",
+            "unit": "Hour",
+            "rate": 1337.5,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_fb414377",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0034",
+            "description": "Shaping machine",
+            "unit": "Hour",
+            "rate": 1284.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_adf15d7f",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0035",
+            "description": "Diesel Compressor",
+            "unit": "Hour",
+            "rate": 2664.3,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_ec482d04",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0036",
+            "description": "Hobbing machine",
+            "unit": "Hour",
+            "rate": 2963.9,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_1168442f",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0037",
+            "description": "Blasting tools (Hopper, Hose, Nozzle)",
+            "unit": "Hour",
+            "rate": 141.25,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_b25d489d",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0038",
+            "description": "Ultrasonic testing equipment",
+            "unit": "Hour",
+            "rate": 690.15,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_e8f7b395",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0039",
+            "description": "Dry Film Thickness Gauge",
+            "unit": "Hour",
+            "rate": 374.5,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_be6dbad7",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0040",
+            "description": "Profile Thickness gauge",
+            "unit": "Hour",
+            "rate": 374.5,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_c1164993",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0041",
+            "description": "Heavy Goods Vehicle",
+            "unit": "Hour",
+            "rate": 2503.8,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_69084fba",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ConstructionRequirement",
+        "properties": {
+            "item_code": "WR-H0042",
+            "description": "Metalizing Equipment",
+            "unit": "Hour",
+            "rate": 963.0,
+            "source_document": "l5_1.pdf"
+        }
+    },
+    {
+        "id": "L5_0",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ProjectRequirement",
+        "properties": {
+            "text": "R1 | Labour | Minimum number of skilled workers required for concrete casting | 5 | persons",
+            "source_document": "L5_sample_requirements.xlsx",
+            "row_number": 0
+        }
+    },
+    {
+        "id": "L5_1",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ProjectRequirement",
+        "properties": {
+            "text": "R2 | Material | Cement required for foundation work | 500 | bags",
+            "source_document": "L5_sample_requirements.xlsx",
+            "row_number": 1
+        }
+    },
+    {
+        "id": "L5_2",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ProjectRequirement",
+        "properties": {
+            "text": "R3 | Equipment | Concrete mixer required on site | 1 | unit",
+            "source_document": "L5_sample_requirements.xlsx",
+            "row_number": 2
+        }
+    },
+    {
+        "id": "L5_3",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ProjectRequirement",
+        "properties": {
+            "text": "R4 | Safety | Safety helmets required for workers | 10 | units",
+            "source_document": "L5_sample_requirements.xlsx",
+            "row_number": 3
+        }
+    },
+    {
+        "id": "L5_4",
+        "entity_type": "Requirement",
+        "layer": "L5",
+        "category": "ProjectRequirement",
+        "properties": {
+            "text": "R5 | Inspection | Quality inspection frequency for structural work | 1 | per week",
+            "source_document": "L5_sample_requirements.xlsx",
+            "row_number": 4
+        }
+    }
+]
